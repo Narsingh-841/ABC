@@ -1,8 +1,9 @@
-import  { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const GrowthPartnerSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const services = [
     {
@@ -39,7 +40,6 @@ const GrowthPartnerSection = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect();
         }
       },
       { 
@@ -59,8 +59,97 @@ const GrowthPartnerSection = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
+      
+      const rect = ref.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate scroll progress
+      const scrollStart = rect.top - windowHeight + 300;
+      const scrollEnd = rect.bottom - windowHeight / 2;
+      const scrollRange = scrollEnd - scrollStart;
+      const scrollPosition = -scrollStart;
+      const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));
+      
+      // Different animations for top row (1-3) and bottom row (4-5)
+      const startRotations = [
+        { rotateZ: -12, skewY: -3 },   // Card 1: tilt left
+        { rotateZ: 10, skewY: 2 },     // Card 2: tilt right
+        { rotateZ: -8, skewY: -2 },    // Card 3: tilt left
+        { rotateZ: 0, skewY: 0 },      // Card 4: from center (no tilt)
+        { rotateZ: 0, skewY: 0 }       // Card 5: from center (no tilt)
+      ];
+      
+      cardsRef.current.forEach((card, index) => {
+        if (!card) return;
+        
+        const startRot = startRotations[index];
+        
+        // Smooth easing
+        const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+        const progress = easeOutCubic(scrollProgress);
+        
+        // Cards 4 and 5 (bottom row) expand from center
+        if (index >= 3) {
+          // Bottom cards: expand outward from center (overlapped to separated)
+          const scale = 0.75 + (0.25 * progress);
+          const opacity = 0.2 + (0.8 * progress);
+          const translateY = 40 * (1 - progress);
+          
+          // Card 4 (index 3) moves from center to left, Card 5 (index 4) moves from center to right
+          const isLeftCard = index === 3;
+          const translateX = isLeftCard 
+            ? -150 * (1 - progress)  // Start at center (right), move left
+            : 150 * (1 - progress);   // Start at center (left), move right
+          
+          card.style.transform = `
+            scale(${scale})
+            translateY(${translateY}px)
+            translateX(${translateX}px)
+          `;
+          card.style.opacity = opacity.toString();
+          card.style.transition = 'none';
+        } else {
+          // Top row cards: tilt and straighten
+          const rotateZ = startRot.rotateZ * (1 - progress);
+          const skewY = startRot.skewY * (1 - progress);
+          const scale = 0.85 + (0.15 * progress);
+          const opacity = 0.3 + (0.7 * progress);
+          const translateY = 30 * (1 - progress);
+          
+          card.style.transform = `
+            rotateZ(${rotateZ}deg)
+            skewY(${skewY}deg)
+            scale(${scale})
+            translateY(${translateY}px)
+          `;
+          card.style.opacity = opacity.toString();
+          card.style.transition = 'none';
+        }
+      });
+    };
+
+    let ticking = false;
+    const smoothScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', smoothScroll, { passive: true });
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', smoothScroll);
+  }, []);
+
   return (
-    <section ref={ref} className="min-h-screen bg-gray-50 py-6 px-6 flex items-center justify-center">
+    <section ref={ref} className="min-h-screen bg-gray-50 py-6 px-6 flex items-center justify-center overflow-hidden">
       <div className="max-w-7xl w-full rounded-3xl p-12 lg:p-16" style={{ backgroundColor: '#0A2540' }}>
         {/* Header */}
         <div className={`text-center mb-12 transition-all duration-1000 ${
@@ -79,11 +168,11 @@ const GrowthPartnerSection = () => {
           {services.slice(0, 3).map((service, index) => (
             <div
               key={index}
-              className={`bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-700 ease-out hover:scale-105 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              ref={(el) => { cardsRef.current[index] = el; }}
+              className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
               style={{
-                transitionDelay: isVisible ? `${0.3 + (index * 0.15)}s` : '0s'
+                transformStyle: 'preserve-3d',
+                willChange: 'transform, opacity'
               }}
             >
               <div className="flex items-start gap-4 mb-4">
@@ -106,11 +195,11 @@ const GrowthPartnerSection = () => {
           {services.slice(3, 5).map((service, index) => (
             <div
               key={index}
-              className={`bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-700 ease-out hover:scale-105 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              ref={(el) => { cardsRef.current[index + 3] = el; }}
+              className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
               style={{
-                transitionDelay: isVisible ? `${0.75 + (index * 0.15)}s` : '0s'
+                transformStyle: 'preserve-3d',
+                willChange: 'transform, opacity'
               }}
             >
               <div className="mb-6">
