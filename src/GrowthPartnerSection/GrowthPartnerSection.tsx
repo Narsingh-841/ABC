@@ -67,8 +67,8 @@ const GrowthPartnerSection = () => {
       const windowHeight = window.innerHeight;
       
       // Calculate scroll progress
-      const scrollStart = rect.top - windowHeight + 300;
-      const scrollEnd = rect.bottom - windowHeight / 2;
+      const scrollStart = rect.top - windowHeight + 400; // Start much earlier
+      const scrollEnd = rect.top + 400; // Complete when top is 100px from top
       const scrollRange = scrollEnd - scrollStart;
       const scrollPosition = -scrollStart;
       const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));

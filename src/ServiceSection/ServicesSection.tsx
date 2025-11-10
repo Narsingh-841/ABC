@@ -1,8 +1,9 @@
-import  { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const ServicesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const services = [
     {
@@ -32,7 +33,6 @@ const ServicesSection = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect();
         }
       },
       { 
@@ -50,6 +50,84 @@ const ServicesSection = () => {
         observer.unobserve(ref.current);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
+      
+      const rect = ref.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate scroll progress within the section
+      const scrollStart = rect.top - windowHeight + 200;
+      const scrollEnd = rect.top + 200; // Complete when top is 100px from top
+      const scrollRange = scrollEnd - scrollStart;
+      const scrollPosition = -scrollStart;
+      const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));
+      
+      // Different rotation angles for each card
+      const startRotations = [
+        { rotateX: 25, rotateY: -35, rotateZ: -10 },
+        { rotateX: -20, rotateY: 30, rotateZ: 8 },
+        { rotateX: 30, rotateY: -25, rotateZ: -12 },
+        { rotateX: -25, rotateY: 28, rotateZ: 10 }
+      ];
+      
+      // Apply effects to cards
+      cardsRef.current.forEach((card, index) => {
+        if (!card) return;
+        
+        const startRot = startRotations[index];
+        
+        // Easing function for smooth animation
+        const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+        const progress = easeOutCubic(scrollProgress);
+        
+        // Scale from small to normal
+        const scale = 0.7 + (0.3 * progress);
+        
+        // Rotate from angled to flat
+        const rotateX = startRot.rotateX * (1 - progress);
+        const rotateY = startRot.rotateY * (1 - progress);
+        const rotateZ = startRot.rotateZ * (1 - progress);
+        
+        // Move up from below
+        const translateY = 50 * (1 - progress);
+        
+        // Fade in
+        const opacity = 0.3 + (0.7 * progress);
+        
+        // Apply transformations
+        card.style.transform = `
+          perspective(1000px) 
+          rotateX(${rotateX}deg)
+          rotateY(${rotateY}deg)
+          rotateZ(${rotateZ}deg)
+          scale(${scale})
+          translateY(${translateY}px)
+        `;
+        card.style.opacity = opacity.toString();
+        card.style.transition = 'none';
+      });
+    };
+
+    // Smooth scroll handling
+    let ticking = false;
+    const smoothScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', smoothScroll, { passive: true });
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', smoothScroll);
   }, []);
 
   return (
@@ -76,15 +154,18 @@ const ServicesSection = () => {
             </button>
           </div>
 
-          {/* Right Side - Service Cards Grid */}
+          {/* Right Side - Service Cards Grid with 3D Scroll Animation */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:col-span-3">
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-700 ease-out hover:scale-105 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                ref={(el) => { cardsRef.current[index] = el; }}
+                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-105 ${
+                  isVisible ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{
+                  transformStyle: 'preserve-3d',
+                  willChange: 'transform',
                   transitionDelay: isVisible ? `${0.4 + (index * 0.15)}s` : '0s'
                 }}
               >

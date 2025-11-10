@@ -78,7 +78,7 @@ const ConfidenceSection = () => {
       
       // ULTRA ENHANCED: Start animation much earlier and extend range
       const scrollStart = rect.top - windowHeight + 400; // Start much earlier
-      const scrollEnd = rect.bottom - windowHeight / 3;
+      const scrollEnd = rect.top + 400; // Complete when top is 100px from top
       const scrollRange = scrollEnd - scrollStart;
       const scrollPosition = -scrollStart;
       const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));
