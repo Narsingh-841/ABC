@@ -73,15 +73,7 @@ const ConfidenceSection = () => {
     const handleScroll = () => {
       if (!ref.current) return;
       
-      const rect = ref.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
-      // ULTRA ENHANCED: Start animation much earlier and extend range
-      const scrollStart = rect.top - windowHeight + 400; // Start much earlier
-      const scrollEnd = rect.top + 400; // Complete when top is 100px from top
-      const scrollRange = scrollEnd - scrollStart;
-      const scrollPosition = -scrollStart;
-      const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));
       
       // ULTRA DRAMATIC: Extreme rotation angles for maximum impact
       const startRotations = [
@@ -93,9 +85,18 @@ const ConfidenceSection = () => {
         { rotateX: -55, rotateY: 62, rotateZ: -34 }    // Card 6: extreme right tilt
       ];
       
-      // Apply effects to cards
+      // Apply effects to each card individually based on its position
       cardsRef.current.forEach((card, index) => {
         if (!card) return;
+        
+        const cardRect = card.getBoundingClientRect();
+        
+        // Calculate scroll progress for each individual card
+        const scrollStart = cardRect.top - windowHeight + 150;
+        const scrollEnd = cardRect.top - 200;
+        const scrollRange = scrollEnd - scrollStart;
+        const scrollPosition = -scrollStart;
+        const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));
         
         const startRot = startRotations[index];
         

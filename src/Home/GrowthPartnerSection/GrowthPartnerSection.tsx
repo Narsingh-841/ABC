@@ -63,15 +63,7 @@ const GrowthPartnerSection = () => {
     const handleScroll = () => {
       if (!ref.current) return;
       
-      const rect = ref.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
-      // Calculate scroll progress
-      const scrollStart = rect.top - windowHeight + 400; // Start much earlier
-      const scrollEnd = rect.top + 400; // Complete when top is 100px from top
-      const scrollRange = scrollEnd - scrollStart;
-      const scrollPosition = -scrollStart;
-      const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));
       
       // Different animations for top row (1-3) and bottom row (4-5)
       const startRotations = [
@@ -84,6 +76,15 @@ const GrowthPartnerSection = () => {
       
       cardsRef.current.forEach((card, index) => {
         if (!card) return;
+        
+        const cardRect = card.getBoundingClientRect();
+        
+        // Calculate scroll progress for each individual card
+        const scrollStart = cardRect.top - windowHeight + 150;
+        const scrollEnd = cardRect.top - 200;
+        const scrollRange = scrollEnd - scrollStart;
+        const scrollPosition = -scrollStart;
+        const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));
         
         const startRot = startRotations[index];
         

@@ -1,16 +1,16 @@
 import React from 'react';
-import Header from '../Header/header';
-import HeroSection from '../HeroSection/HeroSection';
-import TrustedCompanies from '../TrustedCompanies/TrustedCompanies';
-import ServicesSection from '../ServiceSection/ServicesSection';
-import ConfidenceSection from '../ConfidenceSection/ConfidenceSection';
-import GrowthPartnerSection from '../GrowthPartnerSection/GrowthPartnerSection';
-import TrustStatsSection from '../TrustStatsSection/TrustStatsSection';
-import CaseStudyCarousel from '../CaseStudyCarousel/CaseStudyCarousel';
-import AboutCapabiliq from '../About/AboutCapabiliq';
-import ClientTestimonials from '../ClientTestimonials/ClientTestimonials';
-import CTABanner from '../CTABanner/CTABanner';
-import Footer from '../Footer/Footer';
+import Header from '../Home/Header/header';
+import HeroSection from '../Home/HeroSection/HeroSection';
+import TrustedCompanies from '../Home/TrustedCompanies/TrustedCompanies';
+import ServicesSection from '../Home/ServiceSection/ServicesSection';
+import ConfidenceSection from '../Home/ConfidenceSection/ConfidenceSection';
+import GrowthPartnerSection from '../Home/GrowthPartnerSection/GrowthPartnerSection';
+import TrustStatsSection from '../Home/TrustStatsSection/TrustStatsSection';
+import CaseStudyCarousel from '../Home/CaseStudyCarousel/CaseStudyCarousel';
+import AboutCapabiliq from '../Home/About/AboutCapabiliq';
+import ClientTestimonials from '../Home/ClientTestimonials/ClientTestimonials';
+import CTABanner from '../Home/CTABanner/CTABanner';
+import Footer from '../Home/Footer/Footer';
 
 
 const HomePage: React.FC = () => {

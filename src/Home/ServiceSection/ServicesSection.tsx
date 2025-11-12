@@ -56,15 +56,7 @@ const ServicesSection = () => {
     const handleScroll = () => {
       if (!ref.current) return;
       
-      const rect = ref.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
-      // Calculate scroll progress within the section
-      const scrollStart = rect.top - windowHeight + 200;
-      const scrollEnd = rect.top + 200; // Complete when top is 100px from top
-      const scrollRange = scrollEnd - scrollStart;
-      const scrollPosition = -scrollStart;
-      const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));
       
       // Different rotation angles for each card
       const startRotations = [
@@ -74,9 +66,18 @@ const ServicesSection = () => {
         { rotateX: -25, rotateY: 28, rotateZ: 10 }
       ];
       
-      // Apply effects to cards
+      // Apply effects to cards individually based on their position
       cardsRef.current.forEach((card, index) => {
         if (!card) return;
+        
+        const cardRect = card.getBoundingClientRect();
+        
+        // Calculate scroll progress for each individual card
+        const scrollStart = cardRect.top - windowHeight + 100;
+        const scrollEnd = cardRect.top - 200;
+        const scrollRange = scrollEnd - scrollStart;
+        const scrollPosition = -scrollStart;
+        const scrollProgress = Math.max(0, Math.min(1, scrollPosition / scrollRange));
         
         const startRot = startRotations[index];
         

@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -17,20 +19,60 @@ const HeroSection = () => {
       }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
       }
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      
+      const section = sectionRef.current;
+      const sectionTop = section.getBoundingClientRect().top;
+      const sectionHeight = section.offsetHeight;
+      
+      // Calculate progress based on how much of the section has been scrolled
+      let progress = 0;
+      if (sectionTop < 0) {
+        progress = Math.min(Math.abs(sectionTop) / (sectionHeight * 0.7), 1);
+      }
+      
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Calculate 3D transform values based on scroll progress
+  const get3DTransform = (progress: number) => {
+    const rotateX = progress * 45; // Rotate up to 45 degrees
+    const translateZ = progress * -200; // Move backward in 3D space
+    const scale = 1 - (progress * 0.3); // Scale down
+    const opacity = 1 - (progress * 1.2); // Fade out
+    
+    return {
+      transform: `perspective(1000px) rotateX(${rotateX}deg) translateZ(${translateZ}px) scale(${scale})`,
+      opacity: Math.max(0, opacity)
+    };
+  };
+
+  const contentStyle = get3DTransform(scrollProgress);
+
   return (
-    <section ref={ref} className="relative min-h-[80vh] bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 pt-16 pb-32 text-center relative z-10">
+    <section ref={sectionRef} className="relative min-h-[60vh] bg-white overflow-hidden">
+      <div 
+        ref={contentRef}
+        className="max-w-6xl mx-auto px-6 pt-16 pb-32 text-center relative z-10 transition-transform duration-100 ease-out"
+        style={contentStyle}
+      >
         {/* LinkedIn Indian Startup Badge with enhanced falling animation */}
         <div className={`flex items-center justify-center gap-2 mb-12 transition-all duration-1000 ${
           isVisible 
@@ -107,11 +149,9 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Enhanced U-shaped Gradient Background with subtle animation */}
-      <div 
-        className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[180vw] h-[250vh] rounded-b-[70%] transition-all duration-2000 ${
-          isVisible ? 'opacity-100 scale-100' : 'opacity-80 scale-105'
-        }`}
+           {/* Enhanced U-shaped Gradient Background with subtle animation */}
+           <div 
+        className={`absolute bottom-0 left-1/2  -translate-x-1/2 w-[150vw] h-[150vh] rounded-b-[100%]  duration-2000`}
         style={{
           background: 'linear-gradient(180.13deg, #FFFFFF 77.63%, #D24B8A 99.89%)'
         }}

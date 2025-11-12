@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import businesscard from '../assets/Bussinesscard.jpg';
+import businesscard from "../../assets/BussinessCard.jpg";
 
 const TrustStatsSection = () => {
   const [, setIsVisible] = useState(false);
