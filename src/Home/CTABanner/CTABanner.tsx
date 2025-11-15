@@ -49,11 +49,6 @@ const CTABanner = () => {
             </span>
           </h2>
 
-          <p className={`text-white/90 text-sm md:text-base mb-6 md:mb-8 max-w-2xl mx-auto transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`} style={{ transitionDelay: '0.4s' }}>
-            Transform your recruitment process with AI-powered solutions. Get started with a free consultation today.
-          </p>
 
           <button className={`bg-white text-gray-900 px-6 md:px-8 py-3 rounded-full text-sm md:text-base font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 transform ${
             isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'

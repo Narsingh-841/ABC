@@ -8,6 +8,7 @@ import ImpactNumbers from '../ImpactNumbers/ImpactNumbers';
 import StreamlinedProcess from '../StreamlinedProcess/StreamlinedProcess';
 import ClientTestimonials from '../../Home/ClientTestimonials/ClientTestimonials';
 import CapabiligCrew from '../CapabiligCrew/CapabiligCrew';
+import CTASection from '../../Home/CTASection/CTASection';
 
  // or correct path to your Welcome component
 
@@ -22,7 +23,7 @@ const AboutUsPage: React.FC = () => {
       <StreamlinedProcess />
       <ClientTestimonials />
       <CapabiligCrew />
-     
+     <CTASection />
       <Footer />
     
     </div>

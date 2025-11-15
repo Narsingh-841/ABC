@@ -58,7 +58,6 @@ const StreamlinedProcess: React.FC = () => {
           if (entry.isIntersecting) {
             setVisibleCards((prev) => new Set([...prev, index]));
           } else {
-            // Reset when card leaves viewport
             setVisibleCards((prev) => {
               const newSet = new Set(prev);
               newSet.delete(index);
@@ -66,7 +65,6 @@ const StreamlinedProcess: React.FC = () => {
             });
             animationApplied.current.delete(index);
             
-            // Reset card state
             const card = cardRefs.current[index];
             if (card) {
               card.style.opacity = '0';
@@ -98,7 +96,6 @@ const StreamlinedProcess: React.FC = () => {
 
         setTimeout(() => {
           if (animationType === 0) {
-            // Fade In Up
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'all 0.9s ease-out';
@@ -107,7 +104,6 @@ const StreamlinedProcess: React.FC = () => {
               card.style.transform = 'translateY(0)';
             });
           } else if (animationType === 1) {
-            // Scale In
             card.style.opacity = '0';
             card.style.transform = 'scale(0.9)';
             card.style.transition = 'all 0.9s ease-out';
@@ -116,7 +112,6 @@ const StreamlinedProcess: React.FC = () => {
               card.style.transform = 'scale(1)';
             });
           } else {
-            // Slide In Left
             card.style.opacity = '0';
             card.style.transform = 'translateX(-30px)';
             card.style.transition = 'all 0.9s ease-out';
@@ -131,42 +126,44 @@ const StreamlinedProcess: React.FC = () => {
   }, [visibleCards]);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <div className="min-h-screen bg-white py-12 px-4">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-5xl font-bold text-center mb-16 text-gray-900">
+        <h1 className="text-6xl font-bold text-center mb-20 text-gray-900">
           Our Streamlined Process
         </h1>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 border border-gray-200 rounded-xl overflow-hidden shadow-lg">
-          {steps.map((step, index) => {
-            const isLastItem = index === steps.length - 1;
-            
-            return (
-              <div
-                key={step.id}
-                ref={(el) => {
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {steps.map((step, index) => {
+              const isLastItem = index === steps.length - 1;
+              
+              return (
+                <div
+                  key={step.id}
+                  ref={(el) => {
                     cardRefs.current[index] = el;
                   }}
-                data-index={index}
-                className={`bg-white p-8 flex flex-col items-center text-center hover:bg-gray-50 transition-colors ${
-                  isLastItem ? 'md:col-start-2' : ''
-                }`}
-                style={{ opacity: 0 }}
-              >
-                <div className="w-16 h-16 bg-purple-900 rounded-2xl flex items-center justify-center mb-6">
-                  <span className="text-white text-2xl font-bold">{step.id}</span>
+                  data-index={index}
+                  className={`flex flex-col items-center text-center ${
+                    isLastItem ? 'md:col-start-2' : ''
+                  }`}
+                  style={{ opacity: 0 }}
+                >
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#760060' }}>
+                    <span className="text-3xl font-bold text-white">{step.id}</span>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    {step.title}
+                  </h3>
+                  
+                  <p className="text-gray-700 leading-relaxed text-base max-w-xs">
+                    {step.description}
+                  </p>
                 </div>
-                
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {step.title}
-                </h3>
-                
-                <p className="text-gray-600 leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

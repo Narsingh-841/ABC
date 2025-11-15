@@ -8,33 +8,33 @@ const ClientTestimonials = () => {
   const testimonials = [
     {
       id: 1,
-      text: "Capabiliq team has been an excellent partner in helping us close some of our most critical and time-sensitive positions. Their understanding of our requirements, speed of execution, and commitment to quality have been impressive. With their support, we were able to onboard the right talent quickly, which has made a significant impact on our business. We truly value this partnership and look forward to continuing to work together in the future.",
-      author: "Lead Talent Acquisition, Trantor"
+      text: "Capabiliq's expertise and innovation have streamlined our recruitment, strengthened workforce capabilities, and driven growth. They are a trusted partner in building a future-ready workforce.",
+      author: "Sr. Manager Talent Acquisition, TTEC Digital"
     },
     {
       id: 2,
-      text: "The level of professionalism and dedication shown by Capabiliq is remarkable. They consistently deliver top-tier candidates and have become an integral part of our hiring strategy. Their team's expertise in the tech industry is particularly impressive.",
-      author: "HR Director, TechCorp Inc."
+      text: "Capabiliq's expertise and innovative approach have enabled PwC to enhance talent strategies and optimize workforce solutions. They are a trusted partner in advancing organizational growth and agility.",
+      author: "Sr. Manager, PwC"
     },
     {
       id: 3,
-      text: "Working with Capabiliq has transformed our recruitment process. Their innovative approach and deep market knowledge have helped us secure exceptional talent that drives our company forward. Highly recommended!",
-      author: "CEO, Startup Ventures"
+      text: "Working with Capabiliq has transformed our talent acquisition process. Their data-driven approach and deep industry knowledge have helped us secure top-tier professionals who align perfectly with our business objectives and culture.",
+      author: "Head of HR, Zensar"
     },
     {
       id: 4,
-      text: "Capabiliq's ability to understand our unique culture and find candidates who are not just skilled but also great cultural fits has been invaluable. They've significantly reduced our time-to-hire.",
-      author: "Talent Manager, Growth Labs"
+      text: "Capabiliq's strategic partnership has been instrumental in scaling our technical teams efficiently. Their understanding of our specific needs and market dynamics has resulted in exceptional hiring outcomes and reduced time-to-fill.",
+      author: "Director Talent Acquisition, Yash Technologies"
     },
     {
       id: 5,
-      text: "Outstanding service and results! Capabiliq has helped us build our entire engineering team with candidates who exceeded our expectations. Their partnership has been crucial to our success.",
-      author: "CTO, Innovation Systems"
+      text: "The Capabiliq team demonstrates remarkable expertise in identifying and attracting high-caliber talent. Their proactive approach and quality of service have significantly enhanced our recruitment effectiveness and business performance.",
+      author: "VP Human Resources, Trantor"
     },
     {
       id: 6,
-      text: "The team at Capabiliq goes above and beyond to ensure we find the right talent. Their personalized approach and commitment to quality make them stand out in the recruitment industry.",
-      author: "VP Operations, Enterprise Solutions"
+      text: "Capabiliq's innovative recruitment solutions have empowered us to build competitive teams in a challenging market. Their commitment to understanding our unique requirements delivers consistent value and strategic advantage.",
+      author: "Chief People Officer, Incedo"
     }
   ];
 

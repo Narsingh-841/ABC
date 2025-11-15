@@ -31,69 +31,7 @@ export default function AboutCapabiliq() {
 
   return (
     <section ref={ref} className="min-h-[70vh] bg-white py-8 px-4 sm:py-12 sm:px-6 lg:py-16 lg:px-8 flex items-center justify-center">
-      <style >{`
-        @keyframes float3D {
-          0%, 100% {
-            transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-          }
-          25% {
-            transform: translateY(-10px) rotateX(5deg) rotateY(2deg);
-          }
-          50% {
-            transform: translateY(-5px) rotateX(-2deg) rotateY(5deg);
-          }
-          75% {
-            transform: translateY(-8px) rotateX(3deg) rotateY(-2deg);
-          }
-        }
-        
-        .animate-float3D {
-          animation: float3D 6s ease-in-out infinite;
-          transform-style: preserve-3d;
-        }
-        
-        .gradient-text {
-          background: linear-gradient(180deg, #6D58D6 0%, #D24B8A 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-        
-        .card-3d {
-          transform-style: preserve-3d;
-          perspective: 1000px;
-        }
-        
-        .card-3d-inner {
-          transform-style: preserve-3d;
-          transition: transform 0.5s ease;
-        }
-        
-        .card-3d:hover .card-3d-inner {
-          transform: rotateY(5deg) rotateX(5deg) translateY(-5px);
-        }
-        
-        .shine-effect::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 50%;
-          height: 100%;
-          background: linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(255, 255, 255, 0.3) 50%,
-            transparent 100%
-          );
-          transform: skewX(-25deg);
-          transition: left 0.75s;
-        }
-        
-        .card-3d:hover .shine-effect::before {
-          left: 150%;
-        }
-      `}</style>
+   
 
       <div className="w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
