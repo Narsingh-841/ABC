@@ -69,11 +69,11 @@ Each partnership we built wasn't just about hiring — it was about helping busi
   ];
 
   return (
-    <div className="min-h-screen bg-white py-6 px-4 sm:px-4 lg:px-4">
+    <div className="bg-white py-8 sm:py-6 lg:py-6 px-4 sm:px-4 lg:px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header with 3D effect */}
         <h1 
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-20"
+          className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 px-2"
           style={{
             transform: `perspective(1000px) rotateX(${scrollProgress * 5}deg)`,
             transition: 'transform 0.1s ease-out'
@@ -85,7 +85,7 @@ Each partnership we built wasn't just about hiring — it was about helping busi
         
         {/* Timeline */}
         <div className="relative" ref={timelineRef}>
-          {/* Central vertical line with progress fill */}
+          {/* Central vertical line with progress fill - Hidden on mobile */}
           <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 hidden md:block" style={{ background: '#e5e7eb' }} />
           <div 
             className="absolute left-1/2 transform -translate-x-1/2 w-0.5 hidden md:block transition-all duration-300"
@@ -96,7 +96,7 @@ Each partnership we built wasn't just about hiring — it was about helping busi
             }} 
           />
 
-          {/* Top cap */}
+          {/* Top cap - Hidden on mobile */}
           <div className="absolute left-1/2 top-0 transform -translate-x-1/2 -translate-y-full hidden md:block">
             <div 
               className="w-3 h-3 rounded-full transition-all duration-300" 
@@ -108,7 +108,7 @@ Each partnership we built wasn't just about hiring — it was about helping busi
           </div>
 
           {/* Timeline items */}
-          <div className="space-y-24">
+          <div className="space-y-8 sm:space-y-12 lg:space-y-16">
             {timelineData.map((item, index) => {
               const itemProgress = Math.max(0, Math.min(1, (scrollProgress * timelineData.length) - index));
               const isActive = itemProgress > 0;
@@ -123,20 +123,52 @@ Each partnership we built wasn't just about hiring — it was about helping busi
                     transitionDelay: `${index * 200}ms`,
                     transform: `
                       perspective(1000px) 
-                      rotateY(${item.position === 'left' ? itemProgress * 5 - 5 : -itemProgress * 5 + 5}deg)
-                      translateZ(${itemProgress * 20}px)
+                      rotateY(${window.innerWidth >= 768 ? (item.position === 'left' ? itemProgress * 5 - 5 : -itemProgress * 5 + 5) : 0}deg)
+                      translateZ(${window.innerWidth >= 768 ? itemProgress * 20 : 0}px)
                     `
                   }}
                 >
                   
-                  <div className="md:grid md:grid-cols-2  md:gap-8 items-center">
+                  {/* Mobile Layout - Single Column */}
+                  <div className="md:hidden">
+                    <div className="flex">
+                      {/* Left line for mobile */}
+                      <div className="flex flex-col items-center mr-4 sm:mr-6">
+                        <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: '#760060' }} />
+                        {/* Remove the line after the last item */}
+                        {index !== timelineData.length - 1 && (
+                          <div className="w-0.5 h-full flex-1 mt-1" style={{ background: '#e5e7eb' }} />
+                        )}
+                      </div>
+                      
+                      {/* Content */}
+                      <div className={`flex-1 ${index !== timelineData.length - 1 ? 'pb-6' : 'pb-2'}`}>
+                        <div 
+                          className="text-white px-4 py-2 rounded-full font-semibold text-xs sm:text-sm mb-3 inline-block transition-all duration-500" 
+                          style={{ 
+                            background: '#760060',
+                            transform: `scale(${isActive ? 1 : 0.9})`,
+                            opacity: isActive ? 1 : 0.5
+                          }}
+                        >
+                          {item.title}
+                        </div>
+                        <p className="text-gray-700 leading-relaxed whitespace-pre-line text-sm sm:text-base">
+                          {item.content}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Desktop Layout */}
+                  <div className="hidden md:grid md:grid-cols-2 md:gap-6 lg:gap-8 items-center">
                     {/* Left side content */}
                     {item.position === 'left' && (
                       <>
-                        <div className="mb-8 md:mb-0 md:text-right md:pr-12">
-                          <div className="inline-block">
+                        <div className="md:text-right md:pr-6 lg:pr-8">
+                          <div className="inline-block max-w-lg">
                             <div 
-                              className="text-white px-6 py-3 top-6 rounded-full font-semibold text-sm mb-4 inline-block transition-all duration-500" 
+                              className="text-white px-5 py-2 lg:px-6 lg:py-3 rounded-full font-semibold text-sm mb-3 lg:mb-4 inline-block transition-all duration-500" 
                               style={{ 
                                 background: '#760060',
                                 transform: `scale(${isActive ? 1 : 0.9})`,
@@ -145,7 +177,7 @@ Each partnership we built wasn't just about hiring — it was about helping busi
                             >
                               {item.title}
                             </div>
-                            <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                            <p className="text-gray-700 leading-relaxed whitespace-pre-line text-sm lg:text-base">
                               {item.content}
                             </p>
                           </div>
@@ -158,47 +190,44 @@ Each partnership we built wasn't just about hiring — it was about helping busi
                     {item.position === 'right' && (
                       <>
                         <div className="hidden md:block" />
-                        <div className="mb-8 md:mb-0 md:pl-12">
-                          <div 
-                            className="text-white px-6 py-3 rounded-full font-semibold text-sm mb-2 inline-block transition-all duration-500" 
-                            style={{ 
-                              background: '#760060',
-                              transform: `scale(${isActive ? 1 : 0.9})`,
-                              opacity: isActive ? 1 : 0.5
-                            }}
-                          >
-                            {item.title}
+                        <div className="md:pl-6 lg:pl-8">
+                          <div className="max-w-lg">
+                            <div 
+                              className="text-white px-5 py-2 lg:px-6 lg:py-3 rounded-full font-semibold text-sm mb-3 lg:mb-4 inline-block transition-all duration-500" 
+                              style={{ 
+                                background: '#760060',
+                                transform: `scale(${isActive ? 1 : 0.9})`,
+                                opacity: isActive ? 1 : 0.5
+                              }}
+                            >
+                              {item.title}
+                            </div>
+                            <p className="text-gray-700 leading-relaxed whitespace-pre-line text-sm lg:text-base">
+                              {item.content}
+                            </p>
                           </div>
-                          <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                            {item.content}
-                          </p>
                         </div>
                       </>
                     )}
                   </div>
 
-                  {/* Circle dot on timeline with animation */}
-                  <div className="absolute left-1/2 top-4 transform -translate-x-1/2 -translate-y-1/2 hidden md:block">
+                  {/* Circle dot on timeline with animation - Desktop only */}
+                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:block">
                     <div 
-                      className="w-5 h-5 rounded-full border-4 border-white shadow-md transition-all duration-500" 
+                      className="w-4 h-4 lg:w-5 lg:h-5 rounded-full border-3 lg:border-4 border-white shadow-md transition-all duration-500" 
                       style={{ 
                         background: isActive ? '#760060' : '#e5e7eb',
                         transform: `scale(${isActive ? 1.2 : 1}) rotate(${itemProgress * 360}deg)`,
-                        boxShadow: isActive ? '0 0 20px rgba(118, 0, 96, 0.5)' : '0 2px 4px rgba(0,0,0,0.1)'
+                        boxShadow: isActive ? '0 0 15px rgba(118, 0, 96, 0.5)' : '0 1px 3px rgba(0,0,0,0.1)'
                       }} 
                     />
-                  </div>
-
-                  {/* Mobile dot */}
-                  <div className="md:hidden mb-4">
-                    <div className="w-4 h-4 rounded-full" style={{ background: '#760060' }} />
                   </div>
                 </div>
               );
             })}
           </div>
 
-          {/* Bottom cap */}
+          {/* Bottom cap - Hidden on mobile */}
           <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-full hidden md:block">
             <div 
               className="w-3 h-3 rounded-full transition-all duration-300" 

@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import Capabiliqlogo from "../../assets/Capabiliqlogo.png";
+import { useNavigate } from "react-router-dom"; // If using React Router
 
 interface SubmenuItem {
   label: string;
@@ -16,6 +18,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate(); // If using React Router
 
   const navItems: NavItem[] = [
     {
@@ -23,17 +26,15 @@ const Header = () => {
       submenu: [
         { label: "About Us", href: "/about-us" },
         { label: "Contact Us", href: "/contact-us" },
-        { label: "Careers", href: "/careers" },
-        { label: "Press", href: "/press" },
       ],
     },
     {
       label: "Solutions",
       submenu: [
-        { label: "Enterprise", href: "/enterprise" },
-        { label: "SMB", href: "/smb" },
-        { label: "Startup", href: "/startup" },
-        { label: "Custom", href: "/custom" },
+        { label: "Staffing", href: "/staffing" },
+        { label: "Startup One pay model", href: "/startups" },
+        { label: "GCC", href: "/gcc" },
+        { label: "RPO", href: "/rpo" },
       ],
     },
 
@@ -60,6 +61,26 @@ const Header = () => {
       submenu: [{ label: "Cyber Security", href: "/cyber-security" }],
     },
   ];
+
+  const handleLogoClick = () => {
+    // Option 1: Using React Router (recommended)
+    navigate("/");
+    
+    // Option 2: Using window.location (if not using React Router)
+    // window.location.href = "/";
+    
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  const handleMouseEnter = (label: string) => {
+    setOpenDropdown(label);
+  };
+
+  const handleMouseLeave = () => {
+    setOpenDropdown(null);
+  };
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label);
@@ -129,12 +150,18 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
       <div className="px-4 sm:px-6 lg:px-8 py-3 lg:py-4 max-w-7xl mx-auto">
         <nav className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer flex-shrink-0">
-            <div className="w-6 h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg transform rotate-12"></div>
-            <span className="text-lg lg:text-xl font-bold text-black">
-              CAPABILIQ
-            </span>
+          {/* Logo - Increased size */}
+          <div 
+            className="flex items-center cursor-pointer flex-shrink-0"
+            onClick={handleLogoClick}
+          >
+            <div className="w-36 h-9 lg:w-44 lg:h-11">
+              <img 
+                src={Capabiliqlogo} 
+                alt="Capabiliq Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
 
           {/* Desktop Navigation */}
@@ -146,6 +173,8 @@ const Header = () => {
                 ref={(el) => {
                   dropdownRefs.current[item.label] = el;
                 }}
+                onMouseEnter={() => handleMouseEnter(item.label)}
+                onMouseLeave={handleMouseLeave}
               >
                 <button
                   onClick={() => toggleDropdown(item.label)}

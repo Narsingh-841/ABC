@@ -14,7 +14,7 @@ interface Story {
   approach: string[];
   outcome: string[];
   result: string;
-  author: string;
+
 }
 
 const StoriesSection = () => {
@@ -39,7 +39,7 @@ const StoriesSection = () => {
         "Achieved 40% cost efficiency compared to traditional outsourcing."
       ],
       result: "From zero presence to a high performing GCC — built and scaled in record time.",
-      author: "Varun M G"
+      
     },
     {
       id: 2,
@@ -59,7 +59,7 @@ const StoriesSection = () => {
         "Achieved 50% reduction in overall setup and talent acquisition cost."
       ],
       result: "India became their global innovation hub — powered by Capabiliq's execution network.",
-      author: "Varun M G"
+     
     },
     {
       id: 3,
@@ -79,7 +79,7 @@ const StoriesSection = () => {
         "Enhanced GCC maturity through agile hiring execution."
       ],
       result: "A resilient and future-ready GCC team, enabling faster enterprise transformation.",
-      author: "Varun M G"
+     
     }
   ];
 
@@ -117,15 +117,7 @@ const StoriesSection = () => {
                     <span className="text-sm font-semibold">Close</span>
                   </button>
 
-                  {/* Author Badge */}
-                  <div className="flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full">
-                    <div className="w-8 h-8 bg-[#BEA2FB] rounded-full flex items-center justify-center">
-                      <span className="text-white text-sm">▶</span>
-                    </div>
-                    <span className="font-semibold text-sm" style={{ color: '#BEA2FB' }}>
-                      {selectedStory.author}
-                    </span>
-                  </div>
+                
                 </div>
 
                 {/* Right Side - Content */}

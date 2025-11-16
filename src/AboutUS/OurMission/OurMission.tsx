@@ -30,7 +30,7 @@ export default function AboutCapabiliq() {
   }, []);
 
   return (
-    <section ref={ref} className="min-h-[70vh] bg-white py-8 px-4 sm:py-12 sm:px-6 lg:py-16 lg:px-8 flex items-center justify-center">
+    <section ref={ref} className="min-h-[70vh] bg-white py-6 px-4 sm:py-6 sm:px-6 lg:py-6 lg:px-4 flex items-center justify-center">
    
 
       <div className="w-full max-w-7xl mx-auto">

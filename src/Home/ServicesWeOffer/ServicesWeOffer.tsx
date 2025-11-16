@@ -76,7 +76,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, number, color, items, 
             transition={{ duration: 0.5, delay: (delay * 0.001) + 0.4 + (index * 0.1) }}
           >
             <motion.span 
-              className="mr-2 -mt-1 flex-shrink-0 text-base font-bold"
+              className="mr-2 -mt-1.5 flex-shrink-0 text-base font-bold"
               initial={{ scale: 0 }}
               animate={isInView ? { scale: 1 } : { scale: 0 }}
               transition={{ duration: 0.3, delay: (delay * 0.001) + 0.5 + (index * 0.1) }}
@@ -241,7 +241,7 @@ const ServicesWeOffer: React.FC = () => {
         </div>
 
         {/* Tablet Layout - 2x2 Grid */}
-        <div className="hidden md:grid lg:hidden grid-cols-2 gap-4 sm:gap-6">
+        <div className="hidden md:grid xl:hidden grid-cols-2 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <ServiceCard 
               key={index}
@@ -253,18 +253,25 @@ const ServicesWeOffer: React.FC = () => {
         </div>
 
         {/* Desktop Layout - Three Columns with Bulb */}
-        <div className="hidden lg:grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8 items-center">
+        <div className="hidden xl:grid grid-cols-3 gap-4 lg:gap-6 xl:gap-8 items-start">
           {/* Left Column - Two Cards */}
-          <div className="space-y-6 lg:space-y-8">
+          <div className="space-y-4 lg:space-y-6 xl:space-y-8 mt-8 xl:mt-0">
             <ServiceCard {...services[0]} delay={200} />
             <ServiceCard {...services[2]} delay={600} />
           </div>
 
           {/* Center Column - Bulb Image with Arrows */}
-          <div className="flex justify-center relative z-10 order-first xl:order-none">
+          <div className="flex justify-center items-center relative z-10 px-2 lg:px-4">
             <motion.div 
               className="relative"
-              style={{ width: '280px', height: '280px', maxWidth: '100%' }}
+              style={{ 
+                width: '100%', 
+                maxWidth: '380px', // Increased from 280px
+                minWidth: '280px', // Increased from 200px
+                height: 'auto',
+                aspectRatio: '1',
+                marginTop: '40px' // Added to bring the bulb down
+              }}
             >
               {/* Darker animated glow effect */}
               <motion.div
@@ -294,7 +301,7 @@ const ServicesWeOffer: React.FC = () => {
                 variants={bulbVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="relative z-10"
+                className="relative z-10 w-full h-full"
               >
                 <img 
                   src={bulb}
@@ -384,7 +391,7 @@ const ServicesWeOffer: React.FC = () => {
           </div>
 
           {/* Right Column - Two Cards */}
-          <div className="space-y-6 lg:space-y-8">
+          <div className="space-y-4 lg:space-y-6 xl:space-y-8 mt-8 xl:mt-0">
             <ServiceCard {...services[1]} delay={400} />
             <ServiceCard {...services[3]} delay={800} />
           </div>
