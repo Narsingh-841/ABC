@@ -38,7 +38,7 @@ const SolutionSection = () => {
     },
     {
       number: "04",
-      title: "One Pay Model",
+      title: "StartUp",
       description: "Build your dream team with CapabiliQ's startup-first hiring model — transparent pricing, zero hidden costs, and unmatched speed.",
       image: onepaymodel,
       path: "/startups" // Add the corresponding route path

@@ -1,4 +1,5 @@
 import React from 'react';
+import Rpoimage from '../../assets/RPOIMAGE.jpeg';
 
 interface ServiceCard {
   number: string;
@@ -59,7 +60,7 @@ const RPOServicesGrowth: React.FC = () => {
           {/* Left Side - Image */}
           <div className="flex items-center justify-center order-2 lg:order-1 w-full">
             <img 
-              src="https://picsum.photos/500/500" 
+              src={Rpoimage} 
               alt="RPO Services and Growth" 
               className="w-full max-w-sm h-128 sm:max-w-md rounded-3xl shadow-lg object-cover aspect-square"
             />

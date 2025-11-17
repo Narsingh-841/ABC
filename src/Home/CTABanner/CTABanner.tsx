@@ -1,8 +1,10 @@
-import  { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CTABanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,6 +31,10 @@ const CTABanner = () => {
     };
   }, []);
 
+  const handleBookCall = () => {
+    navigate('/contact-us');
+  };
+
   return (
     <section ref={ref} className="bg-gray-50 py-8 px-4">
       <div className="max-w-7xl w-full mx-auto">
@@ -49,10 +55,13 @@ const CTABanner = () => {
             </span>
           </h2>
 
-
-          <button className={`bg-white text-gray-900 px-6 md:px-8 py-3 rounded-full text-sm md:text-base font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 transform ${
-            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          }`} style={{ transitionDelay: '0.6s' }}>
+          <button 
+            onClick={handleBookCall}
+            className={`bg-white text-gray-900 px-6 md:px-8 py-3 rounded-full text-sm md:text-base font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 transform ${
+              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`} 
+            style={{ transitionDelay: '0.6s' }}
+          >
             Book a Consulting Call
           </button>
         </div>

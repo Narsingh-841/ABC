@@ -34,12 +34,13 @@ export default function Welcome() {
       className="relative flex items-center justify-center overflow-hidden"
       style={{
         background: 'linear-gradient(180deg, #FFFFFF 0%, #F5E6F0 50%, #E8B5D4 100%)',
-        minHeight: 'clamp(60vh, 80vh, 100vh)'
+        minHeight: 'clamp(50vh, 70vh, 70vh)'
       }}
     >
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-12 md:py-14 text-center relative z-10">
+      {/* Decreased width container */}
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-2 sm:py-8 md:py-10 text-center relative z-10">
         {/* Welcome Badge */}
-        <div className={`flex items-center justify-center gap-2 mb-4 sm:mb-6 transition-all duration-1000 ${
+        <div className={`flex items-center justify-center gap-2 mb-3 sm:mb-4 transition-all duration-1000 ${
           isVisible 
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-[-50px] scale-90'
@@ -50,7 +51,7 @@ export default function Welcome() {
         </div>
 
         {/* Main Heading */}
-        <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight text-gray-900 transition-all duration-1000 delay-200 ${
+        <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 leading-tight text-gray-900 transition-all duration-1000 delay-200 ${
           isVisible 
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-10 scale-95'
@@ -59,7 +60,7 @@ export default function Welcome() {
         </h1>
 
         {/* Subheading */}
-        <p className={`text-gray-800 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 font-normal max-w-3xl mx-auto transition-all duration-1000 delay-400 ${
+        <p className={`text-gray-800 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 font-normal max-w-2xl mx-auto transition-all duration-1000 delay-400 ${
           isVisible 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-8'

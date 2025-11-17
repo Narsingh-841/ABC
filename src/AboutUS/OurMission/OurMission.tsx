@@ -30,11 +30,9 @@ export default function AboutCapabiliq() {
   }, []);
 
   return (
-    <section ref={ref} className="min-h-[70vh] bg-white py-6 px-4 sm:py-6 sm:px-6 lg:py-6 lg:px-4 flex items-center justify-center">
-   
-
+    <section ref={ref} className="min-h-[60vh] bg-white py-2 px-4 sm:py-2 sm:px-4 lg:py-2 lg:px-4 flex items-center justify-center">
       <div className="w-full max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 xl:gap-12 items-center">
           
           {/* Left: Image with 3D Animation */}
           <div className="order-2 lg:order-1 flex justify-center lg:justify-start">
@@ -68,19 +66,19 @@ export default function AboutCapabiliq() {
           </div>
 
           {/* Right: Content */}
-          <div className="order-1 lg:order-2 space-y-6 lg:space-y-8 text-center lg:text-left">
-            <div className="space-y-4 lg:space-y-6">
+          <div className="order-1 lg:order-2 space-y-4 lg:space-y-6 text-center lg:text-left">
+            <div className="space-y-3 lg:space-y-4">
               <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 transition-all duration-1000 ease-out ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}>
                 <span className="gradient-text">Our Mission</span>{' '}
-                <span className="block mt-2 lg:mt-4">
+                <span className="block mt-1 lg:mt-2">
                   to Simplify Hiring
                 </span>
               </h2>
             </div>
 
-            <div className="space-y-4 lg:space-y-6">
+            <div className="space-y-3 lg:space-y-4">
               <p className={`text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose transition-all duration-1000 ease-out ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
@@ -99,8 +97,6 @@ export default function AboutCapabiliq() {
                 To connect businesses with high potential talent through agile, quality driven RaaS solutions powered by AI, predictive analytics, and an intuitive, insight-first platform.
               </p>
             </div>
-
-        
           </div>
         </div>
       </div>

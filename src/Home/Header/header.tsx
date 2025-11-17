@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, ChevronRight } from "lucide-react";
 import Capabiliqlogo from "../../assets/Capabiliqlogo.png";
 import { useNavigate } from "react-router-dom"; // If using React Router
 
 interface SubmenuItem {
   label: string;
   href: string;
+  submenu?: SubmenuItem[]; // For nested submenus
 }
 
 interface NavItem {
@@ -15,10 +16,19 @@ interface NavItem {
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [nestedOpenDropdown, setNestedOpenDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const nestedDropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate(); // If using React Router
+
+  const servicesItems: SubmenuItem[] = [
+    { label: "Cyber Security", href: "/cyber-security" },
+    { label: "SalesForce", href: "/salesforce" },
+    { label: "AI & Data Analytics", href: "/data-analytics" },
+    { label: "Digital Tech Solutions", href: "/digital-tech-solutions" }
+  ];
 
   const navItems: NavItem[] = [
     {
@@ -26,69 +36,54 @@ const Header = () => {
       submenu: [
         { label: "About Us", href: "/about-us" },
         { label: "Contact Us", href: "/contact-us" },
-        { label:"Hire Developers", href:"/hire-developer" },
+        { label: "Hire Developers", href: "/hire-developer" },
       ],
     },
     {
       label: "Solutions",
       submenu: [
         { label: "Staffing", href: "/staffing" },
-        { label: "Startup One pay model", href: "/startups" },
+        { label: "Startup", href: "/startups" },
         { label: "GCC", href: "/gcc" },
         { label: "RPO", href: "/rpo" },
       ],
     },
-
     {
       label: "Case Studies",
       submenu: [
-        { label: "Technology", href: "/case-studies/tech" },
-        { label: "Finance", href: "/case-studies/finance" },
-        { label: "Healthcare", href: "/case-studies/healthcare" },
-        { label: "Retail", href: "/case-studies/retail" },
+        // { label: "Technology", href: "/case-studies/tech" },
+        // { label: "Finance", href: "/case-studies/finance" },
+        // { label: "Healthcare", href: "/case-studies/healthcare" },
+        // { label: "Retail", href: "/case-studies/retail" },
       ],
     },
     {
       label: "Resources",
       submenu: [
         { label: "Blog", href: "/blog" },
-        { label: "Documentation", href: "/docs" },
-        { label: "Webinars", href: "/webinars" },
-        { label: "FAQ", href: "/faq" },
-      ],
-    },
-    {
-      label: "Services",
-      submenu: [{ label: "Cyber Security", href: "/cyber-security" },
-        { label: "SalesForce", href: "/salesforce" },
-        { label: "AI & Data Analytics", href: "/data-analytics" },
-        { label: "Digital Tech Solutions", href: "/digital-tech-solutions" },
+        { 
+          label: "Services", 
+          href: "#",
+          submenu: servicesItems
+        },
+        // { label: "Webinars", href: "/webinars" },
+        // { label: "FAQ", href: "/faq" },
       ],
     },
   ];
 
   const handleLogoClick = () => {
-    // Option 1: Using React Router (recommended)
     navigate("/");
-    
-    // Option 2: Using window.location (if not using React Router)
-    // window.location.href = "/";
-    
-    // Close mobile menu if open
     setIsMobileMenuOpen(false);
     setOpenDropdown(null);
+    setNestedOpenDropdown(null);
   };
 
   const handleContactClick = () => {
-    // Option 1: Using React Router (recommended)
     navigate("/contact-us");
-    
-    // Option 2: Using window.location (if not using React Router)
-    // window.location.href = "/contact-us";
-    
-    // Close mobile menu if open
     setIsMobileMenuOpen(false);
     setOpenDropdown(null);
+    setNestedOpenDropdown(null);
   };
 
   const handleMouseEnter = (label: string) => {
@@ -97,10 +92,23 @@ const Header = () => {
 
   const handleMouseLeave = () => {
     setOpenDropdown(null);
+    setNestedOpenDropdown(null);
+  };
+
+  const handleNestedMouseEnter = (label: string) => {
+    setNestedOpenDropdown(label);
+  };
+
+  const handleNestedMouseLeave = () => {
+    setNestedOpenDropdown(null);
   };
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label);
+  };
+
+  const toggleNestedDropdown = (label: string) => {
+    setNestedOpenDropdown(nestedOpenDropdown === label ? null : label);
   };
 
   const toggleMobileMenu = () => {
@@ -115,13 +123,19 @@ const Header = () => {
         (ref) => ref && ref.contains(event.target as Node)
       );
 
+      // Check if click is outside nested dropdowns
+      const isClickInsideAnyNestedDropdown = Object.values(nestedDropdownRefs.current).some(
+        (ref) => ref && ref.contains(event.target as Node)
+      );
+
       // Check if click is outside mobile menu
       const isClickInsideMobileMenu =
         mobileMenuRef.current &&
         mobileMenuRef.current.contains(event.target as Node);
 
-      if (!isClickInsideAnyDropdown) {
+      if (!isClickInsideAnyDropdown && !isClickInsideAnyNestedDropdown) {
         setOpenDropdown(null);
+        setNestedOpenDropdown(null);
       }
 
       if (!isClickInsideMobileMenu && isMobileMenuOpen) {
@@ -140,6 +154,7 @@ const Header = () => {
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpenDropdown(null);
+        setNestedOpenDropdown(null);
         setIsMobileMenuOpen(false);
       }
     };
@@ -209,7 +224,7 @@ const Header = () => {
                 </button>
 
                 <div
-                  className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 w-48 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 ${
+                  className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 w-56 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 ${
                     openDropdown === item.label
                       ? "opacity-100 visible translate-y-0"
                       : "opacity-0 invisible -translate-y-2"
@@ -217,14 +232,59 @@ const Header = () => {
                 >
                   <div className="py-2">
                     {item.submenu.map((subitem) => (
-                      <a
+                      <div
                         key={subitem.label}
-                        href={subitem.href}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
-                        onClick={() => setOpenDropdown(null)}
+                        className="relative group"
+                        ref={(el) => {
+                          nestedDropdownRefs.current[subitem.label] = el;
+                        }}
+                        onMouseEnter={() => subitem.submenu && handleNestedMouseEnter(subitem.label)}
+                        onMouseLeave={handleNestedMouseLeave}
                       >
-                        {subitem.label}
-                      </a>
+                        {subitem.submenu ? (
+                          <>
+                            <button
+                              className="flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
+                            >
+                              <span>{subitem.label}</span>
+                              <ChevronRight size={16} />
+                            </button>
+                            
+                            {/* Nested Services Dropdown */}
+                            <div
+                              className={`absolute left-full top-0 ml-1 w-56 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 ${
+                                nestedOpenDropdown === subitem.label
+                                  ? "opacity-100 visible translate-x-0"
+                                  : "opacity-0 invisible -translate-x-2"
+                              }`}
+                            >
+                              <div className="py-2 max-h-80 overflow-y-auto">
+                                {subitem.submenu.map((nestedItem) => (
+                                  <a
+                                    key={nestedItem.label}
+                                    href={nestedItem.href}
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
+                                    onClick={() => {
+                                      setOpenDropdown(null);
+                                      setNestedOpenDropdown(null);
+                                    }}
+                                  >
+                                    {nestedItem.label}
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <a
+                            href={subitem.href}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            {subitem.label}
+                          </a>
+                        )}
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -287,17 +347,58 @@ const Header = () => {
                   }`}
                 >
                   {item.submenu.map((subitem) => (
-                    <a
-                      key={subitem.label}
-                      href={subitem.href}
-                      className="block py-2 text-sm text-gray-600 hover:text-purple-600 transition"
-                      onClick={() => {
-                        setOpenDropdown(null);
-                        setIsMobileMenuOpen(false);
-                      }}
-                    >
-                      {subitem.label}
-                    </a>
+                    <div key={subitem.label}>
+                      {subitem.submenu ? (
+                        <>
+                          <button
+                            onClick={() => toggleNestedDropdown(subitem.label)}
+                            className="flex items-center justify-between w-full py-2 text-left text-sm text-gray-600 hover:text-purple-600 transition font-medium"
+                          >
+                            <span>{subitem.label}</span>
+                            <ChevronDown
+                              size={16}
+                              className={`transition-transform ${
+                                nestedOpenDropdown === subitem.label ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+                          
+                          <div
+                            className={`pl-4 space-y-2 transition-all duration-200 ${
+                              nestedOpenDropdown === subitem.label
+                                ? "opacity-100 visible max-h-80 pb-2"
+                                : "opacity-0 invisible max-h-0"
+                            }`}
+                          >
+                            {subitem.submenu.map((nestedItem) => (
+                              <a
+                                key={nestedItem.label}
+                                href={nestedItem.href}
+                                className="block py-2 text-sm text-gray-600 hover:text-purple-600 transition"
+                                onClick={() => {
+                                  setOpenDropdown(null);
+                                  setNestedOpenDropdown(null);
+                                  setIsMobileMenuOpen(false);
+                                }}
+                              >
+                                {nestedItem.label}
+                              </a>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <a
+                          href={subitem.href}
+                          className="block py-2 text-sm text-gray-600 hover:text-purple-600 transition"
+                          onClick={() => {
+                            setOpenDropdown(null);
+                            setIsMobileMenuOpen(false);
+                          }}
+                        >
+                          {subitem.label}
+                        </a>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>

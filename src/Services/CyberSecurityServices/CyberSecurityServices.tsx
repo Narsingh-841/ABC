@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CyberSecurityServices: React.FC = () => {
+  const navigate = useNavigate();
   const otherServices: { name: string; path: string }[] = [
     { name: 'AI & Data Analytics', path: '/data-analytics' },
     { name: 'Salesforce', path: '/salesforce' },
@@ -25,7 +26,9 @@ const CyberSecurityServices: React.FC = () => {
     'ISO 27001/PCI-DSS',
     'Compliance Manager'
   ];
-
+  const handleScheduleCall = () => {
+    navigate('/contact-us');
+  };
   return (
     <div className="min-h-screen  p-4 md:p-8" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif' }}>
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 md:gap-8">
@@ -61,7 +64,10 @@ const CyberSecurityServices: React.FC = () => {
           </div>
 
           {/* CTA Button */}
-          <button className="w-full bg-gradient-to-r from-pink-400 to-purple-500 text-white font-semibold py-3 md:py-4 px-6 rounded-3xl hover:opacity-90 transition-opacity text-sm md:text-base">
+          <button 
+            onClick={handleScheduleCall}
+            className="w-full bg-gradient-to-r from-pink-400 to-purple-500 text-white font-semibold py-3 md:py-4 px-6 rounded-3xl hover:opacity-90 transition-opacity text-sm md:text-base"
+          >
             Schedule A Call Now
           </button>
         </div>

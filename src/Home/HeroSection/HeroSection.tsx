@@ -9,11 +9,15 @@ const HeroSection = () => {
   const [currentTagline, setCurrentTagline] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate(); // Add this line
-
+  const navigate = useNavigate();
+// Update the LinkedIn URL handler
+const handleLinkedInClick = () => {
+  window.open('https://www.linkedin.com/company/capabiliqinc/', '_blank', 'noopener,noreferrer');
+};
   const handleBookCall = () => {
     navigate('/contact-us');
   };
+  
   const taglines = [
     "One Payment. Unlimited Hires.",
     "Smart Hiring for Startups", 
@@ -88,7 +92,7 @@ const HeroSection = () => {
   const contentStyle = get3DTransform(scrollProgress);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen bg-gradient-to-b from-white via-purple-100 to-white overflow-hidden pt-32">
+    <section ref={sectionRef} className="relative min-h-0 bg-gradient-to-b from-white via-purple-100 to-white overflow-hidden pt-30 pb-28">
       {/* Add SF Pro font family to the global styles or import it */}
       <style>
         {`
@@ -124,19 +128,24 @@ const HeroSection = () => {
         style={contentStyle}
       >
         {/* LinkedIn Badge */}
-        <div className={`flex items-center justify-center gap-2 mb-6 transition-all duration-1000 ${
-          isVisible 
-            ? 'opacity-100 translate-y-0 scale-100' 
-            : 'opacity-0 translate-y-[-50px] scale-90'
-        }`}>
+        <div className="flex items-center justify-center gap-2 mb-4 transition-all duration-1000 ">
+       <button 
+          onClick={handleLinkedInClick}
+          className={`flex items-center justify-center gap-2 mb-4 transition-all duration-1000 cursor-pointer hover:scale-105 ${
+            isVisible 
+              ? 'opacity-100 translate-y-0 scale-100' 
+              : 'opacity-0 translate-y-[-50px] scale-90'
+          }`}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077B5" className="w-6 h-6">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
           <span className="text-blue-600 font-bold text-lg">LinkedIn</span>
+        </button>
         </div>
 
         {/* Tagline Box */}
-        <div className={`inline-block mb-12 px-8 py-3 rounded-full border-2 border-gray-400 bg-white/60 backdrop-blur-sm transition-all duration-1000 delay-200 ${
+        <div className={`inline-block mb-8 px-8 py-3 rounded-full border-2 border-gray-400 bg-white/60 backdrop-blur-sm transition-all duration-1000 delay-200 ${
           isVisible 
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-[-30px] scale-95'
@@ -147,7 +156,7 @@ const HeroSection = () => {
         </div>
 
         {/* Main Heading - All content centered */}
-        <h1 className={`text-6xl md:text-7xl lg:text-7xl font-semibold mb-10 md:-ml-14 leading-tight transition-all duration-1000 delay-300 text-center ${
+        <h1 className={`text-6xl md:text-7xl lg:text-7xl font-semibold mb-8 leading-tight transition-all duration-1000 delay-300 text-center ${
           isVisible 
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-10 scale-95'
@@ -156,17 +165,17 @@ const HeroSection = () => {
             <span className="text-gray-900">Empowering </span>
             <span className="bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent">Startups</span>
             <span className="text-gray-900">, Global </span>
-            <span className="bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent">Teams</span>
-          </div>
-          <div className="mt-2">
+            <span className="bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent">Teams </span>
+        
+    
             <span className="text-gray-900">and </span>
             <span className="bg-gradient-to-r from-pink-500 to-pink-600 bg-clip-text text-transparent">GCC</span>
             <span className="text-gray-900">'s</span>
-          </div>
+            </div>
         </h1>
 
         {/* Review Badges */}
-        <div className={`flex items-center justify-center gap-4 flex-wrap mb-12 transition-all duration-1000 delay-400 ${
+        <div className={`flex items-center justify-center gap-4 flex-wrap mb-8 transition-all duration-1000 delay-400 ${
           isVisible 
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-8 scale-95'

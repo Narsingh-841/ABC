@@ -69,7 +69,7 @@ const ClientTestimonials = () => {
   return (
     <section 
       ref={ref}
-      className=" bg-gray-50 py-6 px-6 flex items-center justify-center overflow-hidden"
+      className="bg-gray-50 py-6 px-6 flex items-center justify-center overflow-hidden"
     >
       <div className="w-full max-w-[100rem] mx-auto">
         {/* Heading */}
@@ -79,42 +79,19 @@ const ClientTestimonials = () => {
           What Our Clients Say
         </h2>
 
-        {/* Continuous Marquee Container */}
+        {/* Continuous Marquee Container - Single Line Only */}
         <div 
           className="relative overflow-hidden py-8"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          {/* First Marquee Row */}
-          <div className={`flex gap-8 mb-8 ${
+          {/* Single Marquee Row */}
+          <div className={`flex gap-8 ${
             isHovered ? 'marquee-paused' : 'marquee-animate'
           }`}>
             {extendedTestimonials.map((testimonial, idx) => (
               <div
                 key={`marquee-1-${testimonial.id}-${idx}`}
-                className="flex-shrink-0 w-80 lg:w-96 px-2"
-              >
-                <div className={`bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl hover:scale-105 ${
-                  isVisible ? 'opacity-100' : 'opacity-0'
-                }`}>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4 line-clamp-5">
-                    {testimonial.text}
-                  </p>
-                  <p className="text-gray-900 font-semibold text-right text-sm">
-                    - {testimonial.author}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Second Marquee Row (reverse direction) */}
-          <div className={`flex gap-8 ${
-            isHovered ? 'marquee-paused' : 'marquee-animate-reverse'
-          }`}>
-            {extendedTestimonials.map((testimonial, idx) => (
-              <div
-                key={`marquee-2-${testimonial.id}-${idx}`}
                 className="flex-shrink-0 w-80 lg:w-96 px-2"
               >
                 <div className={`bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl hover:scale-105 ${
