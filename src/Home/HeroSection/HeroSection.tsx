@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Abstractspace from '../../assets/abstract-space.png';
 import ring from '../../assets/ring-decorative.png';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -8,7 +9,11 @@ const HeroSection = () => {
   const [currentTagline, setCurrentTagline] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate(); // Add this line
 
+  const handleBookCall = () => {
+    navigate('/contact-us');
+  };
   const taglines = [
     "One Payment. Unlimited Hires.",
     "Smart Hiring for Startups", 
@@ -194,9 +199,12 @@ const HeroSection = () => {
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-8 scale-95'
         }`}>
-          <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-10 py-3 rounded-full text-base font-bold hover:shadow-2xl hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-pink-300 shadow-lg">
-            Book a Consulting Call
-          </button>
+           <button 
+          onClick={handleBookCall}
+          className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+        >
+          Book a Consulting Call
+        </button>
         </div>
       </div>
     </section>

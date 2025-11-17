@@ -26,6 +26,7 @@ const Header = () => {
       submenu: [
         { label: "About Us", href: "/about-us" },
         { label: "Contact Us", href: "/contact-us" },
+        { label:"Hire Developers", href:"/hire-developer" },
       ],
     },
     {
@@ -58,7 +59,11 @@ const Header = () => {
     },
     {
       label: "Services",
-      submenu: [{ label: "Cyber Security", href: "/cyber-security" }],
+      submenu: [{ label: "Cyber Security", href: "/cyber-security" },
+        { label: "SalesForce", href: "/salesforce" },
+        { label: "AI & Data Analytics", href: "/data-analytics" },
+        { label: "Digital Tech Solutions", href: "/digital-tech-solutions" },
+      ],
     },
   ];
 
@@ -68,6 +73,18 @@ const Header = () => {
     
     // Option 2: Using window.location (if not using React Router)
     // window.location.href = "/";
+    
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  const handleContactClick = () => {
+    // Option 1: Using React Router (recommended)
+    navigate("/contact-us");
+    
+    // Option 2: Using window.location (if not using React Router)
+    // window.location.href = "/contact-us";
     
     // Close mobile menu if open
     setIsMobileMenuOpen(false);
@@ -216,7 +233,10 @@ const Header = () => {
           </div>
 
           {/* Desktop Contact Button */}
-          <button className="hidden lg:block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition flex-shrink-0 text-sm">
+          <button 
+            className="hidden lg:block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition flex-shrink-0 text-sm"
+            onClick={handleContactClick}
+          >
             Contact Us
           </button>
 
@@ -286,7 +306,7 @@ const Header = () => {
             {/* Mobile Contact Button */}
             <button
               className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-medium hover:shadow-lg transition mt-4"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={handleContactClick}
             >
               Contact Us
             </button>

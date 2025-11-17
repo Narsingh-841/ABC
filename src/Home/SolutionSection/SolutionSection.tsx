@@ -1,41 +1,53 @@
+
+
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import rpo from '../../assets/rpo.png';
 import gcc from '../../assets/gcc.png';
 import staffing from '../../assets/staffing.png';
 import onepaymodel from '../../assets/onepaymodel.png';
+import { useNavigate } from 'react-router-dom';
 
 const SolutionSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const navigate = useNavigate();
 
   const services = [
     {
       number: "01",
       title: "RPO",
       description: "With our RPO model, you hire faster, cut costs, and access top talent worldwide - powered by automation and hands-on consulting support.",
-      image: rpo
+      image: rpo,
+      path: "/rpo" // Add the corresponding route path
     },
     {
       number: "02",
       title: "GCC",
       description: "Effortlessly launch, scale, and optimize your GCC with our end-to-end, cost-efficient support — ensuring smooth operations and strong teams in any location.",
-      image: gcc
+      image: gcc,
+      path: "/gcc"
     },
     {
       number: "03",
       title: "Staffing",
       description: "We connect you to pre-vetted, skilled professionals through our AI-driven platform - making hiring faster, smarter, and completely hassle-free for your business.",
-      image: staffing
+      image: staffing,
+      path: "/staffing"
     },
     {
       number: "04",
       title: "One Pay Model",
       description: "Build your dream team with CapabiliQ's startup-first hiring model — transparent pricing, zero hidden costs, and unmatched speed.",
-      image: onepaymodel
+      image: onepaymodel,
+      path: "/startups" // Add the corresponding route path
     }
   ];
+
+  const handleKnowMoreClick = (path: string) => {
+    navigate(path);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -181,7 +193,10 @@ const SolutionSection = () => {
                 </p>
 
                 {/* Know More Link */}
-                <button className="flex items-center gap-2 text-[#760060] font-semibold text-sm sm:text-base hover:gap-3 transition-all duration-300 group mb-3 sm:mb-4 flex-shrink-0 w-fit">
+                <button 
+                  onClick={() => handleKnowMoreClick(service.path)}
+                  className="flex items-center gap-2 text-[#760060] font-semibold text-sm sm:text-base hover:gap-3 transition-all duration-300 group mb-3 sm:mb-4 flex-shrink-0 w-fit"
+                >
                   Know More <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
 

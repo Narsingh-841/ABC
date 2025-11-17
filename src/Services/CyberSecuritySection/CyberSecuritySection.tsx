@@ -1,6 +1,12 @@
 
-
+import { useNavigate } from 'react-router-dom';
 export default function CyberSecuritySection() {
+  const navigate = useNavigate(); // Add this line
+
+  const handleBookCall = () => {
+    navigate('/contact-us');
+  };
+
   return (
     <section className="relative bg-gradient-to-b from-gray-50 via-purple-100 to-pink-100 py-24 px-4 sm:px-6 lg:px-8" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
       {/* Main Content */}
@@ -20,8 +26,10 @@ export default function CyberSecuritySection() {
           At CAPABILIQ, we bring together highly skilled professionals in Cyber Security to deliver tailor-made technology solutions. Our expertise ensures that your business doesn't just adopt technology - it thrives with it.
         </p>
 
-        {/* CTA Button */}
-        <button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-lg">
+        <button 
+          onClick={handleBookCall}
+          className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+        >
           Book a Consulting Call
         </button>
       </div>

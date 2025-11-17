@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import bulb from '../../assets/bulb.png';
 
 interface ServiceCardProps {
@@ -9,11 +10,17 @@ interface ServiceCardProps {
   items: string[];
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   delay: number;
+  path: string; // Added path prop
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, number, color, items, position, delay }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, number, color, items, position, delay, path }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: false, amount: 0.3 });
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(path);
+  };
 
   const positionVariants = {
     'top-left': {
@@ -52,6 +59,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, number, color, items, 
       }}
       className="rounded-xl p-4 sm:p-6 shadow-lg cursor-pointer h-full"
       style={{ background: color }}
+      onClick={handleCardClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleCardClick();
+        }
+      }}
     >
       <div className="flex justify-between items-start mb-3 sm:mb-4">
         <h3 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wide max-w-[70%] leading-tight">
@@ -107,7 +122,8 @@ const ServicesWeOffer: React.FC = () => {
         'Security Architect',
         'CTI Analyst / Incident and many more'
       ],
-      position: 'top-left' as const
+      position: 'top-left' as const,
+      path: '/cyber-security' // Added path
     },
     {
       title: 'SALESFORCE',
@@ -120,7 +136,8 @@ const ServicesWeOffer: React.FC = () => {
         'Salesforce Technical Lead',
         'Salesforce Integration Specialist and many more'
       ],
-      position: 'top-right' as const
+      position: 'top-right' as const,
+      path: '/salesforce' // Added path
     },
     {
       title: 'AI & DATA ANALYTICS',
@@ -133,7 +150,8 @@ const ServicesWeOffer: React.FC = () => {
         'Machine Learning Engineer',
         'AI Assurance Specialist and many more'
       ],
-      position: 'bottom-left' as const
+      position: 'bottom-left' as const,
+      path: '/data-analytics' // Added path
     },
     {
       title: 'DIGITAL TECH SOLUTIONS',
@@ -146,7 +164,8 @@ const ServicesWeOffer: React.FC = () => {
         'Digital Transformation Consultant',
         'Enterprise Software Engineer'
       ],
-      position: 'bottom-right' as const
+      position: 'bottom-right' as const,
+      path: '/digital-tech-solutions' // Added path
     }
   ];
 
@@ -266,11 +285,11 @@ const ServicesWeOffer: React.FC = () => {
               className="relative"
               style={{ 
                 width: '100%', 
-                maxWidth: '380px', // Increased from 280px
-                minWidth: '280px', // Increased from 200px
+                maxWidth: '380px',
+                minWidth: '280px',
                 height: 'auto',
                 aspectRatio: '1',
-                marginTop: '40px' // Added to bring the bulb down
+                marginTop: '40px'
               }}
             >
               {/* Darker animated glow effect */}

@@ -1,29 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CyberSecurityServices: React.FC = () => {
-  const otherServices: { name: string; path: string }[] = [
-    { name: 'AI & Data Analytics', path: '/data-analytics' },
-    { name: 'Salesforce', path: '/salesforce' },
-    { name: 'Tailor-made Digital Tech Solutions', path: '/digital-tech-solutions' }
-  ];
-
+const AIDataAnalyticsServices: React.FC = () => {
+    const otherServices: { name: string; path: string }[] = [
+        { name: 'Cyber Security', path: '/cyber-security' },
+        { name: 'Salesforce', path: '/salesforce' },
+        { name: 'Tailor-made Digital Tech Solutions', path: '/digital-tech-solutions' }
+      ];
   const roles: string[] = [
-    'Security Engineer',
-    'Security Analyst',
-    'DevSecOps Engineer',
-    'Cybersecurity/Privacy',
-    'Attorney',
-    'Security Architect',
-    'CTI Analyst / Incident',
-    'Responder',
-    'Red Teamer',
-    'Cybersecurity Sales',
-    'Engineer',
-    'Governance, Risk & Compliance (GRC)',
+    'Data Scientist',
+    'Machine Learning Engineer',
+    'Data Analyst',
+    'AI Research Scientist',
+    'Business Intelligence',
+    'Analyst',
+    'Data Engineer',
+    'MLOps Engineer',
+    'Big Data Architect',
+    'Data Visualization',
     'Specialist',
-    'ISO 27001/PCI-DSS',
-    'Compliance Manager'
+    'Statistical Analyst',
+    'Predictive Modeler',
+    'Natural Language Processing',
+    'Engineer',
+    'Computer Vision Engineer',
+    'AI Product Manager',
+    'Data Governance Specialist'
   ];
 
   return (
@@ -71,42 +73,42 @@ const CyberSecurityServices: React.FC = () => {
           {/* Header Section */}
           <div className="bg-white rounded-none p-6 md:p-8">
             <h1 className="text-2xl md:text-3xl font-semibold mb-4 md:mb-6" style={{ color: '#2c435b' }}>
-              Cyber Security Services
+              AI & Data Analytics Services
             </h1>
             <p className="text-gray-700 leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
-              In today's digital-first world, protecting sensitive data and maintaining customer trust are critical for business success. Our Cyber Security Services provide comprehensive protection against cyber threats through proactive monitoring, threat intelligence, and strategic defense mechanisms. We help businesses safeguard their systems, ensure compliance, and maintain operational continuity in an increasingly complex threat landscape.
+              In today's data-driven world, unlocking insights and leveraging artificial intelligence are critical for business innovation and competitive advantage. Our AI & Data Analytics Services provide comprehensive solutions through advanced analytics, machine learning, and intelligent automation. We help businesses transform raw data into actionable intelligence, drive informed decision-making, and create new opportunities for growth and efficiency.
             </p>
 
-            {/* Proactive Protection */}
+            {/* Data-Driven Transformation */}
             <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4" style={{ color: '#2c435b' }}>
-              Proactive Protection for Modern Businesses
+              Data-Driven Transformation for Modern Businesses
             </h2>
             <p className="text-gray-700 leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
-              Cyber threats are constantly evolving, and so should your defense. Our proactive approach combines advanced technology, real-time threat detection, and expert human oversight to identify vulnerabilities before they become breaches. We ensure your organization remains resilient against malware, phishing, ransomware, and emerging cyber risks.
+              Data is the new currency, and AI is the engine that drives value from it. Our comprehensive approach combines advanced analytics, machine learning algorithms, and real-time data processing to uncover hidden patterns, predict trends, and automate complex processes. We ensure your organization harnesses the full potential of your data assets.
             </p>
 
-            {/* Tailored Security */}
+            {/* Customized AI Solutions */}
             <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4" style={{ color: '#2c435b' }}>
-              Tailored Security Solutions for Every Need
+              Customized AI Solutions for Every Business Need
             </h2>
             <p className="text-gray-700 leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
-              Every organization faces unique security challenges. Whether you're a startup establishing secure frameworks or an enterprise modernizing your IT defenses, our solutions are customized to your specific infrastructure, risk profile, and business objectives. We design scalable security systems that grow with your business.
+              Every organization has unique data challenges and opportunities. Whether you're a startup building your first analytics platform or an enterprise implementing advanced AI systems, our solutions are tailored to your specific data infrastructure, business objectives, and industry requirements. We design scalable AI architectures that evolve with your growing data needs.
             </p>
 
-            {/* Collaborative Approach */}
+            {/* End-to-End Analytics */}
             <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4" style={{ color: '#2c435b' }}>
-              Collaborative Approach to Risk Management
+              End-to-End Analytics and AI Implementation
             </h2>
             <p className="text-gray-700 leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
-              We believe cyber resilience is built through collaboration. Our team partners with your IT and leadership teams to assess risks, implement security policies, and ensure compliance with global standards. Through transparency and knowledge-sharing, we help you create a culture of security across your organization.
+              From data collection and preparation to model deployment and monitoring, we provide complete AI and analytics lifecycle management. Our expertise spans predictive modeling, natural language processing, computer vision, and business intelligence. We help you build robust data pipelines and deploy intelligent solutions that deliver measurable business impact.
             </p>
 
-            {/* Building Trust */}
+            {/* Driving Innovation */}
             <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4" style={{ color: '#2c435b' }}>
-              Building Trust Through Data Integrity
+              Driving Innovation Through Intelligent Insights
             </h2>
             <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-              Our Cyber Security Services go beyond protection — we help build trust. By ensuring data integrity, confidentiality, and availability, we empower businesses to operate confidently and maintain credibility in the digital space. From audits to incident response, we make security a strategic advantage for your brand.
+              Our AI & Data Analytics Services go beyond technology implementation — we drive business innovation. By transforming data into strategic assets, automating decision processes, and creating intelligent systems, we empower businesses to optimize operations, enhance customer experiences, and discover new revenue streams. We make AI and analytics a core competitive advantage for your organization.
             </p>
           </div>
         </div>
@@ -115,4 +117,4 @@ const CyberSecurityServices: React.FC = () => {
   );
 };
 
-export default CyberSecurityServices;
+export default AIDataAnalyticsServices;

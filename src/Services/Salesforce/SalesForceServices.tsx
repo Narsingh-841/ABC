@@ -1,29 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CyberSecurityServices: React.FC = () => {
-  const otherServices: { name: string; path: string }[] = [
-    { name: 'AI & Data Analytics', path: '/data-analytics' },
-    { name: 'Salesforce', path: '/salesforce' },
-    { name: 'Tailor-made Digital Tech Solutions', path: '/digital-tech-solutions' }
-  ];
+const SalesforceServices: React.FC = () => {
+    const otherServices: { name: string; path: string }[] = [
+        { name: 'AI & Data Analytics', path: '/data-analytics' },
+        { name: 'Cyber Security', path: '/cyber-security' },
+        { name: 'Tailor-made Digital Tech Solutions', path: '/digital-tech-solutions' }
+      ];
 
   const roles: string[] = [
-    'Security Engineer',
-    'Security Analyst',
-    'DevSecOps Engineer',
-    'Cybersecurity/Privacy',
-    'Attorney',
-    'Security Architect',
-    'CTI Analyst / Incident',
-    'Responder',
-    'Red Teamer',
-    'Cybersecurity Sales',
-    'Engineer',
-    'Governance, Risk & Compliance (GRC)',
-    'Specialist',
-    'ISO 27001/PCI-DSS',
-    'Compliance Manager'
+    'Salesforce Developer',
+    'Salesforce Administrator',
+    'Salesforce Architect',
+    'Business Analyst',
+    'Salesforce Consultant',
+    'CRM Manager',
+    'Sales Cloud Specialist',
+    'Service Cloud Specialist',
+    'Marketing Cloud Specialist',
+    'Commerce Cloud Developer',
+    'Platform Developer',
+    'Integration Specialist',
+    'Salesforce Project Manager',
+    'Solution Architect',
+    'Data Migration Specialist'
   ];
 
   return (
@@ -71,42 +71,42 @@ const CyberSecurityServices: React.FC = () => {
           {/* Header Section */}
           <div className="bg-white rounded-none p-6 md:p-8">
             <h1 className="text-2xl md:text-3xl font-semibold mb-4 md:mb-6" style={{ color: '#2c435b' }}>
-              Cyber Security Services
+              Salesforce Services
             </h1>
             <p className="text-gray-700 leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
-              In today's digital-first world, protecting sensitive data and maintaining customer trust are critical for business success. Our Cyber Security Services provide comprehensive protection against cyber threats through proactive monitoring, threat intelligence, and strategic defense mechanisms. We help businesses safeguard their systems, ensure compliance, and maintain operational continuity in an increasingly complex threat landscape.
+              In today's customer-centric world, building meaningful relationships and driving business growth require powerful CRM solutions. Our Salesforce Services provide comprehensive implementation, customization, and optimization of the Salesforce platform to help businesses streamline operations, enhance customer engagement, and accelerate growth. We transform how you connect with customers across sales, service, marketing, and commerce.
             </p>
 
-            {/* Proactive Protection */}
+            {/* Strategic Implementation */}
             <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4" style={{ color: '#2c435b' }}>
-              Proactive Protection for Modern Businesses
+              Strategic Implementation for Business Transformation
             </h2>
             <p className="text-gray-700 leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
-              Cyber threats are constantly evolving, and so should your defense. Our proactive approach combines advanced technology, real-time threat detection, and expert human oversight to identify vulnerabilities before they become breaches. We ensure your organization remains resilient against malware, phishing, ransomware, and emerging cyber risks.
+              Salesforce is more than just a CRM—it's a platform for business transformation. Our strategic approach combines deep platform expertise with industry best practices to implement Salesforce solutions that align with your unique business processes and growth objectives. We ensure seamless integration with your existing systems and workflows.
             </p>
 
-            {/* Tailored Security */}
+            {/* Customized Solutions */}
             <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4" style={{ color: '#2c435b' }}>
-              Tailored Security Solutions for Every Need
+              Customized Solutions for Every Business Need
             </h2>
             <p className="text-gray-700 leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
-              Every organization faces unique security challenges. Whether you're a startup establishing secure frameworks or an enterprise modernizing your IT defenses, our solutions are customized to your specific infrastructure, risk profile, and business objectives. We design scalable security systems that grow with your business.
+              Every organization has unique customer engagement challenges. Whether you're a startup building your first CRM system or an enterprise scaling across multiple clouds, our solutions are tailored to your specific requirements. We design scalable Salesforce implementations that grow with your business and adapt to changing market demands.
             </p>
 
-            {/* Collaborative Approach */}
+            {/* End-to-End Services */}
             <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4" style={{ color: '#2c435b' }}>
-              Collaborative Approach to Risk Management
+              End-to-End Salesforce Services
             </h2>
             <p className="text-gray-700 leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
-              We believe cyber resilience is built through collaboration. Our team partners with your IT and leadership teams to assess risks, implement security policies, and ensure compliance with global standards. Through transparency and knowledge-sharing, we help you create a culture of security across your organization.
+              From initial consultation and implementation to ongoing support and optimization, we provide comprehensive Salesforce services. Our expertise spans Sales Cloud, Service Cloud, Marketing Cloud, Commerce Cloud, and Platform development. We help you maximize your Salesforce investment through continuous improvement and innovation.
             </p>
 
-            {/* Building Trust */}
+            {/* Driving Growth */}
             <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4" style={{ color: '#2c435b' }}>
-              Building Trust Through Data Integrity
+              Driving Growth Through Customer Success
             </h2>
             <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-              Our Cyber Security Services go beyond protection — we help build trust. By ensuring data integrity, confidentiality, and availability, we empower businesses to operate confidently and maintain credibility in the digital space. From audits to incident response, we make security a strategic advantage for your brand.
+              Our Salesforce Services go beyond technology implementation — we help drive business growth. By optimizing customer journeys, automating processes, and providing actionable insights, we empower businesses to increase sales productivity, improve customer satisfaction, and accelerate revenue growth. We make Salesforce a strategic advantage for your organization.
             </p>
           </div>
         </div>
@@ -115,4 +115,4 @@ const CyberSecurityServices: React.FC = () => {
   );
 };
 
-export default CyberSecurityServices;
+export default SalesforceServices;

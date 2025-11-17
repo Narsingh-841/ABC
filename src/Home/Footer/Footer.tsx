@@ -1,30 +1,33 @@
-
 import { FaLinkedin, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const services = [
-    "Cyber Security",
-    "AI & Data Analytics",
-    "Salesforce",
-    "Tailor-Made Digital Tech Solutions"
+    { name: "Cyber Security", path: "/cyber-security" },
+    { name: "AI & Data Analytics", path: "/data-analytics" },
+    { name: "Salesforce", path: "/salesforce" },
+    { name: "Digital Tech Solutions", path: "/digital-tech-solutions" }
   ];
 
   const solutions = [
-    "AI + Human-Led Talent Intelligence",
-    "Strategic Talent Consulting",
-    "Embedded TA Pods",
-    "Global Capability Centers (GCC 2.0)",
-    "Startup ScaleOps"
+    { name: "Staffing", path: "/staffing" },
+    { name: "Startup One Pay Model", path: "/startups" },
+    { name: "Global Capability Centers", path: "/gcc" },
+    { name: "RPO", path: "/rpo" }
   ];
 
   const resources = [
-    "Blog"
+    { name: "Blog", path: "/blog" }
   ];
 
   const company = [
-    "About Us",
-    "Contact Us"
+    { name: "About Us", path: "/about-us" },
+    { name: "Contact Us", path: "/contact-us" }
   ];
+
+  const handleLogoClick = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <footer className="bg-[#0A1929] text-white">
@@ -33,7 +36,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 px-12 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
           {/* Logo and Social Section - Centered content */}
           <div className="lg:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="flex items-center gap-3 mb-6 justify-center md:justify-start">
+            <Link 
+              to="/" 
+              className="flex items-center gap-3 mb-6 justify-center md:justify-start no-underline"
+              onClick={handleLogoClick}
+            >
               <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
                 <rect x="0" y="0" width="18" height="18" fill="#E91E63" rx="2"/>
                 <rect x="22" y="0" width="18" height="18" fill="#9C27B0" rx="2"/>
@@ -42,13 +49,15 @@ const Footer = () => {
               </svg>
               <span className="text-2xl font-bold tracking-wide">CAPABILIQ</span>
               <span className="text-pink-500 text-3xl">.</span>
-            </div>
+            </Link>
 
             <h3 className="text-xl font-semibold mb-4 text-center md:text-left w-full">Follow Us on</h3>
             <div className="flex gap-3 justify-center md:justify-start">
               {/* LinkedIn */}
               <a 
-                href="#" 
+                href="https://linkedin.com/company/capabiliq" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 bg-gray-700 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-colors duration-300"
                 aria-label="LinkedIn"
               >
@@ -56,7 +65,9 @@ const Footer = () => {
               </a>
               {/* Twitter */}
               <a 
-                href="#" 
+                href="https://twitter.com/capabiliq" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 bg-gray-700 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-colors duration-300"
                 aria-label="Twitter"
               >
@@ -64,7 +75,9 @@ const Footer = () => {
               </a>
               {/* Instagram */}
               <a 
-                href="#" 
+                href="https://instagram.com/capabiliq" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 bg-gray-700 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-colors duration-300"
                 aria-label="Instagram"
               >
@@ -72,7 +85,9 @@ const Footer = () => {
               </a>
               {/* YouTube */}
               <a 
-                href="#" 
+                href="https://youtube.com/capabiliq" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 bg-gray-700 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-colors duration-300"
                 aria-label="YouTube"
               >
@@ -87,9 +102,13 @@ const Footer = () => {
             <ul className="space-y-3 w-full">
               {services.map((service, idx) => (
                 <li key={idx} className="text-center md:text-left">
-                  <a href="#" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">
-                    {service}
-                  </a>
+                  <Link 
+                    to={service.path} 
+                    className="text-gray-300 hover:text-purple-400 transition-colors duration-300"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
+                    {service.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -101,9 +120,13 @@ const Footer = () => {
             <ul className="space-y-3 w-full">
               {solutions.map((solution, idx) => (
                 <li key={idx} className="text-center md:text-left">
-                  <a href="#" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">
-                    {solution}
-                  </a>
+                  <Link 
+                    to={solution.path} 
+                    className="text-gray-300 hover:text-purple-400 transition-colors duration-300"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
+                    {solution.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -115,9 +138,13 @@ const Footer = () => {
             <ul className="space-y-3 w-full">
               {resources.map((resource, idx) => (
                 <li key={idx} className="text-center md:text-left">
-                  <a href="#" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">
-                    {resource}
-                  </a>
+                  <Link 
+                    to={resource.path} 
+                    className="text-gray-300 hover:text-purple-400 transition-colors duration-300"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
+                    {resource.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -129,9 +156,13 @@ const Footer = () => {
             <ul className="space-y-3 w-full">
               {company.map((item, idx) => (
                 <li key={idx} className="text-center md:text-left">
-                  <a href="#" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">
-                    {item}
-                  </a>
+                  <Link 
+                    to={item.path} 
+                    className="text-gray-300 hover:text-purple-400 transition-colors duration-300"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -146,9 +177,13 @@ const Footer = () => {
             <p className="text-gray-400 text-sm">
               ©CAPABILIQ 2025 | All Rights Reserved
             </p>
-            <a href="#" className="text-gray-400 hover:text-purple-400 text-sm transition-colors duration-300">
+            <Link 
+              to="/terms-conditions" 
+              className="text-gray-400 hover:text-purple-400 text-sm transition-colors duration-300"
+              onClick={() => window.scrollTo(0, 0)}
+            >
               Terms & conditions
-            </a>
+            </Link>
           </div>
         </div>
       </div>

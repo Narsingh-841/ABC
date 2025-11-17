@@ -9,13 +9,21 @@ import StaffingPage from './Solutions/StaffingPage';
 import Startups from './Solutions/startUpPage'
 import Gccpage from './Solutions/GccPage';
 import Rpo from './Solutions/Rpopage';
+import Salesforce from './Services/salesforce';
+import Dataanalytics from  './Services/DataAnalytics';
+import Digitaltechsolutions from './Services/DigitalTechSolutions';
+import ScrollToTop from './ScrollToTop';
+import Hiredeveloper from './HireDeveloper/HireDeveloperPage';
+import Hiredeloperform from './HireDeveloper/HireDeveloperForm/HireDeveloperFormPage';
 
 
 
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop /> 
       <Routes>
+      
         <Route path="/" element={<HomePage />} />
         <Route path="/about-us" element={<AboutUsPage/>} />
         <Route path="/contact-us" element={<ContactUs/>} />
@@ -24,6 +32,11 @@ const App: React.FC = () => {
         <Route path="/startups" element={<Startups />} />
         <Route path="/gcc" element={<Gccpage />} />
         <Route path="/rpo" element={<Rpo />} />
+        <Route path="/salesforce" element={<Salesforce />} />
+        <Route path="/data-analytics" element={<Dataanalytics />} />
+        <Route path="/digital-tech-solutions" element={<Digitaltechsolutions />} />
+        <Route path="/hire-developer" element={<Hiredeveloper />} />
+        <Route path="/hire-developer-form" element={<Hiredeloperform />} />
 
 
 
