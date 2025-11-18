@@ -24,7 +24,7 @@ export default function HiringFormSection() {
   };
 
   return (
-    <section className="bg-gradient-to-r mt-12 from-purple-100 via-pink-100 to-purple-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
+    <section className="bg-gradient-to-r from-purple-100 via-pink-100 to-purple-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}

@@ -38,21 +38,29 @@ export default function TrustedDeveloperSection() {
   const duplicatedCompanies = [...companies, ...companies];
 
   return (
-    <section className="bg-white py-6">
-      <div className="max-w-8xl mx-auto px-4 ml-12">
-        {/* Title Section - Stack on mobile */}
-        <div className="flex flex-col lg:flex-row items-center mb-2  ">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-bold text-black text-center lg:text-right mb-4 lg:mb-0 lg:mr-6 lg:pr-2">
-              Top Developers<br className="hidden lg:block" />
-              <div className="h-2 lg:h-4"></div>
+    <section className="bg-white py-6 overflow-hidden">
+      <div className="w-full mx-auto px-0 lg:ml-26">
+        {/* Title Section - Stack on mobile, side by side on desktop */}
+        <div className="flex flex-col lg:flex-row items-center mb-4 mt-4">
+          {/* Mobile: Centered heading with optimized text */}
+          <div className="lg:hidden w-full text-center mb-6 px-4">
+            <h1 className="text-lg sm:text-xl font-bold text-black leading-tight">
+              Top Developers<br />
               Trusted By Leading Companies
             </h1>
-            <div className="hidden lg:block w-1 h-24 bg-gray-300 "></div>
+          </div>
+
+          {/* Desktop: Optimized layout for 2 lines */}
+          <div className="hidden lg:flex flex-col lg:flex-row items-center lg:items-start">
+            <h1 className="text-xl xl:text-2xl 2xl:text-3xl font-bold text-black text-center lg:text-right mb-4 lg:mb-0 lg:mr-6 lg:pr-2 leading-tight whitespace-nowrap">
+              Top Developers<br />
+              Trusted By Leading Companies
+            </h1>
+            <div className="hidden lg:block w-1 h-20 bg-gray-300 "></div>
           </div>
           
-          {/* Animated Carousel */}
-          <div className="relative w-full lg:w-3/5 xl:w-1/2 overflow-hidden">
+          {/* Animated Carousel - Full width with no right padding but contained */}
+          <div className="w-full lg:flex-1 relative overflow-hidden">
             <div className="flex gap-4 animate-scroll">
               {duplicatedCompanies.map((company, index) => (
                 <LogoImage key={`${company.id}-${index}`} logo={company.logo} name={company.name} />

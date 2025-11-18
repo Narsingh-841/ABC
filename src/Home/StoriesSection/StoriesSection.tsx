@@ -132,8 +132,8 @@ const StoriesSection = () => {
               </div>
             </div>
           ) : (
-            // GRID CARDS — Top super rounded, bottom sharp
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center max-w-6xl mx-auto">
+            // GRID CARDS — Only changed the grid container for centering on mobile
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center max-w-6xl mx-auto">
               {stories.map((story) => (
                 <div
                   key={story.id}

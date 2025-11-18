@@ -11,35 +11,33 @@ const SolutionSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const navigate = useNavigate();
-
+  const handleBookCall = () => {
+    navigate('/contact-us');
+  };
   const services = [
     {
-      number: "01",
-      title: "RPO",
-      description: "With our RPO model, you hire faster, cut costs, and access top talent worldwide - powered by automation and hands-on consulting support.",
-      image: rpo,
-      path: "/rpo" // Add the corresponding route path
+      title: "Startups tailored made hiring solutions",
+      description: "Build your dream team with CapabiliC's startup-first hiring model — transparent pricing, zero hidden costs, and unmatched speed.",
+      image: onepaymodel,
+      path: "/startups"
     },
     {
-      number: "02",
-      title: "GCC",
+      title: "GCC - Build Operate Transfer",
       description: "Effortlessly launch, scale, and optimize your GCC with our end-to-end, cost-efficient support — ensuring smooth operations and strong teams in any location.",
       image: gcc,
       path: "/gcc"
     },
     {
-      number: "03",
-      title: "Staffing",
+      title: "Mid Sized & Project based hirings",
       description: "We connect you to pre-vetted, skilled professionals through our AI-driven platform - making hiring faster, smarter, and completely hassle-free for your business.",
       image: staffing,
       path: "/staffing"
     },
     {
-      number: "04",
-      title: "StartUp",
-      description: "Build your dream team with CapabiliQ's startup-first hiring model — transparent pricing, zero hidden costs, and unmatched speed.",
-      image: onepaymodel,
-      path: "/startups" // Add the corresponding route path
+      title: "Recruitment Process Outsourcing- RPO",
+      description: "With our RPO model, you hire faster, cut costs, and access top talent worldwide - powered by automation and hands-on consulting support.",
+      image: rpo,
+      path: "/rpo"
     }
   ];
 
@@ -143,7 +141,7 @@ const SolutionSection = () => {
   return (
     <section 
       ref={ref} 
-      className="py-2 sm:py-4 lg:py-6 px-2 sm:px-4 lg:px-6 flex items-center justify-center" 
+      className="py-2 sm:py-4 mt-8 lg:py-6 px-2 sm:px-4 lg:px-6 flex items-center justify-center" 
       style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}
     >
       <div className="max-w-6xl w-full">
@@ -159,8 +157,8 @@ const SolutionSection = () => {
           </p>
         </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-1 sm:gap-2 lg:gap-4 px-1 sm:px-0">
+        {/* Cards Grid - Increased gap only for mobile, original for desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-6 lg:gap-4 px-1 sm:px-0">
           {services.map((service, index) => (
             <div
               key={index}
@@ -171,45 +169,55 @@ const SolutionSection = () => {
               style={{
                 transformStyle: 'preserve-3d',
                 willChange: 'transform',
-                transitionDelay: isVisible ? `${0.2 + (index * 0.15)}s` : '0s'
+                transitionDelay: isVisible ? `${0.2 + (index * 0.15)}s` : '0s',
+                minHeight: '280px' // Same as original
               }}
             >
               <div className="p-2 sm:p-3 lg:p-4 h-full flex flex-col overflow-hidden">
-                {/* Number and Title - Original Horizontal Layout */}
-                <div className="flex items-center justify-between gap-2 sm:gap-3 mb-1 sm:mb-2">
-                  <span className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-black flex-shrink-0">
-                    {service.number}
-                  </span>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-black text-right flex-1">
+                {/* Title and Know More Button - Increased gap for mobile */}
+                <div className="flex items-center justify-between gap-3 sm:gap-3 mb-3 sm:mb-3">
+                  <h3 className="font-semibold text-black flex-1 text-sm sm:text-base">
                     {service.title}
                   </h3>
+                  <button 
+                    onClick={() => handleKnowMoreClick(service.path)}
+                    className="flex items-center gap-1 text-[#760060] font-semibold text-sm hover:gap-2 transition-all duration-300 group flex-shrink-0"
+                  >
+                    Know More <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
 
-                {/* Description */}
-                <p className="text-gray-700 leading-relaxed mb-1 sm:mb-2 text-sm flex-shrink-0 font-normal">
+                {/* Description - Increased margin for mobile */}
+                <p className="text-gray-700 leading-relaxed mb-4 sm:mb-4 text-sm flex-shrink-0 font-normal">
                   {service.description}
                 </p>
 
-                {/* Know More Link */}
-                <button 
-                  onClick={() => handleKnowMoreClick(service.path)}
-                  className="flex items-center gap-1 text-[#760060] font-semibold text-sm hover:gap-2 transition-all duration-300 group mb-1 sm:mb-2 flex-shrink-0 w-fit"
-                >
-                  Know More <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                {/* Image Area */}
-                <div className="flex-1 flex items-center justify-center min-h-0 mt-0 sm:mt-1">
+                {/* Image Area - Increased margin for mobile */}
+                <div className="flex-1 flex items-center justify-center min-h-0 mt-3 sm:mt-3">
                   <img 
                     src={service.image} 
                     alt={service.title}
-                    className="object-contain w-full h-full max-h-24 sm:max-h-32 lg:max-h-40"
+                    className="object-contain w-full h-full max-h-32 sm:max-h-40 lg:max-h-48"
                     loading="lazy"
                   />
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="flex justify-center mt-8 lg:mt-10 mb-6 lg:mb-8">
+          <div className={`transition-all duration-1000 delay-500 ${
+            isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+          }`}>
+            <button
+              onClick={handleBookCall}
+              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-6 lg:py-4 lg:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base lg:text-lg"
+            >
+              Book a Consulting Call
+            </button>
+          </div>
         </div>
       </div>
     </section>

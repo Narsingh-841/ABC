@@ -9,7 +9,7 @@ const RPOSolutionsHero: React.FC = () => {
   };
 
   return (
-    <div className="relative flex mt-18 bg-gradient-to-b from-blue-50 via-purple-50 to-pink-100 items-center justify-center px-4 py-16 font-sf">
+    <div className="relative flex bg-gradient-to-b from-blue-50 via-purple-50 to-pink-100 items-center justify-center px-4 py-16 font-sf">
       {/* Gradient Background */}
       <div 
         className="absolute inset-0 -z-10"

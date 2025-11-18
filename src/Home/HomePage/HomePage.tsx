@@ -11,6 +11,7 @@ import ClientTestimonials from '../ClientTestimonials/ClientTestimonials';
 import FAQAccordion from '../FAQAccordion/FAQAccordion';
 import CTABanner from '../CTABanner/CTABanner';
 import Footer from '../Footer/Footer';
+import ProcessImage from '../Process/ProcessImage';
 
 
 
@@ -24,6 +25,7 @@ const HomePage: React.FC = () => {
       <SolutionSection />
       <HiringProcessTimeline />
       <ServicesWeOffer />
+      <ProcessImage />
       {/* <ServicesSection />
       <ConfidenceSection />
       <GrowthPartnerSection />

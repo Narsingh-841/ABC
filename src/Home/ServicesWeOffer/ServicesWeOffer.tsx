@@ -126,22 +126,8 @@ const ServicesWeOffer: React.FC = () => {
       path: '/cyber-security' // Added path
     },
     {
-      title: 'SALESFORCE',
-      number: '02',
-      color: 'linear-gradient(135deg, #db2777 0%, #be185d 100%)',
-      items: [
-        'Salesforce Developer',
-        'Salesforce Administrator',
-        'Salesforce Solution Architect',
-        'Salesforce Technical Lead',
-        'Salesforce Integration Specialist and many more'
-      ],
-      position: 'top-right' as const,
-      path: '/salesforce' // Added path
-    },
-    {
       title: 'AI & DATA ANALYTICS',
-      number: '03',
+      number: '02',
       color: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
       items: [
         'Data Scientist',
@@ -153,6 +139,21 @@ const ServicesWeOffer: React.FC = () => {
       position: 'bottom-left' as const,
       path: '/data-analytics' // Added path
     },
+    {
+      title: 'AUTOMOTIVE, MOBILITY & ENGINEERING',
+      number: '03',
+      color: 'linear-gradient(135deg, #db2777 0%, #be185d 100%)',
+      items: [
+       ' Automotive Design Engineer',
+        'Battery Systems Engineer',
+        'Embedded Systems',
+        'ADAS / Autonomous Driving Engineer',
+       ' Mobility Solutions Architect and many more...'
+      ],
+      position: 'top-right' as const,
+      path: '/salesforce' // Added path
+    },
+   
     {
       title: 'DIGITAL TECH SOLUTIONS',
       number: '04',
@@ -243,7 +244,7 @@ const ServicesWeOffer: React.FC = () => {
         className="text-2xl sm:text-3xl lg:text-4xl text-center mb-8 sm:mb-12 lg:mb-16 text-gray-900"
         style={{ fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif', fontWeight: 600 }}
       >
-        Services We Offer
+        Harness Our Workforce Expertise
       </motion.h1>
 
       <div className="max-w-6xl mx-auto">
