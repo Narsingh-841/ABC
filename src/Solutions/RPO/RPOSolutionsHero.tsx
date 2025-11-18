@@ -1,6 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RPOSolutionsHero: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleBookConsultingClick = () => {
+    navigate('/contact-us');
+  };
+
   return (
     <div className="relative flex mt-18 bg-gradient-to-b from-blue-50 via-purple-50 to-pink-100 items-center justify-center px-4 py-16 font-sf">
       {/* Gradient Background */}
@@ -35,6 +42,7 @@ const RPOSolutionsHero: React.FC = () => {
 
         {/* CTA Button */}
         <button 
+          onClick={handleBookConsultingClick}
           className="px-8 py-4 rounded-full text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           style={{
             background: 'linear-gradient(to right, #e85d9a, #a855f7)'

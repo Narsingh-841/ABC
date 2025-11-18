@@ -21,8 +21,7 @@ export default function GccSection() {
   };
 
   return (
-    <section className="relative mt-18 bg-gradient-to-b from-blue-50 via-purple-50 to-pink-100 overflow-hidden py-6 md:py-8" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "San Francisco", sans-serif' }}>
-      <div className="max-w-7xl mx-auto">
+<section className="relative bg-gradient-to-b from-blue-50 via-purple-50 mt-18 to-pink-100 overflow-hidden py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "San Francisco", sans-serif' }}>      <div className="max-w-7xl mx-auto">
         {/* Top Logo */}
         <div className="mb-2 md:mb-2">
         <button 

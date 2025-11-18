@@ -1,9 +1,14 @@
 import { Check } from 'lucide-react';
 import startup from '../../assets/startup.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function StartUpHire() {
+  const navigate = useNavigate();
   const handleLinkedInClick = () => {
     window.open('https://linkedin.com/company/capabiliq', '_blank', 'noopener,noreferrer');
+  };
+  const handleBookCall = () => {
+    navigate('/hire-developer-form');
   };
   
   return (
@@ -58,7 +63,10 @@ export default function StartUpHire() {
             </div>
 
             {/* CTA Button */}
-            <button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-2 md:py-3 px-6 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 w-full sm:w-fit text-xs md:text-sm">
+            <button 
+          onClick={handleBookCall}
+          className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+        >
               Start Hiring Now
             </button>
           </div>

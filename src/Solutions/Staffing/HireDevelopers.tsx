@@ -1,11 +1,18 @@
 import { Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import hiredevelopersbg from '../../assets/hiredevelopers.png';
 
 export default function HireDevelopers() {
+  const navigate = useNavigate();
+
   const handleLinkedInClick = () => {
     window.open('https://linkedin.com/company/capabiliq', '_blank', 'noopener,noreferrer');
   };
-  
+
+  const handleTalkToExpertClick = () => {
+    navigate('/contact-us');
+  };
+
   return (
     <section className="relative bg-gradient-to-b mt-18 from-blue-50 via-purple-50 to-pink-100 overflow-hidden py-6 md:py-6 lg:py-6">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -55,7 +62,10 @@ export default function HireDevelopers() {
             </div>
 
             {/* CTA Button */}
-            <button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-2 md:py-3 px-6 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 w-full sm:w-fit text-xs md:text-sm">
+            <button 
+              onClick={handleTalkToExpertClick}
+              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-2 md:py-3 px-6 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 w-full sm:w-fit text-xs md:text-sm"
+            >
               Talk With Our Expert
             </button>
           </div>

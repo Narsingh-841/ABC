@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Menu, X, ChevronRight } from "lucide-react";
 import Capabiliqlogo from "../../assets/Capabiliqlogo.png";
-import { useNavigate } from "react-router-dom"; // If using React Router
+import { useNavigate } from "react-router-dom";
 
 interface SubmenuItem {
   label: string;
   href: string;
-  submenu?: SubmenuItem[]; // For nested submenus
+  submenu?: SubmenuItem[];
 }
 
 interface NavItem {
@@ -18,10 +18,12 @@ const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [nestedOpenDropdown, setNestedOpenDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const nestedDropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const mobileMenuRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate(); // If using React Router
+
+  const navigate = useNavigate();
 
   const servicesItems: SubmenuItem[] = [
     { label: "Cyber Security", href: "/cyber-security" },
@@ -50,24 +52,17 @@ const Header = () => {
     },
     {
       label: "Case Studies",
-      submenu: [
-        // { label: "Technology", href: "/case-studies/tech" },
-        // { label: "Finance", href: "/case-studies/finance" },
-        // { label: "Healthcare", href: "/case-studies/healthcare" },
-        // { label: "Retail", href: "/case-studies/retail" },
-      ],
+      submenu: [],
     },
     {
       label: "Resources",
       submenu: [
         { label: "Blog", href: "/blog" },
-        { 
-          label: "Services", 
+        {
+          label: "Services",
           href: "#",
-          submenu: servicesItems
+          submenu: servicesItems,
         },
-        // { label: "Webinars", href: "/webinars" },
-        // { label: "FAQ", href: "/faq" },
       ],
     },
   ];
@@ -86,28 +81,33 @@ const Header = () => {
     setNestedOpenDropdown(null);
   };
 
-  const handleMouseEnter = (label: string) => {
-    setOpenDropdown(label);
-  };
+  const handleMouseEnter = (label: string) => setOpenDropdown(label);
 
   const handleMouseLeave = () => {
     setOpenDropdown(null);
     setNestedOpenDropdown(null);
   };
 
-  const handleNestedMouseEnter = (label: string) => {
-    setNestedOpenDropdown(label);
-  };
+  const handleNestedMouseEnter = (label: string) => setNestedOpenDropdown(label);
 
-  const handleNestedMouseLeave = () => {
-    setNestedOpenDropdown(null);
-  };
+  const handleNestedMouseLeave = () => setNestedOpenDropdown(null);
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
+  /** -----------------------------
+   *  ⭐ IMPORTANT CHANGE
+   *  Force-open 'Services' submenu on mobile
+   * ---------------------------------- */
   const toggleNestedDropdown = (label: string) => {
+    const isMobile = window.innerWidth < 1024;
+
+    if (isMobile && label === "Services") {
+      setNestedOpenDropdown("mobile-services");
+      return;
+    }
+
     setNestedOpenDropdown(nestedOpenDropdown === label ? null : label);
   };
 
@@ -115,41 +115,40 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Close dropdown when clicking outside
+  /** ---------------------------------------------
+   *  ⭐ IMPORTANT CHANGE
+   *  Disable background click-closing on mobile
+   * ---------------------------------------------- */
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Check if click is outside desktop dropdowns
-      const isClickInsideAnyDropdown = Object.values(dropdownRefs.current).some(
+      const isMobile = window.innerWidth < 1024;
+
+      const isClickInsideDesktopDropdown = Object.values(dropdownRefs.current).some(
         (ref) => ref && ref.contains(event.target as Node)
       );
-
-      // Check if click is outside nested dropdowns
-      const isClickInsideAnyNestedDropdown = Object.values(nestedDropdownRefs.current).some(
+      const isClickInsideNestedDropdown = Object.values(nestedDropdownRefs.current).some(
         (ref) => ref && ref.contains(event.target as Node)
       );
-
-      // Check if click is outside mobile menu
       const isClickInsideMobileMenu =
-        mobileMenuRef.current &&
-        mobileMenuRef.current.contains(event.target as Node);
+        mobileMenuRef.current && mobileMenuRef.current.contains(event.target as Node);
 
-      if (!isClickInsideAnyDropdown && !isClickInsideAnyNestedDropdown) {
-        setOpenDropdown(null);
-        setNestedOpenDropdown(null);
-      }
+      if (!isMobile) {
+        if (!isClickInsideDesktopDropdown && !isClickInsideNestedDropdown) {
+          setOpenDropdown(null);
+          setNestedOpenDropdown(null);
+        }
 
-      if (!isClickInsideMobileMenu && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
+        if (!isClickInsideMobileMenu && isMobileMenuOpen) {
+          setIsMobileMenuOpen(false);
+        }
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMobileMenuOpen]);
 
-  // Close dropdown when pressing Escape key
+  // Escape key close
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -160,19 +159,12 @@ const Header = () => {
     };
 
     document.addEventListener("keydown", handleEscapeKey);
-    return () => {
-      document.removeEventListener("keydown", handleEscapeKey);
-    };
+    return () => document.removeEventListener("keydown", handleEscapeKey);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
+  // Prevent body scroll on mobile menu open
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -182,17 +174,11 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
       <div className="px-4 sm:px-6 lg:px-8 py-3 lg:py-4 max-w-7xl mx-auto">
         <nav className="flex items-center justify-between">
-          {/* Logo - Increased size */}
-          <div 
-            className="flex items-center cursor-pointer flex-shrink-0"
-            onClick={handleLogoClick}
-          >
+
+          {/* Logo */}
+          <div className="flex items-center cursor-pointer flex-shrink-0" onClick={handleLogoClick}>
             <div className="w-36 h-9 lg:w-44 lg:h-11">
-              <img 
-                src={Capabiliqlogo} 
-                alt="Capabiliq Logo" 
-                className="w-full h-full object-contain"
-              />
+              <img src={Capabiliqlogo} alt="Capabiliq Logo" className="w-full h-full object-contain" />
             </div>
           </div>
 
@@ -205,24 +191,22 @@ const Header = () => {
                 ref={(el) => {
                   dropdownRefs.current[item.label] = el;
                 }}
+                
                 onMouseEnter={() => handleMouseEnter(item.label)}
                 onMouseLeave={handleMouseLeave}
               >
                 <button
                   onClick={() => toggleDropdown(item.label)}
                   className="flex items-center gap-1 px-3 py-2 text-sm text-gray-700 hover:text-purple-600 transition font-medium"
-                  aria-expanded={openDropdown === item.label}
-                  aria-haspopup="true"
                 >
                   {item.label}
                   <ChevronDown
                     size={16}
-                    className={`transition-transform ${
-                      openDropdown === item.label ? "rotate-180" : ""
-                    }`}
+                    className={`transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`}
                   />
                 </button>
 
+                {/* Desktop Dropdown */}
                 <div
                   className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 w-56 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 ${
                     openDropdown === item.label
@@ -238,19 +222,18 @@ const Header = () => {
                         ref={(el) => {
                           nestedDropdownRefs.current[subitem.label] = el;
                         }}
+                        
                         onMouseEnter={() => subitem.submenu && handleNestedMouseEnter(subitem.label)}
                         onMouseLeave={handleNestedMouseLeave}
                       >
                         {subitem.submenu ? (
                           <>
-                            <button
-                              className="flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
-                            >
+                            <button className="flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition">
                               <span>{subitem.label}</span>
                               <ChevronRight size={16} />
                             </button>
-                            
-                            {/* Nested Services Dropdown */}
+
+                            {/* Nested Desktop */}
                             <div
                               className={`absolute left-full top-0 ml-1 w-56 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 ${
                                 nestedOpenDropdown === subitem.label
@@ -264,10 +247,6 @@ const Header = () => {
                                     key={nestedItem.label}
                                     href={nestedItem.href}
                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
-                                    onClick={() => {
-                                      setOpenDropdown(null);
-                                      setNestedOpenDropdown(null);
-                                    }}
                                   >
                                     {nestedItem.label}
                                   </a>
@@ -279,7 +258,6 @@ const Header = () => {
                           <a
                             href={subitem.href}
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
-                            onClick={() => setOpenDropdown(null)}
                           >
                             {subitem.label}
                           </a>
@@ -292,8 +270,8 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Desktop Contact Button */}
-          <button 
+          {/* Desktop Contact */}
+          <button
             className="hidden lg:block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition flex-shrink-0 text-sm"
             onClick={handleContactClick}
           >
@@ -304,7 +282,6 @@ const Header = () => {
           <button
             className="lg:hidden p-2 text-gray-700 hover:text-purple-600 transition"
             onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -314,42 +291,34 @@ const Header = () => {
         <div
           ref={mobileMenuRef}
           className={`lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ${
-            isMobileMenuOpen
-              ? "opacity-100 visible max-h-[80vh] overflow-y-auto"
-              : "opacity-0 invisible max-h-0 overflow-hidden"
+            isMobileMenuOpen ? "opacity-100 visible max-h-[80vh] overflow-y-auto" : "opacity-0 invisible max-h-0"
           }`}
         >
           <div className="px-4 py-6 space-y-4">
             {navItems.map((item) => (
-              <div
-                key={item.label}
-                className="border-b border-gray-100 last:border-b-0"
-              >
+              <div key={item.label} className="border-b border-gray-100 last:border-b-0">
                 <button
                   onClick={() => toggleDropdown(item.label)}
                   className="flex items-center justify-between w-full py-3 text-left text-gray-700 hover:text-purple-600 transition font-medium"
-                  aria-expanded={openDropdown === item.label}
                 >
                   {item.label}
                   <ChevronDown
                     size={18}
-                    className={`transition-transform ${
-                      openDropdown === item.label ? "rotate-180" : ""
-                    }`}
+                    className={`transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`}
                   />
                 </button>
 
+                {/* Mobile Submenu */}
                 <div
                   className={`pl-4 space-y-2 transition-all duration-200 ${
-                    openDropdown === item.label
-                      ? "opacity-100 visible max-h-96 pb-3"
-                      : "opacity-0 invisible max-h-0"
+                    openDropdown === item.label ? "opacity-100 visible max-h-96 pb-3" : "opacity-0 invisible max-h-0"
                   }`}
                 >
                   {item.submenu.map((subitem) => (
                     <div key={subitem.label}>
                       {subitem.submenu ? (
                         <>
+                          {/* ⭐ SPECIAL CASE: SERVICES */}
                           <button
                             onClick={() => toggleNestedDropdown(subitem.label)}
                             className="flex items-center justify-between w-full py-2 text-left text-sm text-gray-600 hover:text-purple-600 transition font-medium"
@@ -358,14 +327,21 @@ const Header = () => {
                             <ChevronDown
                               size={16}
                               className={`transition-transform ${
-                                nestedOpenDropdown === subitem.label ? "rotate-180" : ""
+                                (subitem.label === "Services"
+                                  ? nestedOpenDropdown === "mobile-services"
+                                  : nestedOpenDropdown === subitem.label)
+                                  ? "rotate-180"
+                                  : ""
                               }`}
                             />
                           </button>
-                          
+
+                          {/* Nested Mobile */}
                           <div
                             className={`pl-4 space-y-2 transition-all duration-200 ${
-                              nestedOpenDropdown === subitem.label
+                              (subitem.label === "Services"
+                                ? nestedOpenDropdown === "mobile-services"
+                                : nestedOpenDropdown === subitem.label)
                                 ? "opacity-100 visible max-h-80 pb-2"
                                 : "opacity-0 invisible max-h-0"
                             }`}

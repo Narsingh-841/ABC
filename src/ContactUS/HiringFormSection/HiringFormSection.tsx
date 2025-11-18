@@ -139,18 +139,15 @@ export default function HiringFormSection() {
                     Your hiring needs<span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <select
+                    <input
                       name="hiringNeeds"
                       value={formData.hiringNeeds}
                       onChange={handleChange}
+                      placeholder="Describe your hiring needs"
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 appearance-none bg-white text-gray-500 cursor-pointer"
                     >
-                      <option value="">Select...</option>
-                      <option value="developers">Developers</option>
-                      <option value="designers">Designers</option>
-                      <option value="managers">Managers</option>
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                
+                    </input>
                   </div>
                 </div>
                 <div>

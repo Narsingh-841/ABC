@@ -1,5 +1,3 @@
-
-
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import rpo from '../../assets/rpo.png';
@@ -145,29 +143,29 @@ const SolutionSection = () => {
   return (
     <section 
       ref={ref} 
-      className="min-h-screen bg-gray-50 py-8 px-4 sm:py-12 sm:px-6 lg:py-16 lg:px-8 flex items-center justify-center" 
+      className="py-2 sm:py-4 lg:py-6 px-2 sm:px-4 lg:px-6 flex items-center justify-center" 
       style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}
     >
       <div className="max-w-6xl w-full">
         {/* Header */}
-        <div className={`text-center mb-12 lg:mb-16 transition-all duration-1000 ease-out ${
+        <div className={`text-center mb-4 lg:mb-6 transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold text-black mb-4 lg:mb-6 px-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-2xl xl:text-4xl font-semibold text-black mb-2 lg:mb-3 px-1 sm:px-2">
             Solution We Offer
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed font-normal px-4 sm:px-6">
+          <p className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed font-normal px-1 sm:px-2">
             By combining smart AI automation and real industry expertise, we deliver agile staffing solutions built for modern teams.
           </p>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-1 sm:gap-2 lg:gap-4 px-1 sm:px-0">
           {services.map((service, index) => (
             <div
               key={index}
               ref={(el) => { cardsRef.current[index] = el; }}
-              className={`bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl lg:hover:shadow-2xl transition-all duration-300 ease-out lg:hover:scale-105 ${
+              className={`bg-white rounded-lg sm:rounded-xl shadow-md hover:shadow-lg lg:hover:shadow-xl transition-all duration-300 ease-out lg:hover:scale-105 ${
                 isVisible ? 'opacity-100' : 'opacity-0'
               }`}
               style={{
@@ -176,36 +174,36 @@ const SolutionSection = () => {
                 transitionDelay: isVisible ? `${0.2 + (index * 0.15)}s` : '0s'
               }}
             >
-              <div className="p-4 sm:p-6 lg:p-8 h-full flex flex-col overflow-hidden">
+              <div className="p-2 sm:p-3 lg:p-4 h-full flex flex-col overflow-hidden">
                 {/* Number and Title - Original Horizontal Layout */}
-                <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
-                  <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-black flex-shrink-0">
+                <div className="flex items-center justify-between gap-2 sm:gap-3 mb-1 sm:mb-2">
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-black flex-shrink-0">
                     {service.number}
                   </span>
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-semibold text-black text-right flex-1">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-black text-right flex-1">
                     {service.title}
                   </h3>
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-700 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-sm lg:text-base flex-shrink-0 font-normal">
+                <p className="text-gray-700 leading-relaxed mb-1 sm:mb-2 text-sm flex-shrink-0 font-normal">
                   {service.description}
                 </p>
 
                 {/* Know More Link */}
                 <button 
                   onClick={() => handleKnowMoreClick(service.path)}
-                  className="flex items-center gap-2 text-[#760060] font-semibold text-sm sm:text-base hover:gap-3 transition-all duration-300 group mb-3 sm:mb-4 flex-shrink-0 w-fit"
+                  className="flex items-center gap-1 text-[#760060] font-semibold text-sm hover:gap-2 transition-all duration-300 group mb-1 sm:mb-2 flex-shrink-0 w-fit"
                 >
                   Know More <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 {/* Image Area */}
-                <div className="flex-1 flex items-center justify-center min-h-0 mt-2 sm:mt-4">
+                <div className="flex-1 flex items-center justify-center min-h-0 mt-0 sm:mt-1">
                   <img 
                     src={service.image} 
                     alt={service.title}
-                    className="object-contain w-full h-full max-h-48 sm:max-h-56 lg:max-h-64 xl:max-h-72"
+                    className="object-contain w-full h-full max-h-24 sm:max-h-32 lg:max-h-40"
                     loading="lazy"
                   />
                 </div>

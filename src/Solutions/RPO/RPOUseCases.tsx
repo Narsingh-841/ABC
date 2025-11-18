@@ -1,35 +1,43 @@
-
+import React from 'react';
+import { FaUsers, FaCloud, FaBuilding, FaLaptopCode, FaBriefcase, FaUserTie } from 'react-icons/fa';
 
 interface UseCase {
   title: string;
   description: string;
+  icon: React.ReactElement;
 }
 
-export default function RPOUseCases() {
+export default function RPOUseCases(): React.ReactElement {
   const useCases: UseCase[] = [
     {
       title: 'Tech Hiring for a Fintech Unicorn',
-      description: 'Scaled a backend and data team of 40 engineers in 6 weeks using AI-led interviews and targeted outreach across Bangalore and Pune.'
+      description: 'Scaled a backend and data team of 40 engineers in 6 weeks using AI-led interviews and targeted outreach across Bangalore and Pune.',
+      icon: React.createElement(FaUsers, { className: "w-6 h-6 text-white" })
     },
     {
       title: 'Salesforce Expansion for an EdTech Company',
-      description: 'Executed an agile hiring sprint to onboard 100+ sales representatives across 8 Tier-2 cities within 30 days.'
+      description: 'Executed an agile hiring sprint to onboard 100+ sales representatives across 8 Tier-2 cities within 30 days.',
+      icon: React.createElement(FaCloud, { className: "w-6 h-6 text-white" })
     },
     {
       title: 'GCC Expansion Support for a BFSI Major',
-      description: 'Partnered with a leading enterprise to build a 300-member capability center in India—managing sourcing, interview panels, and end-to-end onboarding.'
+      description: 'Partnered with a leading enterprise to build a 300-member capability center in India—managing sourcing, interview panels, and end-to-end onboarding.',
+      icon: React.createElement(FaBuilding, { className: "w-6 h-6 text-white" })
     },
     {
       title: 'Remote Engineering Teams for a US Startup',
-      description: 'Built and managed a remote team of 20 developers across India with dashboards, skill matching, and compliance tracking.'
+      description: 'Built and managed a remote team of 20 developers across India with dashboards, skill matching, and compliance tracking.',
+      icon: React.createElement(FaLaptopCode, { className: "w-6 h-6 text-white" })
     },
     {
       title: 'Contract Workforce Ramp-Up for a Retail Giant',
-      description: 'Scaled to 150+ hires in 45 days across 20+ cities, handling sourcing, compliance, and onboarding.'
+      description: 'Scaled to 150+ hires in 45 days across 20+ cities, handling sourcing, compliance, and onboarding.',
+      icon: React.createElement(FaBriefcase, { className: "w-6 h-6 text-white" })
     },
     {
       title: 'Leadership Hiring for a SaaS Product Company',
-      description: 'Filled key Product, Engineering, and Growth roles—cutting time-to-fill from 90 to 35 days with AI-driven shortlisting.'
+      description: 'Filled key Product, Engineering, and Growth roles—cutting time-to-fill from 90 to 35 days with AI-driven shortlisting.',
+      icon: React.createElement(FaUserTie, { className: "w-6 h-6 text-white" })
     }
   ];
 
@@ -43,7 +51,7 @@ export default function RPOUseCases() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {useCases.map((useCase, index) => (
+          {useCases.map((useCase: UseCase, index: number) => (
             <div
               key={index}
               className="bg-white rounded-3xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
@@ -57,7 +65,7 @@ export default function RPOUseCases() {
                       background: 'linear-gradient(to bottom, #A855F7 0%, #EC4899 100%)'
                     }}
                   >
-                    <div className="w-10 h-10 rounded-xl bg-white/30"></div>
+                    {useCase.icon}
                   </div>
                 </div>
 
