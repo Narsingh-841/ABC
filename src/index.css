@@ -1,6 +1,33 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
+/* Hide scrollbar globally */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+/* Ensure all scrollable elements also hide scrollbars */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
 
 @keyframes fallDown {
   0% {
@@ -66,6 +93,7 @@
 .delay-1000 {
   animation-delay: 1s;
 }
+
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -78,6 +106,7 @@
 .animate-marquee {
   animation: marquee 20s linear infinite;
 }
+
 @keyframes marquee {
   0% {
     transform: translateX(0);
@@ -119,6 +148,7 @@
 .marquee-animate-reverse:hover {
   animation-play-state: paused;
 }
+
 @keyframes float3D {
   0%, 100% {
     transform: translateY(0px) rotateX(0deg) rotateY(0deg);

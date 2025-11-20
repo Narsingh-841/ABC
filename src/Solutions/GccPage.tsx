@@ -12,6 +12,7 @@ import WhyBuildGCC from './GCC/WhyBuildGCC';
 import GCCLifecycleServices from './GCC/GCCLifecycleServices';
 import FlexibleEngagementModels from './GCC/EngagementModel';
 import CapabiliQAdvantage from './GCC/CapabiliQAdvantage';
+import GCCContactForm from './GCC/GCCContactForm';
 
  // or correct path to your Welcome component
 
@@ -28,6 +29,7 @@ const GccPage: React.FC = () => {
       <ClientTestimonials />
     <FAQAccordion />
     <CTASection />
+   < GCCContactForm />
       <Footer />
     
     </div>

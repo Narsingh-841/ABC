@@ -30,9 +30,38 @@ const HowItWorks: React.FC = () => {
       <div className="max-w-7xl w-full bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 lg:px-12 lg:py-8" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif' }}>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-center mb-6 sm:mb-8" style={{ fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif' }}>How it Works?</h1>
         
-        <div className="space-y-4 sm:space-y-6">
+        {/* Mobile View - Simple vertical layout in order */}
+        <div className="lg:hidden space-y-4">
+          <StepCard
+            number="01."
+            title="Share Your Hiring Needs"
+            description="Tell us who you're looking for - role, skills, and experience."
+            variant="purple"
+          />
+          <StepCard
+            number="02."
+            title="Get Pre-Vetted Candidates Fast"
+            description="We match top talent aligned with your startup's goals and culture."
+            variant="green"
+          />
+          <StepCard
+            number="03."
+            title="Interview & Select"
+            description="Move from shortlist to hire in record time."
+            variant="purple"
+          />
+          <StepCard
+            number="04."
+            title="Free BGVs on First 5 Hires"
+            description="Because trust and transparency matter."
+            variant="green"
+          />
+        </div>
+
+        {/* Desktop View - Custom grid layout */}
+        <div className="hidden lg:block space-y-6">
           {/* Top Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-x-32">
+          <div className="grid grid-cols-2 gap-x-32">
             {/* Step 01 */}
             <div className="h-full">
               <StepCard
@@ -55,9 +84,9 @@ const HowItWorks: React.FC = () => {
           </div>
           
           {/* Bottom Row */}
-          <div className="flex flex-col lg:flex-row gap-4 lg:gap-4 justify-center lg:px-12">
+          <div className="flex flex-row gap-4 justify-center px-12">
             {/* Step 02 */}
-            <div className="flex-1 lg:max-w-md h-full">
+            <div className="flex-1 max-w-md h-full">
               <StepCard
                 number="02."
                 title="Get Pre-Vetted Candidates Fast"
@@ -67,7 +96,7 @@ const HowItWorks: React.FC = () => {
             </div>
             
             {/* Step 04 */}
-            <div className="flex-1 lg:max-w-md h-full">
+            <div className="flex-1 max-w-md h-full">
               <StepCard
                 number="04."
                 title="Free BGVs on First 5 Hires"

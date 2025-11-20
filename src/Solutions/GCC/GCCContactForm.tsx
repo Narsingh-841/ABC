@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
-import RPOForm from '../../assets/RPOForm.png';
+import GCCForm from '../../assets/GCCForm.png';
 
 // Initialize EmailJS
 const EMAILJS_SERVICE_ID = 'service_yjhifms';
 const EMAILJS_TEMPLATE_ID = 'template_986tjhq';
 const EMAILJS_PUBLIC_KEY = 'j2K5cicD1E4lmkOQs';
 
-const RPOContactForm: React.FC = () => {
+const GCCContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -63,7 +63,7 @@ const RPOContactForm: React.FC = () => {
       companyEmail: formData.companyEmail,
       jobTitle: formData.jobTitle,
       consent: formData.consent ? 'Yes' : 'No',
-      formType: 'RPO Playbook Request',
+      formType: 'GCC Playbook Request',
       timestamp: new Date().toLocaleString('en-US', { 
         year: 'numeric', 
         month: 'long', 
@@ -71,7 +71,7 @@ const RPOContactForm: React.FC = () => {
         hour: '2-digit',
         minute: '2-digit'
       }),
-      subject: `RPO Playbook Request from ${formData.firstName} ${formData.lastName}`,
+      subject: `GCC Playbook Request from ${formData.firstName} ${formData.lastName}`,
       reply_to: formData.companyEmail
     };
 
@@ -94,7 +94,7 @@ const RPOContactForm: React.FC = () => {
 
       if (response.status === 200 || response.text === 'OK') {
         // Success toast
-        toast.success('Thank you! Your RPO Playbook copy will be sent to your email shortly.', {
+        toast.success('Thank you! Your GCC Playbook copy will be sent to your email shortly.', {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -174,8 +174,8 @@ const RPOContactForm: React.FC = () => {
           <div className="flex justify-center lg:justify-start">
             <div className="relative">
               <img 
-                src={RPOForm} 
-                alt="RPO Playbook" 
+                src={GCCForm} 
+                alt="GCC Playbook" 
                 className="w-full max-w-md"
               />
             </div>
@@ -184,7 +184,7 @@ const RPOContactForm: React.FC = () => {
           {/* Right Side - Form */}
           <div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-2 leading-tight" style={{ fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif' }}>
-              Ready to Build Your RPO in India?
+              Ready to Build Your GCC in India?
             </h1>
             
             <p className="text-gray-500 text-lg mb-8">Fast-Track Your Set-Up Now</p>
@@ -287,7 +287,7 @@ const RPOContactForm: React.FC = () => {
                         disabled={isSubmitting}
                       />
                       <label className="text-sm text-gray-600">
-                        I consent to receive the RPO playbook from Capabiliq and to be contacted by Capabiliq sales team.
+                        I consent to receive the GCC playbook from Capabiliq and to be contacted by Capabiliq sales team.
                       </label>
                     </div>
                   </div>
@@ -310,7 +310,7 @@ const RPOContactForm: React.FC = () => {
                         <span>Sending...</span>
                       </div>
                     ) : (
-                      "Get Your Copy of Capabiliq's RPO Playbook"
+                      "Get Your Copy of Capabiliq's GCC Playbook"
                     )}
                   </button>
                 </div>
@@ -323,4 +323,4 @@ const RPOContactForm: React.FC = () => {
   );
 };
 
-export default RPOContactForm;
+export default GCCContactForm;

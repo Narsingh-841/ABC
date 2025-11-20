@@ -66,45 +66,68 @@ const GCCLifecycleServices: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
           {services.map((service, index) => (
             <div key={index} className="flex flex-col items-center">
-              {service.position === 'top' ? (
-                <>
-                  {/* Text at top */}
-                  <div className="text-center max-w-xs mb-4 md:mb-6">
-                    <h2 className="text-lg md:text-xl font-semibold mb-2 md:mb-4 text-gray-900">
-                      {service.title}
-                    </h2>
-                    <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                  {/* Circle at bottom */}
-                  <div 
-                    className="w-32 h-32 md:w-48 md:h-48 rounded-full flex items-center justify-center" 
-                    style={{ backgroundColor: service.color }}
-                  >
-                    {service.icon}
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* Circle at top */}
-                  <div 
-                    className="w-32 h-32 md:w-48 md:h-48 rounded-full mb-4 md:mb-6 flex items-center justify-center" 
-                    style={{ backgroundColor: service.color }}
-                  >
-                    {service.icon}
-                  </div>
-                  {/* Text at bottom */}
-                  <div className="text-center max-w-xs">
-                    <h2 className="text-lg md:text-l font-semibold mb-2 md:mb-4 text-gray-900">
-                      {service.title}
-                    </h2>
-                    <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                </>
-              )}
+              {/* Mobile Layout: Always circle then content */}
+              <div className="md:hidden flex flex-col items-center w-full">
+                {/* Circle at top */}
+                <div 
+                  className="w-32 h-32 rounded-full mb-4 flex items-center justify-center" 
+                  style={{ backgroundColor: service.color }}
+                >
+                  {service.icon}
+                </div>
+                {/* Text at bottom */}
+                <div className="text-center max-w-xs">
+                  <h2 className="text-lg font-semibold mb-2 text-gray-900">
+                    {service.title}
+                  </h2>
+                  <p className="text-xs text-gray-700 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Desktop Layout: Original alternating design */}
+              <div className="hidden md:flex flex-col items-center w-full">
+                {service.position === 'top' ? (
+                  <>
+                    {/* Text at top */}
+                    <div className="text-center max-w-xs mb-6">
+                      <h2 className="text-xl font-semibold mb-4 text-gray-900">
+                        {service.title}
+                      </h2>
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                    {/* Circle at bottom */}
+                    <div 
+                      className="w-48 h-48 rounded-full flex items-center justify-center" 
+                      style={{ backgroundColor: service.color }}
+                    >
+                      {service.icon}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Circle at top */}
+                    <div 
+                      className="w-48 h-48 rounded-full mb-6 flex items-center justify-center" 
+                      style={{ backgroundColor: service.color }}
+                    >
+                      {service.icon}
+                    </div>
+                    {/* Text at bottom */}
+                    <div className="text-center max-w-xs">
+                      <h2 className="text-xl font-semibold mb-4 text-gray-900">
+                        {service.title}
+                      </h2>
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           ))}
         </div>

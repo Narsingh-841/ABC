@@ -1,16 +1,50 @@
-import React, { useState } from 'react';
-import { Star } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Star, Search, ChevronDown } from 'lucide-react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { getCountries, getCountryCallingCode } from 'react-phone-number-input';
+import emailjs from '@emailjs/browser';
+
+// Initialize EmailJS
+const EMAILJS_SERVICE_ID = 'service_yjhifms';
+const EMAILJS_TEMPLATE_ID = 'template_77mcy89';
+const EMAILJS_PUBLIC_KEY = 'j2K5cicD1E4lmkOQs';
+
+// Country flag component (using emoji flags)
+const CountryFlag = ({ countryCode }: { countryCode: string }) => {
+  const getFlagEmoji = (countryCode: string) => {
+    const codePoints = countryCode
+      .toUpperCase()
+      .split('')
+      .map(char => 127397 + char.charCodeAt(0));
+    return String.fromCodePoint(...codePoints);
+  };
+
+  return <span className="text-lg">{getFlagEmoji(countryCode)}</span>;
+};
 
 const HireDeveloperForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    countryCode: '+91',
+    countryCode: 'IN',
     phone: '',
     hireType: ''
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const countries = getCountries();
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -18,13 +52,167 @@ const HireDeveloperForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log('Form submitted:', formData);
-    // Handle form submission logic here
+  const handleCountrySelect = (countryCode: string) => {
+    setFormData(prev => ({
+      ...prev,
+      countryCode
+    }));
+    setIsCountryDropdownOpen(false);
+    setSearchQuery('');
+  };
+
+  const filteredCountries = countries.filter(country => {
+    const callingCode = getCountryCallingCode(country);
+    return callingCode.includes(searchQuery);
+  });
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsCountryDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSubmit = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+  
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.phone || !formData.hireType) {
+      toast.error('Please fill in all required fields!', {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address!', {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Show sending email toast
+    const sendingToast = toast.info('📧 Sending your request...', {
+      position: "top-right",
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: false,
+    });
+
+    // Prepare template parameters for EmailJS
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      phone: `+${getCountryCallingCode(formData.countryCode as any)} ${formData.phone}`,
+      hireType: formData.hireType === 'contract' ? 'Contract' : 'Full Time',
+      formType: 'Hire Developer Request',
+      timestamp: new Date().toLocaleString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }),
+      subject: `Hire Developer Request from ${formData.name}`,
+      reply_to: formData.email
+    };
+
+    // Debug log
+    console.log('Sending template params:', templateParams);
+  
+    try {
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      // Dismiss the sending toast
+      toast.dismiss(sendingToast);
+
+      console.log('EmailJS Response:', response);
+
+      if (response.status === 200 || response.text === 'OK') {
+        // Success toast
+        toast.success('Your request has been submitted successfully! We will contact you soon.', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+    
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          countryCode: "IN",
+          phone: "",
+          hireType: "",
+        });
+      } else {
+        throw new Error(`Email sending failed with status: ${response.status}`);
+      }
+  
+    } catch (error) {
+      console.error("EmailJS Error Details:", error);
+      // Dismiss the sending toast if it's still showing
+      toast.dismiss(sendingToast);
+      
+      // More specific error handling
+      let errorMessage = '❌ Failed to submit. Please try again.';
+      
+      if (error instanceof Error) {
+        if (error.message.includes('Service not found')) {
+          errorMessage = '❌ Email service not configured properly.';
+        } else if (error.message.includes('Template not found')) {
+          errorMessage = '❌ Email template not found.';
+        } else if (error.message.includes('Invalid public key')) {
+          errorMessage = '❌ Invalid email configuration.';
+        }
+      }
+      
+      toast.error(errorMessage, {
+        position: "top-right",
+        autoClose: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="min-h-0 bg-gradient-to-br mt-12 sm:mt-16 lg:mt-18 from-purple-50 via-pink-50 to-purple-100 flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 lg:px-12 py-8 sm:py-10 lg:py-12 gap-8 lg:gap-12">
+    <div className="min-h-0 bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 lg:px-12 py-8 sm:py-10 lg:py-12 gap-8 lg:gap-12">
+      {/* Toast Container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      
       {/* Left Section */}
       <div className="flex-1 max-w-2xl w-full lg:w-auto text-center lg:text-left">
         {/* Book A Call Button */}
@@ -78,7 +266,7 @@ const HireDeveloperForm: React.FC = () => {
           Hire the best in class with trust of capabiliq
         </p>
 
-        <div>
+        <form onSubmit={handleSubmit}>
           {/* Name Field */}
           <div className="mb-4 sm:mb-5">
             <label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
@@ -92,6 +280,7 @@ const HireDeveloperForm: React.FC = () => {
               placeholder="Enter Your Name"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -108,6 +297,7 @@ const HireDeveloperForm: React.FC = () => {
               placeholder="Type Your Email Here"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -117,17 +307,60 @@ const HireDeveloperForm: React.FC = () => {
               Contact Number*
             </label>
             <div className="flex gap-2">
-              <select
-                name="countryCode"
-                value={formData.countryCode}
-                onChange={(e) => setFormData(prev => ({ ...prev, countryCode: e.target.value }))}
-                className="px-3 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base w-20"
-              >
-                <option value="+91">🇮🇳 +91</option>
-                <option value="+1">🇺🇸 +1</option>
-                <option value="+44">🇬🇧 +44</option>
-                <option value="+61">🇦🇺 +61</option>
-              </select>
+              {/* Country Code Selector */}
+              <div className="relative w-32" ref={dropdownRef}>
+                <div
+                  className={`flex items-center justify-between px-3 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base cursor-pointer bg-white ${
+                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                  onClick={() => !isSubmitting && setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                >
+                  <div className="flex items-center gap-2">
+                    <CountryFlag countryCode={formData.countryCode} />
+                    <span>+{getCountryCallingCode(formData.countryCode as any)}</span>
+                  </div>
+                  <ChevronDown className="w-4 h-4 text-gray-500" />
+                </div>
+
+                {isCountryDropdownOpen && !isSubmitting && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
+                    {/* Search Input */}
+                    <div className="p-2 border-b border-gray-200">
+                      <div className="relative">
+                        <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <input
+                          type="text"
+                          placeholder="Search country code..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500 text-sm"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Country List */}
+                    <div className="max-h-40 overflow-y-auto">
+                      {filteredCountries.map(country => (
+                        <div
+                          key={country}
+                          className="flex items-center gap-3 px-3 py-2 hover:bg-purple-50 cursor-pointer text-sm"
+                          onClick={() => handleCountrySelect(country)}
+                        >
+                          <CountryFlag countryCode={country} />
+                          <span>+{getCountryCallingCode(country)}</span>
+                        </div>
+                      ))}
+                      {filteredCountries.length === 0 && (
+                        <div className="px-3 py-2 text-sm text-gray-500 text-center">
+                          No countries found
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <input
                 type="tel"
                 name="phone"
@@ -136,6 +369,7 @@ const HireDeveloperForm: React.FC = () => {
                 placeholder="Phone number"
                 className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
                 required
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -154,6 +388,7 @@ const HireDeveloperForm: React.FC = () => {
                   checked={formData.hireType === 'contract'}
                   onChange={handleInputChange}
                   className="w-4 h-4 text-purple-600 focus:ring-purple-500"
+                  disabled={isSubmitting}
                 />
                 <span className="ml-2 text-gray-700 text-sm sm:text-base">Contract</span>
               </label>
@@ -165,6 +400,7 @@ const HireDeveloperForm: React.FC = () => {
                   checked={formData.hireType === 'fullTime'}
                   onChange={handleInputChange}
                   className="w-4 h-4 text-purple-600 focus:ring-purple-500"
+                  disabled={isSubmitting}
                 />
                 <span className="ml-2 text-gray-700 text-sm sm:text-base">Full Time</span>
               </label>
@@ -173,13 +409,23 @@ const HireDeveloperForm: React.FC = () => {
 
           {/* Submit Button */}
           <button
-            onClick={handleSubmit}
-            className="w-full py-3 sm:py-3.5 rounded-lg text-white font-semibold text-base sm:text-lg transition-all duration-200 hover:shadow-lg"
+            type="submit"
+            disabled={isSubmitting}
+            className={`w-full py-3 sm:py-3.5 rounded-lg text-white font-semibold text-base sm:text-lg transition-all duration-200 hover:shadow-lg ${
+              isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
+            }`}
             style={{ backgroundColor: '#760060' }}
           >
-            Hire Developer
+            {isSubmitting ? (
+              <div className="flex items-center justify-center gap-2">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Sending...</span>
+              </div>
+            ) : (
+              "Hire Developer"
+            )}
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -173,7 +173,7 @@ const SolutionSection = () => {
                 minHeight: '280px' // Same as original
               }}
             >
-              <div className="p-2 sm:p-3 lg:p-4 h-full flex flex-col overflow-hidden">
+              <div className="p-2 sm:p-3 mt-4  lg:p-4 h-full flex flex-col overflow-hidden">
                 {/* Title and Know More Button - Increased gap for mobile */}
                 <div className="flex items-center justify-between gap-3 sm:gap-3 mb-3 sm:mb-3">
                   <h3 className="font-semibold text-black flex-1 text-sm sm:text-base">
@@ -193,7 +193,7 @@ const SolutionSection = () => {
                 </p>
 
                 {/* Image Area - Increased margin for mobile */}
-                <div className="flex-1 flex items-center justify-center min-h-0 mt-3 sm:mt-3">
+                <div className="flex-1 flex items-center justify-center min-h-0 mt-3 mb-4 sm:mt-3">
                   <img 
                     src={service.image} 
                     alt={service.title}
