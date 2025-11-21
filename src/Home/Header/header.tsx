@@ -11,6 +11,7 @@ interface SubmenuItem {
 
 interface NavItem {
   label: string;
+  href?: string;
   submenu: SubmenuItem[];
 }
 
@@ -52,6 +53,7 @@ const Header = () => {
     },
     {
       label: "Case Studies",
+      href: "/case-study",
       submenu: [],
     },
     {
@@ -81,7 +83,18 @@ const Header = () => {
     setNestedOpenDropdown(null);
   };
 
-  const handleMouseEnter = (label: string) => setOpenDropdown(label);
+  const handleCaseStudiesClick = () => {
+    navigate("/case-study");
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+    setNestedOpenDropdown(null);
+  };
+
+  const handleMouseEnter = (label: string) => {
+    if (label !== "Case Studies") {
+      setOpenDropdown(label);
+    }
+  };
 
   const handleMouseLeave = () => {
     setOpenDropdown(null);
@@ -93,7 +106,9 @@ const Header = () => {
   const handleNestedMouseLeave = () => setNestedOpenDropdown(null);
 
   const toggleDropdown = (label: string) => {
-    setOpenDropdown(openDropdown === label ? null : label);
+    if (label !== "Case Studies") {
+      setOpenDropdown(openDropdown === label ? null : label);
+    }
   };
 
   const toggleNestedDropdown = (label: string) => {
@@ -184,77 +199,88 @@ const Header = () => {
                 onMouseEnter={() => handleMouseEnter(item.label)}
                 onMouseLeave={handleMouseLeave}
               >
-                <button
-                  onClick={() => toggleDropdown(item.label)}
-                  className="flex items-center gap-1 px-3 py-2 text-sm text-gray-700 hover:text-purple-600 transition font-medium"
-                >
-                  {item.label}
-                  <ChevronDown
-                    size={16}
-                    className={`transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`}
-                  />
-                </button>
-
-                {/* Desktop Dropdown */}
-                {item.submenu.length > 0 && (
-                  <div
-                    className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 w-56 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 z-50 ${
-                      openDropdown === item.label
-                        ? "opacity-100 visible translate-y-0"
-                        : "opacity-0 invisible -translate-y-2"
-                    }`}
+                {item.label === "Case Studies" ? (
+                  <button
+                    onClick={handleCaseStudiesClick}
+                    className="flex items-center gap-1 px-3 py-2 text-base text-gray-700 hover:text-purple-600 transition font-medium"
                   >
-                    <div className="py-2">
-                      {item.submenu.map((subitem) => (
-                        <div
-                          key={subitem.label}
-                          className="relative group"
-                          ref={(el) => {
-                            nestedDropdownRefs.current[subitem.label] = el;
-                          }}
-                          onMouseEnter={() => subitem.submenu && handleNestedMouseEnter(subitem.label)}
-                          onMouseLeave={handleNestedMouseLeave}
-                        >
-                          {subitem.submenu ? (
-                            <>
-                              <button className="flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition">
-                                <span>{subitem.label}</span>
-                                <ChevronRight size={16} />
-                              </button>
+                    {item.label}
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => toggleDropdown(item.label)}
+                      className="flex items-center gap-1 px-3 py-2 text-base text-gray-700 hover:text-purple-600 transition font-medium"
+                    >
+                      {item.label}
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`}
+                      />
+                    </button>
 
-                              {/* Nested Desktop */}
-                              <div
-                                className={`absolute left-full top-0 ml-1 w-56 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 z-50 ${
-                                  nestedOpenDropdown === subitem.label
-                                    ? "opacity-100 visible translate-x-0"
-                                    : "opacity-0 invisible -translate-x-2"
-                                }`}
-                              >
-                                <div className="py-2 max-h-80 overflow-y-auto">
-                                  {subitem.submenu.map((nestedItem) => (
-                                    <a
-                                      key={nestedItem.label}
-                                      href={nestedItem.href}
-                                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
-                                    >
-                                      {nestedItem.label}
-                                    </a>
-                                  ))}
-                                </div>
-                              </div>
-                            </>
-                          ) : (
-                            <a
-                              href={subitem.href}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
+                    {/* Desktop Dropdown */}
+                    {item.submenu.length > 0 && (
+                      <div
+                        className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 w-56 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 z-50 ${
+                          openDropdown === item.label
+                            ? "opacity-100 visible translate-y-0"
+                            : "opacity-0 invisible -translate-y-2"
+                        }`}
+                      >
+                        <div className="py-2">
+                          {item.submenu.map((subitem) => (
+                            <div
+                              key={subitem.label}
+                              className="relative group"
+                              ref={(el) => {
+                                nestedDropdownRefs.current[subitem.label] = el;
+                              }}
+                              onMouseEnter={() => subitem.submenu && handleNestedMouseEnter(subitem.label)}
+                              onMouseLeave={handleNestedMouseLeave}
                             >
-                              {subitem.label}
-                            </a>
-                          )}
+                              {subitem.submenu ? (
+                                <>
+                                  <button className="flex items-center justify-between w-full px-4 py-2 text-base text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition">
+                                    <span>{subitem.label}</span>
+                                    <ChevronRight size={16} />
+                                  </button>
+
+                                  {/* Nested Desktop */}
+                                  <div
+                                    className={`absolute left-full top-0 ml-1 w-56 bg-white border border-gray-100 rounded-lg shadow-lg transition-all duration-200 z-50 ${
+                                      nestedOpenDropdown === subitem.label
+                                        ? "opacity-100 visible translate-x-0"
+                                        : "opacity-0 invisible -translate-x-2"
+                                    }`}
+                                  >
+                                    <div className="py-2 max-h-80 overflow-y-auto">
+                                      {subitem.submenu.map((nestedItem) => (
+                                        <a
+                                          key={nestedItem.label}
+                                          href={nestedItem.href}
+                                          className="block px-4 py-2 text-base text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
+                                        >
+                                          {nestedItem.label}
+                                        </a>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </>
+                              ) : (
+                                <a
+                                  href={subitem.href}
+                                  className="block px-4 py-2 text-base text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition"
+                                >
+                                  {subitem.label}
+                                </a>
+                              )}
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             ))}
@@ -262,7 +288,7 @@ const Header = () => {
 
           {/* Desktop Contact */}
           <button
-            className="hidden lg:block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition flex-shrink-0 text-sm"
+            className="hidden lg:block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition flex-shrink-0 text-base"
             onClick={handleContactClick}
           >
             Contact Us
@@ -287,88 +313,99 @@ const Header = () => {
           <div className="px-4 py-6 space-y-4">
             {navItems.map((item) => (
               <div key={item.label} className="border-b border-gray-100 last:border-b-0">
-                <button
-                  onClick={() => toggleDropdown(item.label)}
-                  className="flex items-center justify-between w-full py-3 text-left text-gray-700 hover:text-purple-600 transition font-medium"
-                >
-                  {item.label}
-                  {item.submenu.length > 0 && (
-                    <ChevronDown
-                      size={18}
-                      className={`transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`}
-                    />
-                  )}
-                </button>
-
-                {/* Mobile Submenu */}
-                {item.submenu.length > 0 && (
-                  <div
-                    className={`pl-4 space-y-2 transition-all duration-200 ${
-                      openDropdown === item.label ? "opacity-100 visible max-h-96 pb-3" : "opacity-0 invisible max-h-0"
-                    }`}
+                {item.label === "Case Studies" ? (
+                  <button
+                    onClick={handleCaseStudiesClick}
+                    className="flex items-center justify-between w-full py-3 text-left text-base text-gray-700 hover:text-purple-600 transition font-medium"
                   >
-                    {item.submenu.map((subitem) => (
-                      <div key={subitem.label}>
-                        {subitem.submenu ? (
-                          <>
-                            <button
-                              onClick={() => toggleNestedDropdown(subitem.label)}
-                              className="flex items-center justify-between w-full py-2 text-left text-sm text-gray-600 hover:text-purple-600 transition font-medium"
-                            >
-                              <span>{subitem.label}</span>
-                              <ChevronDown
-                                size={16}
-                                className={`transition-transform ${
-                                  (subitem.label === "Services"
-                                    ? nestedOpenDropdown === "mobile-services"
-                                    : nestedOpenDropdown === subitem.label)
-                                    ? "rotate-180"
-                                    : ""
-                                }`}
-                              />
-                            </button>
+                    {item.label}
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => toggleDropdown(item.label)}
+                      className="flex items-center justify-between w-full py-3 text-left text-base text-gray-700 hover:text-purple-600 transition font-medium"
+                    >
+                      {item.label}
+                      {item.submenu.length > 0 && (
+                        <ChevronDown
+                          size={18}
+                          className={`transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`}
+                        />
+                      )}
+                    </button>
 
-                            {/* Nested Mobile */}
-                            <div
-                              className={`pl-4 space-y-2 transition-all duration-200 ${
-                                (subitem.label === "Services"
-                                  ? nestedOpenDropdown === "mobile-services"
-                                  : nestedOpenDropdown === subitem.label)
-                                  ? "opacity-100 visible max-h-80 pb-2"
-                                  : "opacity-0 invisible max-h-0"
-                              }`}
-                            >
-                              {subitem.submenu.map((nestedItem) => (
-                                <a
-                                  key={nestedItem.label}
-                                  href={nestedItem.href}
-                                  className="block py-2 text-sm text-gray-600 hover:text-purple-600 transition"
-                                  onClick={() => {
-                                    setOpenDropdown(null);
-                                    setNestedOpenDropdown(null);
-                                    setIsMobileMenuOpen(false);
-                                  }}
+                    {/* Mobile Submenu */}
+                    {item.submenu.length > 0 && (
+                      <div
+                        className={`pl-4 space-y-2 transition-all duration-200 ${
+                          openDropdown === item.label ? "opacity-100 visible max-h-96 pb-3" : "opacity-0 invisible max-h-0"
+                        }`}
+                      >
+                        {item.submenu.map((subitem) => (
+                          <div key={subitem.label}>
+                            {subitem.submenu ? (
+                              <>
+                                <button
+                                  onClick={() => toggleNestedDropdown(subitem.label)}
+                                  className="flex items-center justify-between w-full py-2 text-left text-base text-gray-600 hover:text-purple-600 transition font-medium"
                                 >
-                                  {nestedItem.label}
-                                </a>
-                              ))}
-                            </div>
-                          </>
-                        ) : (
-                          <a
-                            href={subitem.href}
-                            className="block py-2 text-sm text-gray-600 hover:text-purple-600 transition"
-                            onClick={() => {
-                              setOpenDropdown(null);
-                              setIsMobileMenuOpen(false);
-                            }}
-                          >
-                            {subitem.label}
-                          </a>
-                        )}
+                                  <span>{subitem.label}</span>
+                                  <ChevronDown
+                                    size={16}
+                                    className={`transition-transform ${
+                                      (subitem.label === "Services"
+                                        ? nestedOpenDropdown === "mobile-services"
+                                        : nestedOpenDropdown === subitem.label)
+                                        ? "rotate-180"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+
+                                {/* Nested Mobile */}
+                                <div
+                                  className={`pl-4 space-y-2 transition-all duration-200 ${
+                                    (subitem.label === "Services"
+                                      ? nestedOpenDropdown === "mobile-services"
+                                      : nestedOpenDropdown === subitem.label)
+                                      ? "opacity-100 visible max-h-80 pb-2"
+                                      : "opacity-0 invisible max-h-0"
+                                  }`}
+                                >
+                                  {subitem.submenu.map((nestedItem) => (
+                                    <a
+                                      key={nestedItem.label}
+                                      href={nestedItem.href}
+                                      className="block py-2 text-base text-gray-600 hover:text-purple-600 transition"
+                                      onClick={() => {
+                                        setOpenDropdown(null);
+                                        setNestedOpenDropdown(null);
+                                        setIsMobileMenuOpen(false);
+                                      }}
+                                    >
+                                      {nestedItem.label}
+                                    </a>
+                                  ))}
+                                </div>
+                              </>
+                            ) : (
+                              <a
+                                href={subitem.href}
+                                className="block py-2 text-base text-gray-600 hover:text-purple-600 transition"
+                                onClick={() => {
+                                  setOpenDropdown(null);
+                                  setIsMobileMenuOpen(false);
+                                }}
+                              >
+                                {subitem.label}
+                              </a>
+                            )}
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    )}
+                  </>
                 )}
               </div>
             ))}

@@ -5,7 +5,8 @@ import HiringFormSection from './HiringFormSection/HiringFormSection';
 import TrustedCompanies from '../Home/TrustedCompanies/TrustedCompanies';
 import ClientTestimonials from '../Home/ClientTestimonials/ClientTestimonials';
 import FAQAccordion from '../Home/FAQAccordion/FAQAccordion';
-import CTASection from '../Home/CTASection/CTASection';
+import ContactCTASection from './HiringFormSection/contactCTASection';
+
 
 
  // or correct path to your Welcome component
@@ -18,7 +19,7 @@ const contactUs: React.FC = () => {
     <TrustedCompanies />
     <ClientTestimonials />
     <FAQAccordion />
-    <CTASection />
+ <ContactCTASection />
       <Footer />
     
     </div>

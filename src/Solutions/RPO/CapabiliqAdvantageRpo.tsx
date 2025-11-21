@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react';
-import CAPADVRPO from '../../assets/CAPADVRPO.png'
+import CAPADVRPO from '../../assets/CAPADVRPO.png';
 
 export default function CapabiliqAdvantageRpo() {
   const benefits = [
@@ -11,63 +11,65 @@ export default function CapabiliqAdvantageRpo() {
   ];
 
   return (
-    <div className="bg-white py-8 px-4 font-['SF_Pro_Display']">
+    <section className="bg-white py-12 md:py-12 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-8 text-gray-900">
+        {/* Main Heading */}
+      
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 items-center">
+          {/* Left Side - Image */}
+          <div className="relative h-80 md:h-96 flex items-center justify-center order-1 lg:order-1">
+            {/* Image Container */}
+            <div className="relative w-full h-full">
+              {/* Actual imported image */}
+              <img 
+                src={CAPADVRPO} 
+                alt="Capabiliq Team"
+                className="w-full h-full object-cover rounded-2xl shadow-xl"
+              />
+
+              {/* Decorative elements */}
+              <div className="absolute -top-3 -right-3 w-16 h-16 bg-purple-300 rounded-full opacity-20 blur-xl"></div>
+              <div className="absolute -bottom-3 -left-3 w-24 h-24 bg-pink-300 rounded-full opacity-20 blur-2xl"></div>
+            </div>
+          </div>
+
+          {/* Right Content */}
+          <div className="space-y-6 order-2 lg:order-2">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-8 md:mb-8" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "San Francisco", sans-serif' }}>
           The Capabiliq Advantage
         </h2>
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* Left Side - Image */}
-          <div className="flex justify-center lg:justify-start">
-            <img 
-              src={CAPADVRPO} 
-              alt="Capabiliq Team" 
-              className="w-full rounded-3xl shadow-lg object-cover"
-            />
-          </div>
-
-          {/* Right Side - Content */}
-          <div>
-            <h3 className="text-2xl font-semibold mb-6 text-gray-900">
+            {/* Subheading */}
+            <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-tight" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "San Francisco", sans-serif' }}>
               Who Should Use Capabiliq RPO?
             </h3>
 
             {/* Benefits List */}
-            <div className="space-y-4 mb-6">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-3">
+            <div className="space-y-3">
+              {benefits.map((benefit, idx) => (
+                <div key={idx} className="flex items-start gap-3">
                   <div className="flex-shrink-0 mt-1">
-                    <div className="w-6 h-6 rounded bg-green-500 flex items-center justify-center">
-                      <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                    <div className="flex items-center justify-center h-5 w-5 rounded-full bg-green-500">
+                      <Check size={14} className="text-white font-bold" />
                     </div>
                   </div>
-                  <p className="text-base text-gray-900 font-medium">
-                    {benefit}
-                  </p>
+                  <span className="text-gray-800 text-sm md:text-base font-medium">{benefit}</span>
                 </div>
               ))}
             </div>
 
             {/* Description */}
-            <p className="text-sm text-gray-700 leading-relaxed mb-6">
+            <p className="text-gray-700 text-sm md:text-base leading-relaxed pt-2">
               Our clients span tech, BFSI, healthcare, edtech, SaaS, and retail. Regardless of size or stage, Capabiliq integrates seamlessly into your hiring engine as a strategic partner.
             </p>
 
             {/* CTA Button */}
-            <button 
-              className="px-8 py-4 rounded-full text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              style={{
-                background: 'linear-gradient(to right, #e85d9a, #a855f7)'
-              }}
-            >
+            <button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-medium py-2.5 px-6 rounded-full transition-all duration-300 transform hover:scale-105 w-fit text-sm md:text-base">
               Book a Consulting Call
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

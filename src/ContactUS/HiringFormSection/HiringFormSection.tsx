@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getCountries, getCountryCallingCode } from 'react-phone-number-input';
 import emailjs from '@emailjs/browser';
+import herosection from "../../assets/hero sections.jpg"; // Import the background image
+import heroformobile from "../../assets/Hoeroformobile.jpg"; // Import the mobile background image
 
 // Initialize EmailJS
 const EMAILJS_SERVICE_ID = 'service_yjhifms';
@@ -203,7 +205,25 @@ export default function HiringFormSection() {
   };
 
   return (
-    <section className="bg-gradient-to-r from-purple-100 via-pink-100 to-purple-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
+    <section className="relative min-h-[80vh] overflow-hidden py-12 px-4 sm:px-6 lg:px-8 flex items-center" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
+      {/* Background Images - Different for mobile and desktop */}
+      <div className="absolute inset-0 z-0">
+        {/* Desktop Background */}
+        <img
+          src={herosection}
+          alt="Background"
+          className="hidden lg:block w-full h-full object-cover"
+        />
+        {/* Mobile Background */}
+        <img
+          src={heroformobile}
+          alt="Mobile Background"
+          className="block lg:hidden w-full h-full object-cover"
+        />
+        {/* Optional overlay for better text readability */}
+        <div className="absolute inset-0 bg-white/20"></div>
+      </div>
+
       {/* Toast Container */}
       <ToastContainer
         position="top-right"
@@ -218,25 +238,25 @@ export default function HiringFormSection() {
         theme="light"
       />
       
-      <div className="max-w-8xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
-          <div className="text-gray-900">
-            <button className="inline-block bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-6 rounded-lg mb-8 transition-colors">
+          <div className="text-center lg:text-left space-y-6">
+            <button className="inline-block bg-[#760060] text-white font-bold py-3 px-8 rounded-lg transition-colors hover:bg-[#600050]">
               Book A Call
             </button>
 
-            <h1 className="text-5xl lg:text-6xl font-semibold mb-8 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-black">
               Experience how Capabiliq makes hiring faster, easier, and more accurate
             </h1>
 
-            <p className="text-lg text-gray-700 mb-12 leading-relaxed">
+            <p className="text-base md:text-lg text-black leading-relaxed max-w-2xl mx-auto lg:mx-0">
               See how Capabiliq simplifies hiring — faster, leaner, and always on point. Complete staffing, handled for you.
             </p>
 
             {/* Rating Badges */}
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 bg-white px-4 py-3 rounded-full shadow-md border border-gray-200">
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-3 rounded-full shadow-md border border-gray-200">
                 <svg className="w-4 sm:w-5 h-4 sm:h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                   <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -244,9 +264,9 @@ export default function HiringFormSection() {
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
                 <span className="font-semibold text-gray-800">Google</span>
-                <span className="text-gray-800  font-bold">4.9 ⭐</span>
+                <span className="text-gray-800 font-bold">4.9 ⭐</span>
               </div>
-              <div className="flex items-center gap-2 bg-white px-4 py-3 rounded-full shadow-md border border-gray-200">
+              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-3 rounded-full shadow-md border border-gray-200">
                 <svg className="w-4 sm:w-5 h-4 sm:h-5" viewBox="0 0 24 24" fill="#00B67A">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
@@ -257,11 +277,11 @@ export default function HiringFormSection() {
           </div>
 
           {/* Right Form */}
-          <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-10">
+          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-6 lg:p-8">
             <form onSubmit={handleSubmit}>
               <div className="space-y-6">
                 {/* Full Name & Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-900 mb-2">
                       Full name<span className="text-red-500">*</span>
@@ -295,11 +315,11 @@ export default function HiringFormSection() {
                 </div>
 
                 {/* Company Website & Contact Number */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Company Website */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Company website<span className="text-red-500">*</span>
+                      Company Name<span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -318,7 +338,7 @@ export default function HiringFormSection() {
                     <label className="block text-sm font-semibold text-gray-900 mb-2">
                       Contact number
                     </label>
-                    <div className="flex gap-3">
+                    <div className="flex gap-2">
                       {/* Country Code Selector */}
                       <div className="relative flex-shrink-0" ref={dropdownRef}>
                         <button
@@ -394,7 +414,7 @@ export default function HiringFormSection() {
                 </div>
 
                 {/* Hiring Needs & Employees */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-900 mb-2">
                       Your hiring needs<span className="text-red-500">*</span>

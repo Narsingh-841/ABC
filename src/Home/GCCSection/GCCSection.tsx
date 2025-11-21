@@ -32,7 +32,7 @@ const GCCSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-gray-10 py-8 lg:py-16 overflow-hidden" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+    <section ref={sectionRef} className="relative bg-gray-10 py-8 lg:py-16 overflow-hidden" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-64 h-64 lg:w-96 lg:h-96 bg-purple-200 rounded-full blur-3xl opacity-10"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 lg:w-96 lg:h-96 bg-pink-200 rounded-full blur-3xl opacity-10"></div>
@@ -42,7 +42,7 @@ const GCCSection = () => {
         <div className={`text-center mb-8 lg:mb-12 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-medium bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 bg-clip-text text-transparent mb-4" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-semibold bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 bg-clip-text text-transparent mb-4" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>
             Global Capability Centers
           </h2>
         </div>
@@ -55,12 +55,12 @@ const GCCSection = () => {
           }`}>
             <div>
               {/* Mobile: Center aligned, Desktop: Left aligned */}
-              <h3 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight text-center lg:text-left" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+              <h3 className="text-3xl lg:text-4xl xl:text-5xl font-semibold text-gray-900 mb-4 lg:mb-6 leading-tight text-center lg:text-left" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>
                 A Strategic Imperative <br className="hidden lg:block"/>for Talent, Speed and <br className="hidden lg:block"/>Cost Optimization
               </h3>
 
               {/* Mobile: Center aligned, Desktop: Left aligned */}
-              <p className="text-gray-700 text-base lg:text-lg leading-relaxed mb-6 lg:mb-8 text-center lg:text-left">
+              <p className="text-gray-700 text-base lg:text-lg leading-relaxed mb-6 lg:mb-8 text-center lg:text-left" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>
                 Leading businesses are using GCCs to build core and critical capabilities that are not outsourceable
               </p>
             </div>
@@ -69,7 +69,8 @@ const GCCSection = () => {
             <div className="text-center lg:text-left">
               <button 
                 onClick={handleBookCall}
-                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-6 lg:py-4 lg:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base lg:text-lg w-full lg:w-auto"
+                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-3 px-6 lg:py-4 lg:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base lg:text-lg w-full lg:w-auto"
+                style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}
               >
                 Book a Consulting Call
               </button>
@@ -85,29 +86,29 @@ const GCCSection = () => {
               {/* Top Left - Tags Cell */}
               <div className="relative flex flex-col items-center sm:items-start justify-center gap-4 lg:gap-6 min-h-[120px] lg:min-h-[140px] px-2 lg:pl-4">
                 <div className="border-2 border-pink-900 rounded-lg px-4 lg:px-8 py-2 bg-white shadow-md transform -rotate-12 animate-float-tag-1">
-                  <p className="text-gray-900 font-semibold text-xs lg:text-sm whitespace-nowrap">Access Niche Skill Sets</p>
+                  <p className="text-gray-900 font-semibold text-xs lg:text-sm whitespace-nowrap" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>Access Niche Skill Sets</p>
                 </div>
                 <div className="border-2 border-pink-900 rounded-lg px-4 lg:px-8 py-2 bg-white shadow-md rotate-6 animate-float-tag-2 lg:ml-12 mt-2 lg:mt-4">
-                  <p className="text-gray-900 font-semibold text-xs lg:text-sm whitespace-nowrap">Hire Top 2% Talent</p>
+                  <p className="text-gray-900 font-semibold text-xs lg:text-sm whitespace-nowrap" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>Hire Top 2% Talent</p>
                 </div>
               </div>
 
               {/* Top Right - 30% Timeline */}
               <div className="bg-white/90 backdrop-blur border-2 border-gray-300 rounded-2xl lg:rounded-3xl px-6 lg:px-10 py-4 lg:py-6 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in min-h-[120px] lg:min-h-[140px] flex flex-col justify-center text-center sm:text-left">
-                <p className="text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 mb-2">30%</p>
-                <p className="text-gray-700 font-medium text-sm lg:text-base">Timeline is reduced</p>
+                <p className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-gray-900 mb-2" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>30%</p>
+                <p className="text-gray-700 font-semibold text-sm lg:text-base" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>Timeline is reduced</p>
               </div>
 
               {/* Bottom Left - 30% Productivity */}
               <div className="bg-white/90 backdrop-blur border-2 border-gray-300 rounded-2xl lg:rounded-3xl px-6 lg:px-10 py-4 lg:py-6 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in min-h-[120px] lg:min-h-[140px] flex flex-col justify-center text-center sm:text-left">
-                <p className="text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 mb-2">30%</p>
-                <p className="text-gray-700 font-medium text-sm lg:text-base">Higher Productivity</p>
+                <p className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-gray-900 mb-2" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>30%</p>
+                <p className="text-gray-700 font-semibold text-sm lg:text-base" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>Higher Productivity</p>
               </div>
 
               {/* Bottom Right - 40% Cost */}
               <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl lg:rounded-3xl px-6 lg:px-10 py-4 lg:py-6 shadow-xl hover:shadow-2xl transition-all duration-300 animate-fade-in min-h-[120px] lg:min-h-[140px] flex flex-col justify-center text-center sm:text-left" style={{ animationDelay: '0.2s' }}>
-                <p className="text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-2">40%</p>
-                <p className="text-white/90 font-medium text-sm lg:text-base">Lower Cost of operations</p>
+                <p className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-white mb-2" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>40%</p>
+                <p className="text-white/90 font-semibold text-sm lg:text-base" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>Lower Cost of operations</p>
               </div>
             </div>
           </div>

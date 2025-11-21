@@ -3,10 +3,10 @@ import Header from '../Home/Header/header';
 import Footer from '../Home/Footer/Footer';
 
 import FAQAccordion from '../Home/FAQAccordion/FAQAccordion';
-import CTASection from '../Home/CTASection/CTASection';
 
 import AIDataAnalyticsSection from './DataAnalytics/AIDataAnalyticsSection';
 import AIDataAnalyticsServices from './DataAnalytics/AIDataAnalyticsServices';
+import HireCTASection from '../HireDeveloper/HireDeveloperForm/HireCTASection';
 
 
  // or correct path to your Welcome component
@@ -18,7 +18,7 @@ const DataAnalytics: React.FC = () => {
 <AIDataAnalyticsSection/>
 <AIDataAnalyticsServices/>
     <FAQAccordion />
-    <CTASection />
+    <HireCTASection />
       <Footer />
     
     </div>

@@ -59,9 +59,9 @@ const HowItWorks: React.FC = () => {
         </div>
 
         {/* Desktop View - Custom grid layout */}
-        <div className="hidden lg:block space-y-6">
+        <div className="hidden lg:block">
           {/* Top Row */}
-          <div className="grid grid-cols-2 gap-x-32">
+          <div className="grid grid-cols-2 gap-6 mb-6">
             {/* Step 01 */}
             <div className="h-full">
               <StepCard
@@ -84,9 +84,9 @@ const HowItWorks: React.FC = () => {
           </div>
           
           {/* Bottom Row */}
-          <div className="flex flex-row gap-4 justify-center px-12">
+          <div className="grid grid-cols-2 gap-6">
             {/* Step 02 */}
-            <div className="flex-1 max-w-md h-full">
+            <div className="h-full">
               <StepCard
                 number="02."
                 title="Get Pre-Vetted Candidates Fast"
@@ -96,7 +96,7 @@ const HowItWorks: React.FC = () => {
             </div>
             
             {/* Step 04 */}
-            <div className="flex-1 max-w-md h-full">
+            <div className="h-full">
               <StepCard
                 number="04."
                 title="Free BGVs on First 5 Hires"

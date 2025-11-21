@@ -3,10 +3,11 @@ import Header from '../Home/Header/header';
 import Footer from '../Home/Footer/Footer';
 
 import FAQAccordion from '../Home/FAQAccordion/FAQAccordion';
-import CTASection from '../Home/CTASection/CTASection';
+
 
 import HireDeveloperSection from './HireDeveloperSection';
 import DomainFilterGrid from './DomainFilterGrid';
+import HireCTASection from './HireDeveloperForm/HireCTASection';
 
 
  // or correct path to your Welcome component
@@ -18,7 +19,7 @@ const HireDeveloperPage: React.FC = () => {
 <HireDeveloperSection/>
 <DomainFilterGrid/>
     <FAQAccordion />
-    <CTASection />
+    <HireCTASection />
       <Footer />
     
     </div>

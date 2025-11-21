@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
+body {
+  font-family: 'SF Pro Display', system-ui, sans-serif;
+}
 /* Hide scrollbar globally */
 html {
   scrollbar-width: none; /* Firefox */

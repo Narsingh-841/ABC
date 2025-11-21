@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Abstractspace from '../../assets/abstract-space.png';
 import ring from '../../assets/ring-decorative.png';
+import herosection from "../../assets/hero sections.jpg"; // Import the background image
+import heroformobile from "../../assets/Hoeroformobile.jpg"; // Import the mobile background image
+import awards from "../../assets/Awardsframe.png"
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -74,11 +77,26 @@ const HeroSection = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative min-h-0 overflow-hidden py-8 lg:py-22"
-      style={{
-        background: 'linear-gradient(to bottom, #FFFFFF 0%, #D24B8A 250%)'
-      }}
+      className="relative min-h-[50vh] lg:min-h-[70vh] overflow-hidden py-6 lg:py-16"
     >
+      {/* Background Images - Different for mobile and desktop */}
+      <div className="absolute inset-0 z-0">
+        {/* Desktop Background */}
+        <img
+          src={herosection}
+          alt="Background"
+          className="hidden lg:block w-full h-full object-cover"
+        />
+        {/* Mobile Background */}
+        <img
+          src={heroformobile}
+          alt="Mobile Background"
+          className="block lg:hidden w-full h-full object-cover"
+        />
+        {/* Optional overlay for better text readability */}
+        <div className="absolute inset-0 bg-white/20"></div>
+      </div>
+
       <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700;800&display=swap');
@@ -89,10 +107,10 @@ const HeroSection = () => {
       {/* Decorative Elements - Hidden on mobile */}
       {!isMobile && (
         <>
-          <div className="absolute -left-12 top-6/8 -translate-y-1/2 w-52 h-52 opacity-80 z-0">
+          <div className="absolute -left-12 top-6/8 -translate-y-1/2 w-52 h-52 opacity-80 z-10">
             <img src={Abstractspace} alt="Abstract space design" className="w-full h-full object-contain" />
           </div>
-          <div className="absolute -right-4 top-1/9 w-42 h-42 opacity-90 z-0">
+          <div className="absolute -right-4 top-1/9 w-42 h-42 opacity-90 z-10">
             <img src={ring} alt="Ring decorative element" className="w-full h-full object-contain" />
           </div>
         </>
@@ -101,10 +119,10 @@ const HeroSection = () => {
       {/* Main Content */}
       <div
         ref={contentRef}
-        className="max-w-7xl mx-auto px-4 text-center relative z-10 transition-transform duration-100 ease-out sf-pro"
+        className="max-w-7xl mx-auto px-4 text-center relative z-20 transition-transform duration-100 ease-out sf-pro"
         style={contentStyle}
       >
-        <div className={`flex items-center justify-center mb-4 transition-all duration-1000 cursor-pointer hover:scale-105 ${
+        <div className={`flex items-center justify-center mb-3 lg:mb-4 transition-all duration-1000 cursor-pointer hover:scale-105 ${
           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-[-20px] scale-90'
         }`}>
           <button
@@ -119,17 +137,17 @@ const HeroSection = () => {
         </div>
 
         {/* MAIN HEADING */}
-        <h1 className={`text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-6 lg:mb-6 leading-tight transition-all duration-1000 delay-300 text-center ${
+        <h1 className={`text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-4 lg:mb-6 leading-tight transition-all duration-1000 delay-300 text-center ${
           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'
         }`}>
           <div className="block">
-            <span className="text-gray-900">Empowering </span>
+            <span className="text-black">Empowering </span>
             
             <span className="bg-gradient-to-b from-black to-[#D24B8A] bg-clip-text text-transparent font-semibold">
               Startups
             </span>
             
-            <span className="text-gray-900"> and </span>
+            <span className="text-black"> and </span>
             
             <span className="bg-gradient-to-b from-black to-[#D24B8A] bg-clip-text text-transparent font-semibold">
               GCC
@@ -138,16 +156,16 @@ const HeroSection = () => {
         </h1>
 
         {/* Added Description Line */}
-        <div className={`mb-6 lg:mb-8 transition-all duration-1000 delay-350 ${
+        <div className={`mb-4 lg:mb-6 transition-all duration-1000 delay-350 ${
           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
         }`}>
-          <p className="text-gray-700 font-medium text-base lg:text-lg xl:text-l leading-relaxed max-w-3xl mx-auto">
+          <p className="text-black font-medium text-base lg:text-lg xl:text-l leading-relaxed max-w-3xl mx-auto">
             Build unstoppable fully-vetted teams 20x faster with CapabilIQ.
           </p>
         </div>
 
         {/* CTA Button with proper spacing */}
-        <div className={`mt-8 lg:mt-10 mb-6 lg:mb-8 transition-all duration-1000 delay-500 ${
+        <div className={`mt-6 lg:mt-8 mb-4 lg:mb-6 transition-all duration-1000 delay-500 ${
           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
         }`}>
           <button
@@ -162,7 +180,7 @@ const HeroSection = () => {
         <div className={`flex items-center justify-center gap-3 lg:gap-4 flex-wrap transition-all duration-1000 delay-600 ${
           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
         }`}>
-          <div className="flex items-center gap-1 lg:gap-2 bg-white px-3 lg:px-5 py-1 lg:py-2 rounded-full shadow-md border-2 border-gray-300 hover:shadow-lg hover:scale-105 transition-all duration-300">
+          <div className="flex items-center gap-1 lg:gap-2 bg-white/90 backdrop-blur-sm px-3 lg:px-5 py-1 lg:py-2 rounded-full shadow-md border-2 border-gray-300 hover:shadow-lg hover:scale-105 transition-all duration-300">
             <svg className="w-4 h-4 lg:w-5 lg:h-5" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -174,13 +192,28 @@ const HeroSection = () => {
             <span className="text-yellow-500 text-sm lg:text-lg">★</span>
           </div>
          
-          <div className="flex items-center gap-1 lg:gap-2 bg-white px-3 lg:px-5 py-1 lg:py-2 rounded-full shadow-md border-2 border-gray-300 hover:shadow-lg hover:scale-105 transition-all duration-300">
+          <div className="flex items-center gap-1 lg:gap-2 bg-white/90 backdrop-blur-sm px-3 lg:px-5 py-1 lg:py-2 rounded-full shadow-md border-2 border-gray-300 hover:shadow-lg hover:scale-105 transition-all duration-300">
             <svg className="w-4 h-4 lg:w-5 lg:h-5" viewBox="0 0 24 24" fill="#00B67A">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
             </svg>
             <span className="font-bold text-gray-900 text-xs lg:text-sm">Trustpilot</span>
             <span className="font-bold text-gray-900 text-xs lg:text-sm">4.9</span>
             <span className="text-yellow-500 text-sm lg:text-lg">★</span>
+          </div>
+        </div>
+
+        {/* Awards Section - Added at the bottom center */}
+        <div className={`mt-6 lg:mt-6 transition-all duration-1000 delay-700 ${
+          isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+        }`}>
+          <div className="flex flex-col items-center justify-center">
+            <div className="bg-transparent px-6 py-2 lg:p-4 transition-all duration-500 transform hover:scale-105 max-w-md lg:max-w-xl mx-auto">
+              <img 
+                src={awards} 
+                alt="Awards and Recognitions" 
+                className="w-full h-auto object-contain filter drop-shadow-lg scale-125"
+              />
+            </div>
           </div>
         </div>
       </div>

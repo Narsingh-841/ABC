@@ -142,17 +142,17 @@ const SolutionSection = () => {
     <section 
       ref={ref} 
       className="py-2 sm:py-4 mt-8 lg:py-6 px-2 sm:px-4 lg:px-6 flex items-center justify-center" 
-      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}
+      style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}
     >
       <div className="max-w-6xl w-full">
-        {/* Header */}
+        {/* Header - Increased heading size */}
         <div className={`text-center mb-4 lg:mb-6 transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <h1 className="text-2xl sm:text-3xl lg:text-2xl xl:text-4xl font-semibold text-black mb-2 lg:mb-3 px-1 sm:px-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-semibold text-black mb-2 lg:mb-3 px-1 sm:px-2" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>
             Solution We Offer
           </h1>
-          <p className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed font-normal px-1 sm:px-2">
+          <p className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed font-normal px-1 sm:px-2" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>
             By combining smart AI automation and real industry expertise, we deliver agile staffing solutions built for modern teams.
           </p>
         </div>
@@ -174,21 +174,22 @@ const SolutionSection = () => {
               }}
             >
               <div className="p-2 sm:p-3 mt-4  lg:p-4 h-full flex flex-col overflow-hidden">
-                {/* Title and Know More Button - Increased gap for mobile */}
+                {/* Title and Know More Button - Increased gap for mobile and increased font size */}
                 <div className="flex items-center justify-between gap-3 sm:gap-3 mb-3 sm:mb-3">
-                  <h3 className="font-semibold text-black flex-1 text-sm sm:text-base">
+                  <h3 className="font-semibold text-black flex-1 text-base sm:text-lg lg:text-lg" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>
                     {service.title}
                   </h3>
                   <button 
                     onClick={() => handleKnowMoreClick(service.path)}
-                    className="flex items-center gap-1 text-[#760060] font-semibold text-sm hover:gap-2 transition-all duration-300 group flex-shrink-0"
+                    className="flex items-center gap-1 text-[#760060] font-semibold text-sm sm:text-base hover:gap-2 transition-all duration-300 group flex-shrink-0"
+                    style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}
                   >
                     Know More <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
 
                 {/* Description - Increased margin for mobile */}
-                <p className="text-gray-700 leading-relaxed mb-4 sm:mb-4 text-sm flex-shrink-0 font-normal">
+                <p className="text-gray-700 leading-relaxed mb-4 sm:mb-4 text-sm sm:text-base flex-shrink-0 font-normal" style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}>
                   {service.description}
                 </p>
 
@@ -213,7 +214,8 @@ const SolutionSection = () => {
           }`}>
             <button
               onClick={handleBookCall}
-              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-6 lg:py-4 lg:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base lg:text-lg"
+              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-3 px-6 lg:py-4 lg:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base lg:text-lg"
+              style={{ fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif' }}
             >
               Book a Consulting Call
             </button>

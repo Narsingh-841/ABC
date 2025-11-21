@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getCountries, getCountryCallingCode } from 'react-phone-number-input';
 import emailjs from '@emailjs/browser';
+import herosection from "../../assets/hero sections.jpg";
+import heroformobile from "../../assets/Hoeroformobile.jpg";
 
 // Initialize EmailJS
 const EMAILJS_SERVICE_ID = 'service_yjhifms';
@@ -198,7 +200,25 @@ const HireDeveloperForm: React.FC = () => {
   };
 
   return (
-    <div className="min-h-0 bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 lg:px-12 py-8 sm:py-10 lg:py-12 gap-8 lg:gap-12">
+    <div className="min-h-[80vh] relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        {/* Desktop Background */}
+        <img
+          src={herosection}
+          alt="Background"
+          className="hidden lg:block w-full h-full object-cover"
+        />
+        {/* Mobile Background */}
+        <img
+          src={heroformobile}
+          alt="Mobile Background"
+          className="block lg:hidden w-full h-full object-cover"
+        />
+        {/* Optional overlay for better text readability */}
+        <div className="absolute inset-0 bg-white/20"></div>
+      </div>
+      
       {/* Toast Container */}
       <ToastContainer
         position="top-right"
@@ -213,219 +233,244 @@ const HireDeveloperForm: React.FC = () => {
         theme="light"
       />
       
-      {/* Left Section */}
-      <div className="flex-1 max-w-2xl w-full lg:w-auto text-center lg:text-left">
-        {/* Book A Call Button */}
-        <button 
-          className="mb-6 lg:mb-8 px-5 py-2.5 sm:px-6 sm:py-2.5 rounded-full text-white font-medium text-sm transition-all duration-200 hover:shadow-lg"
-          style={{ backgroundColor: '#760060' }}
-        >
-          Book A Call
-        </button>
+      {/* Grid Container */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Section - Content */}
+          <div className="text-center lg:text-left">
+          <button className="inline-block bg-[#760060] text-white font-bold py-2 px-4  rounded-lg transition-colors hover:bg-[#600050]">
+              Book A Call
+            </button>
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-6xl font-bold text-black mb-3 sm:mb-4 leading-tight">
+              Hire the Best Developers<br /><span className="bg-gradient-to-b from-[#D24B8A] to-[#6D58D6] bg-clip-text text-transparent">
+    Remote & Onsite
+  </span><br />around the Globe
+            </h1>
 
-        {/* Main Heading */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 mb-4 sm:mb-6 leading-tight">
-          Hire the Best Developers<br />around the Globe
-        </h1>
+            {/* Description */}
+            <p className="text-black text-base sm:text-lg mb-4 sm:mb-5 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              We connect you to pre-vetted, skilled professionals through our AI-driven platform — making hiring faster, smarter, and completely hassle-free for your business.
+            </p>
 
-        {/* Description */}
-        <p className="text-gray-700 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-          We connect you to pre-vetted, skilled professionals through our AI-driven platform — making hiring faster, smarter, and completely hassle-free for your business.
-        </p>
+            {/* Rating Badges */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-4 sm:mb-5">
+              {/* Google Rating */}
+              <div className="flex items-center gap-2 bg-white backdrop-blur-sm px-3 py-2 rounded-full border border-black/20 w-fit mx-auto sm:mx-0">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                <span className="font-semibold text-black text-xs sm:text-sm">Google</span>
+                <span className="font-semibold text-black text-xs sm:text-sm">|</span>
+                <span className="font-semibold text-black text-xs sm:text-sm">4.9</span>
+                <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+              </div>
 
-        {/* Rating Badges */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-          {/* Google Rating */}
-          <div className="flex items-center gap-2 bg-white px-4 py-3 rounded-full shadow-sm border border-gray-200 w-fit mx-auto sm:mx-0">
-            <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
-            <span className="font-semibold text-gray-900 text-sm sm:text-base">4.9</span>
-            <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-yellow-400 text-yellow-400" />
+              {/* Trustpilot Rating */}
+              <div className="flex items-center gap-2 bg-white backdrop-blur-sm px-3 py-2 rounded-full border border-black/20 w-fit mx-auto sm:mx-0">
+                <span className="font-semibold text-black text-xs sm:text-sm">Trustpilot</span>
+                <span className="font-semibold text-black text-xs sm:text-sm">|</span>
+                <span className="font-semibold text-black text-xs sm:text-sm">4.9</span>
+                <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+              </div>
+            </div>
           </div>
 
-          {/* Trustpilot Rating */}
-          <div className="flex items-center gap-2 bg-white px-4 py-3 rounded-full shadow-sm border border-gray-200 w-fit mx-auto sm:mx-0">
-            <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-green-500 text-green-500" />
-            <span className="font-semibold text-gray-900 text-sm sm:text-base">Trustpilot</span>
-            <span className="font-semibold text-gray-900 text-sm sm:text-base">4.9</span>
-            <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-yellow-400 text-yellow-400" />
-          </div>
-        </div>
-      </div>
-
-      {/* Right Section - Form Card */}
-      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-6 sm:p-8 w-full max-w-md lg:max-w-lg">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-          Hire Remote Developer
-        </h2>
-        <p className="text-gray-600 text-sm sm:text-base mb-6">
-          Hire the best in class with trust of capabiliq
-        </p>
-
-        <form onSubmit={handleSubmit}>
-          {/* Name Field */}
-          <div className="mb-4 sm:mb-5">
-            <label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
-              Name*
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Enter Your Name"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
-              required
-              disabled={isSubmitting}
-            />
-          </div>
-
-          {/* Email Field */}
-          <div className="mb-4 sm:mb-5">
-            <label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
-              Email-id*
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Type Your Email Here"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
-              required
-              disabled={isSubmitting}
-            />
-          </div>
-
-          {/* Contact Number Field */}
-          <div className="mb-4 sm:mb-5">
-            <label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
-              Contact Number*
-            </label>
-            <div className="flex gap-2">
-              {/* Country Code Selector */}
-              <div className="relative w-32" ref={dropdownRef}>
-                <div
-                  className={`flex items-center justify-between px-3 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base cursor-pointer bg-white ${
-                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-                  onClick={() => !isSubmitting && setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                >
-                  <div className="flex items-center gap-2">
-                    <CountryFlag countryCode={formData.countryCode} />
-                    <span>+{getCountryCallingCode(formData.countryCode as any)}</span>
-                  </div>
-                  <ChevronDown className="w-4 h-4 text-gray-500" />
+          {/* Right Section - Form Card */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 w-full max-w-md lg:max-w-lg">
+              <form onSubmit={handleSubmit}>
+                {/* Sub Heading */}
+                <h2 className="text-xl sm:text-2xl font-bold text-black mb-2">
+                  Hire Remote Developer
+                </h2>
+                <p className="text-black/80 text-base mb-4">
+                  Hire the best in class with trust of capability
+                </p>
+                
+                {/* Name Field */}
+                <div className="mb-3 sm:mb-4">
+                  <label className="block text-gray-700 font-medium mb-1 text-sm sm:text-base">
+                    Name*
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Enter Your Name"
+                    className="w-full px-3 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
+                    required
+                    disabled={isSubmitting}
+                  />
                 </div>
 
-                {isCountryDropdownOpen && !isSubmitting && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
-                    {/* Search Input */}
-                    <div className="p-2 border-b border-gray-200">
-                      <div className="relative">
-                        <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                        <input
-                          type="text"
-                          placeholder="Search country code..."
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500 text-sm"
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      </div>
-                    </div>
+                {/* Email Field */}
+                <div className="mb-3 sm:mb-4">
+                  <label className="block text-gray-700 font-medium mb-1 text-sm sm:text-base">
+                    Email Id*
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Type Your Email Here"
+                    className="w-full px-3 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
 
-                    {/* Country List */}
-                    <div className="max-h-40 overflow-y-auto">
-                      {filteredCountries.map(country => (
-                        <div
-                          key={country}
-                          className="flex items-center gap-3 px-3 py-2 hover:bg-purple-50 cursor-pointer text-sm"
-                          onClick={() => handleCountrySelect(country)}
-                        >
-                          <CountryFlag countryCode={country} />
-                          <span>+{getCountryCallingCode(country)}</span>
+                   {/* Company Name */}
+                   <div className="mb-3 sm:mb-4">
+                  <label className="block text-gray-700 font-medium mb-1 text-sm sm:text-base">
+                   Company Name*
+                  </label>
+                  <input
+                    type="companyName"
+                    name="companyName"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Type Your Email Here"
+                    className="w-full px-3 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                {/* Contact Number Field */}
+                <div className="mb-3 sm:mb-4">
+                  <label className="block text-gray-700 font-medium mb-1 text-sm sm:text-base">
+                    Contact Number*
+                  </label>
+                  <div className="flex gap-2">
+                    {/* Country Code Selector */}
+                    <div className="relative w-28" ref={dropdownRef}>
+                      <div
+                        className={`flex items-center justify-between px-2 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm cursor-pointer bg-white ${
+                          isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                        onClick={() => !isSubmitting && setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                      >
+                        <div className="flex items-center gap-1">
+                          <CountryFlag countryCode={formData.countryCode} />
+                          <span className="text-xs">+{getCountryCallingCode(formData.countryCode as any)}</span>
                         </div>
-                      ))}
-                      {filteredCountries.length === 0 && (
-                        <div className="px-3 py-2 text-sm text-gray-500 text-center">
-                          No countries found
+                        <ChevronDown className="w-3 h-3 text-gray-500" />
+                      </div>
+
+                      {isCountryDropdownOpen && !isSubmitting && (
+                        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-48 overflow-y-auto">
+                          {/* Search Input */}
+                          <div className="p-2 border-b border-gray-200">
+                            <div className="relative">
+                              <Search className="w-3 h-3 absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                              <input
+                                type="text"
+                                placeholder="Search country code..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full pl-7 pr-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500 text-xs"
+                                onClick={(e) => e.stopPropagation()}
+                              />
+                            </div>
+                          </div>
+
+                          {/* Country List */}
+                          <div className="max-h-32 overflow-y-auto">
+                            {filteredCountries.map(country => (
+                              <div
+                                key={country}
+                                className="flex items-center gap-2 px-2 py-1.5 hover:bg-purple-50 cursor-pointer text-xs"
+                                onClick={() => handleCountrySelect(country)}
+                              >
+                                <CountryFlag countryCode={country} />
+                                <span>+{getCountryCallingCode(country)}</span>
+                              </div>
+                            ))}
+                            {filteredCountries.length === 0 && (
+                              <div className="px-2 py-1.5 text-xs text-gray-500 text-center">
+                                No countries found
+                              </div>
+                            )}
+                          </div>
                         </div>
                       )}
                     </div>
+
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Phone number"
+                      className="flex-1 px-3 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
+                      required
+                      disabled={isSubmitting}
+                    />
                   </div>
-                )}
-              </div>
+                </div>
 
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                placeholder="Phone number"
-                className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
-                required
-                disabled={isSubmitting}
-              />
+                {/* Type of Hire Field */}
+                <div className="mb-4">
+                  <label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
+                    Type Of Hire*
+                  </label>
+                  <div className="flex gap-3 justify-center sm:justify-start">
+                    <label className="flex items-center cursor-pointer">
+                      <input
+                        type="radio"
+                        name="hireType"
+                        value="contract"
+                        checked={formData.hireType === 'contract'}
+                        onChange={handleInputChange}
+                        className="w-3 h-3 text-purple-600 focus:ring-purple-500"
+                        disabled={isSubmitting}
+                      />
+                      <span className="ml-1.5 text-gray-700 text-sm">Contract</span>
+                    </label>
+                    <label className="flex items-center cursor-pointer">
+                      <input
+                        type="radio"
+                        name="hireType"
+                        value="fullTime"
+                        checked={formData.hireType === 'fullTime'}
+                        onChange={handleInputChange}
+                        className="w-3 h-3 text-purple-600 focus:ring-purple-500"
+                        disabled={isSubmitting}
+                      />
+                      <span className="ml-1.5 text-gray-700 text-sm">Full Time</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full py-2.5 rounded-lg text-white font-semibold text-sm sm:text-base transition-all duration-200 hover:shadow-lg ${
+                    isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
+                  }`}
+                  style={{ backgroundColor: '#760060' }}
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center gap-1.5">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span className="text-sm">Sending...</span>
+                    </div>
+                  ) : (
+                    "Hire Developer"
+                  )}
+                </button>
+              </form>
             </div>
           </div>
-
-          {/* Type of Hire Field */}
-          <div className="mb-6">
-            <label className="block text-gray-700 font-medium mb-3 text-sm sm:text-base">
-              Type Of Hire*
-            </label>
-            <div className="flex gap-4 justify-center sm:justify-start">
-              <label className="flex items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="hireType"
-                  value="contract"
-                  checked={formData.hireType === 'contract'}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 text-purple-600 focus:ring-purple-500"
-                  disabled={isSubmitting}
-                />
-                <span className="ml-2 text-gray-700 text-sm sm:text-base">Contract</span>
-              </label>
-              <label className="flex items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="hireType"
-                  value="fullTime"
-                  checked={formData.hireType === 'fullTime'}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 text-purple-600 focus:ring-purple-500"
-                  disabled={isSubmitting}
-                />
-                <span className="ml-2 text-gray-700 text-sm sm:text-base">Full Time</span>
-              </label>
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`w-full py-3 sm:py-3.5 rounded-lg text-white font-semibold text-base sm:text-lg transition-all duration-200 hover:shadow-lg ${
-              isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
-            }`}
-            style={{ backgroundColor: '#760060' }}
-          >
-            {isSubmitting ? (
-              <div className="flex items-center justify-center gap-2">
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                <span>Sending...</span>
-              </div>
-            ) : (
-              "Hire Developer"
-            )}
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );

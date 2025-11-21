@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import ourSp from '../../assets/ourSp.png';
 
 interface ProcessStep {
   id: string;
@@ -126,43 +127,81 @@ const StreamlinedProcess: React.FC = () => {
   }, [visibleCards]);
 
   return (
-    <div className="min-h-screen bg-white py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-6xl font-bold text-center mb-20 text-gray-900">
-          Our Streamlined Process
-        </h1>
-        
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {steps.map((step, index) => {
-              const isLastItem = index === steps.length - 1;
-              
-              return (
+    <div className="bg-white  relative overflow-hidden">
+      <div className="mx-auto">
+        {/* Background Image Container - Full width */}
+        <div className="relative w-full">
+          {/* Background Image - Cover entire width with proper height */}
+          <div className="absolute inset-0 z-0 w-full h-full">
+            <img
+              src={ourSp}
+              alt="Streamlined Process Background"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          {/* Heading - Responsive for all screens */}
+          <div className="relative z-10 pt-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-center mb-8 md:mb-20 px-4 text-gray-900">
+              Our Streamlined Process
+            </h1>
+          </div>
+          
+          {/* Cards Grid - 4 cards in first row, 3 cards in second row */}
+          <div className="relative z-10 pb-12">
+            {/* First Row - 4 cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 px-8">
+              {steps.slice(0, 4).map((step, index) => (
                 <div
                   key={step.id}
                   ref={(el) => {
                     cardRefs.current[index] = el;
                   }}
                   data-index={index}
-                  className={`flex flex-col items-center text-center ${
-                    isLastItem ? 'md:col-start-2' : ''
-                  }`}
+                  className="flex flex-col items-center text-center"
                   style={{ opacity: 0 }}
                 >
                   <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#760060' }}>
                     <span className="text-3xl font-bold text-white">{step.id}</span>
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
                     {step.title}
                   </h3>
                   
-                  <p className="text-gray-700 leading-relaxed text-base max-w-xs">
+                  <p className="text-gray-700 leading-relaxed text-sm md:text-base max-w-xs">
                     {step.description}
                   </p>
                 </div>
-              );
-            })}
+              ))}
+            </div>
+            
+            {/* Second Row - 3 cards centered */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 md:mx-auto md:max-w-4xl px-4">
+              {steps.slice(4, 7).map((step, index) => (
+                <div
+                  key={step.id}
+                  ref={(el) => {
+                    cardRefs.current[index + 4] = el;
+                  }}
+                  data-index={index + 4}
+                  className="flex flex-col items-center text-center"
+                  style={{ opacity: 0 }}
+                >
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#760060' }}>
+                    <span className="text-3xl font-bold text-white">{step.id}</span>
+                  </div>
+                  
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+                    {step.title}
+                  </h3>
+                  
+                  <p className="text-gray-700 leading-relaxed text-sm md:text-base max-w-xs">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

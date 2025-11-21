@@ -3,9 +3,9 @@ import Header from '../Home/Header/header';
 import Footer from '../Home/Footer/Footer';
 
 import FAQAccordion from '../Home/FAQAccordion/FAQAccordion';
-import CTASection from '../Home/CTASection/CTASection';
 import CyberSecuritySection from './CyberSecuritySection/CyberSecuritySection';
 import CyberSecurityServices from './CyberSecurityServices/CyberSecurityServices';
+import ContactCTASection from '../ContactUS/HiringFormSection/contactCTASection';
 
 
  // or correct path to your Welcome component
@@ -17,7 +17,7 @@ const serviceCyberSecurityPage: React.FC = () => {
 <CyberSecuritySection/>
 <CyberSecurityServices/>
     <FAQAccordion />
-    <CTASection />
+    <ContactCTASection />
       <Footer />
     
     </div>

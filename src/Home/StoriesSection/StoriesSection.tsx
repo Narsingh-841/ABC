@@ -47,7 +47,6 @@ const StoriesSection = () => {
   };
 
   const stories: Story[] = [
-    // your 3 stories — unchanged
     { id: 1, logo: refglogo, title: "Case Study 1: RFgen", subtitle: "Building from Ground Zero", bgColor: "bg-white",
       challenge: "A U.S.-based enterprise software company needed to establish an India GCC but lacked market insights, local presence, and talent strategy.",
       approach: ["Conducted end-to-end market research and feasibility study.", "Designed organizational structure and hiring roadmap.", "Executed rapid hiring sprint to fill critical engineering roles."],
@@ -74,7 +73,7 @@ const StoriesSection = () => {
 
         <div className="max-w-7xl mx-auto">
           {hoveredStory ? (
-            // EXPANDED VIEW — unchanged
+            // EXPANDED VIEW - with much larger logo image for PwC
             <div className="bg-white p-8 md:p-10 shadow-2xl rounded-3xl mx-auto max-w-5xl relative"
               onMouseEnter={handleMouseEnterExpanded}
               onMouseLeave={handleMouseLeaveExpanded}>
@@ -85,7 +84,13 @@ const StoriesSection = () => {
               <div className="flex flex-col lg:flex-row gap-10 items-start">
                 <div className="flex-shrink-0">
                   <div className="w-32 h-32 rounded-full overflow-hidden border-8 border-gray-50 shadow-lg bg-white">
-                    <img src={hoveredStory.logo} alt={hoveredStory.title} className="w-full h-full object-contain p-4" />
+                    <img 
+                      src={hoveredStory.logo} 
+                      alt={hoveredStory.title} 
+                      className={`w-full h-full object-contain ${
+                        hoveredStory.id === 3 ? 'p-0' : 'p-4'  // No padding for PwC = much larger image
+                      }`} 
+                    />
                   </div>
                 </div>
 
@@ -132,14 +137,14 @@ const StoriesSection = () => {
               </div>
             </div>
           ) : (
-            // GRID CARDS — Only changed the grid container for centering on mobile
+            // GRID CARDS - with much larger logo image for PwC
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center max-w-6xl mx-auto">
               {stories.map((story) => (
                 <div
                   key={story.id}
                   className="bg-white p-7 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col items-center cursor-pointer group relative overflow-hidden"
                   style={{
-                    borderRadius: '140px 140px 0 0',   // Only top corners rounded
+                    borderRadius: '140px 140px 0 0',
                     maxWidth: '300px',
                     width: '100%',
                     minHeight: '360px',
@@ -150,9 +155,15 @@ const StoriesSection = () => {
                   {/* Gradient overlay matches new radius */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#BEA2FB]/90 to-[#760060]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-[140px]" />
 
-                  {/* Logo */}
+                  {/* Logo - Same container size but much larger image for PwC */}
                   <div className="w-24 h-24 rounded-full overflow-hidden mb-6 z-10 border-4 border-white shadow-md bg-white">
-                    <img src={story.logo} alt={story.title} className="w-full h-full object-contain p-3" />
+                    <img 
+                      src={story.logo} 
+                      alt={story.title} 
+                      className={`w-full h-full object-contain ${
+                        story.id === 3 ? 'p-0' : 'p-3'  // No padding for PwC = much larger image
+                      }`} 
+                    />
                   </div>
 
                   <h3 className="text-lg font-bold text-black text-center mb-2 group-hover:text-white transition-colors z-10 px-4">

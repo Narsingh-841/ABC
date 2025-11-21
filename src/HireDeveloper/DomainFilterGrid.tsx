@@ -21,7 +21,7 @@ const DomainFilterGrid: React.FC = () => {
     'Figma', 'Adobe XD', 'Sketch', 'UI/UX', 'Design Systems', 'Prototyping', 'Wireframing',
     'HTML', 'CSS', 'SQL', 'NoSQL', 'API Development', 'Microservices', 'DevOps',
     'Linux', 'Ubuntu', 'Windows', 'macOS', 'Android', 'iOS', 'Cross-platform',
-    'Agile', 'Scrum', 'Kanban', 'Jira', 'Confluence', 'Trello', 'Asana'
+    'Agile', 'Scrum', 'Kanban', 'Jira', 'Confluence', 'Trello', 'Asana','Know More..'
   ];
 
   const filteredDomains = searchQuery.trim() === '' 
@@ -42,8 +42,8 @@ const DomainFilterGrid: React.FC = () => {
     <div className="min-h-screen bg-gray-50 p-8 pb-0">
       {/* Search Bar */}
       <div className="mb-8">
-        <div className="relative max-w-md">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <div className="relative max-w-md mx-auto">
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
           <input
@@ -57,7 +57,7 @@ const DomainFilterGrid: React.FC = () => {
       </div>
 
       {/* Grid of Domain Buttons */}
-      <div className="flex flex-wrap gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
         {filteredDomains.length > 0 ? (
           filteredDomains.map((domain, index) => {
             const isSelected = domain === selectedDomain;
@@ -66,11 +66,13 @@ const DomainFilterGrid: React.FC = () => {
                 key={index}
                 onClick={() => handleDomainClick(domain)}
                 className={`
-                  px-6 py-3 rounded-lg font-medium text-sm transition-all duration-200
+                  px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200
+                  min-h-[60px] flex items-center justify-center text-center
+                  hover:shadow-md hover:text-white border border-gray-200
                   ${
                     isSelected
                       ? 'text-white shadow-lg'
-                      : 'bg-white text-gray-700 shadow-sm hover:shadow-md hover:text-white border border-gray-200'
+                      : 'bg-white text-gray-700 shadow-sm'
                   }
                 `}
                 style={
@@ -96,7 +98,7 @@ const DomainFilterGrid: React.FC = () => {
             );
           })
         ) : (
-          <div className="w-full text-center py-12">
+          <div className="col-span-full text-center py-12">
             <p className="text-gray-500 text-lg">No domains found matching "{searchQuery}"</p>
             <p className="text-gray-400 text-sm mt-2">Try searching for React, Node, Python, etc.</p>
           </div>

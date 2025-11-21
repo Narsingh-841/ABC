@@ -15,6 +15,10 @@ import Digitaltechsolutions from './Services/DigitalTechSolutions';
 import ScrollToTop from './ScrollToTop';
 import Hiredeveloper from './HireDeveloper/HireDeveloperPage';
 import Hiredeloperform from './HireDeveloper/HireDeveloperForm/HireDeveloperFormPage';
+import CaseStudyPage from './CaseStudy/CaseStudyPage';
+import RfgenPage from './CaseStudy/RFGEN/RfgenPage';
+import PwcPage from './CaseStudy/PWC/Pwcpage';
+import DatanitivPage from './CaseStudy/Datanitiv/DatanitivPage';
 
 
 
@@ -37,6 +41,10 @@ const App: React.FC = () => {
         <Route path="/digital-tech-solutions" element={<Digitaltechsolutions />} />
         <Route path="/hire-developer" element={<Hiredeveloper />} />
         <Route path="/hire-developer-form" element={<Hiredeloperform />} />
+        <Route path="/case-study" element={<CaseStudyPage />} />
+        <Route path="/rfgen-case-study" element={<RfgenPage />} />
+        <Route path="/pwc-case-study" element={<PwcPage/>} />
+        <Route path="/Datanativ-case-study" element={<DatanitivPage/>} />
 
 
 
