@@ -19,6 +19,7 @@ import CaseStudyPage from './CaseStudy/CaseStudyPage';
 import RfgenPage from './CaseStudy/RFGEN/RfgenPage';
 import PwcPage from './CaseStudy/PWC/Pwcpage';
 import DatanitivPage from './CaseStudy/Datanitiv/DatanitivPage';
+import CommingSoonpage from './CommingSoon/CommingSoonpage';
 
 
 
@@ -45,6 +46,8 @@ const App: React.FC = () => {
         <Route path="/rfgen-case-study" element={<RfgenPage />} />
         <Route path="/pwc-case-study" element={<PwcPage/>} />
         <Route path="/Datanativ-case-study" element={<DatanitivPage/>} />
+
+        <Route path="/coming-soon" element={<CommingSoonpage/>} />
 
 
 

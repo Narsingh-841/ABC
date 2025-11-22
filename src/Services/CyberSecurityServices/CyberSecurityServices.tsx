@@ -30,7 +30,7 @@ const CyberSecurityServices: React.FC = () => {
     navigate('/contact-us');
   };
   return (
-    <div className="min-h-screen  p-4 md:p-8" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif' }}>
+    <div className="min-h-screen py-8 p-4 md:p-8" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif' }}>
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 md:gap-8">
         {/* Left Sidebar */}
         <div className="w-full lg:w-80 flex-shrink-0 space-y-6">

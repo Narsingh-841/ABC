@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../Home/Header/header';
 
-import ClientTestimonials from '../Home/ClientTestimonials/ClientTestimonials';
 import FAQAccordion from '../Home/FAQAccordion/FAQAccordion';
 import CTASection from '../Home/CTASection/CTASection';
 import Footer from '../Home/Footer/Footer';
 import CaseStudyhero from './CaseStudyhero';
 import CaseStudies from './CaseStudy';
+import TrustedCompanies from '../Home/TrustedCompanies/TrustedCompanies';
 
 
 
@@ -18,7 +18,7 @@ const CaseStudyPage: React.FC = () => {
       <Header />
     <CaseStudyhero />
       <CaseStudies />
-      <ClientTestimonials />
+      <TrustedCompanies />
     <FAQAccordion />
     <CTASection />
    

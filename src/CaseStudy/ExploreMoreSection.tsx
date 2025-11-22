@@ -3,7 +3,6 @@ import { ArrowRight } from 'lucide-react';
 import datanativImage from "../assets/casestudydata.jpg";
 import pwcImage from "../assets/casestudypwc.jpg";
 
-
 interface ExploreCard {
   id: string;
   image: string;
@@ -20,7 +19,7 @@ const ExploreMoreSection: React.FC = () => {
       id: '1',
       image: datanativImage,
       description: 'DataNitiv & Brightcone.AI Establishing GCCs',
-      link: '#',
+      link: '/datanativ-case-study',
       status: 'know-more',
       backgroundColor: 'bg-white',
       hasImage: true
@@ -29,7 +28,7 @@ const ExploreMoreSection: React.FC = () => {
       id: '2',
       image: pwcImage,
       description: 'PwC: Scaling Critical Technology Capabilities',
-      link: '#',
+      link: '/pwc-case-study',
       status: 'know-more',
       backgroundColor: 'bg-white',
       hasImage: true
@@ -38,7 +37,7 @@ const ExploreMoreSection: React.FC = () => {
       id: '3',
       image: "",
       description: 'Coming Soon',
-      link: '#',
+      link: '/coming-soon',
       status: 'coming-soon',
       backgroundColor: 'bg-gray-100',
       hasImage: false
@@ -48,6 +47,7 @@ const ExploreMoreSection: React.FC = () => {
   return (
     <section className="py-16 sm:py-20 lg:py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
+
         {/* Header */}
         <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
           <h2 
@@ -58,15 +58,14 @@ const ExploreMoreSection: React.FC = () => {
           </h2>
         </div>
 
-        {/* Explore More Cards Grid - Exactly 3 items */}
+        {/* Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {exploreCards.map((card) => (
             <div key={card.id} className="flex flex-col">
-              {/* Card Container */}
+
+              {/* Card */}
               <div
-                className={`rounded-2xl transition-all duration-300 hover:shadow-lg hover:scale-105 flex-grow h-full flex flex-col ${card.backgroundColor} ${
-                  card.status === 'coming-soon' ? 'border-2 border-dashed border-gray-300' : 'border border-gray-200'
-                }`}
+                className={`rounded-2xl transition-all duration-300 hover:shadow-lg hover:scale-105 flex-grow h-full flex flex-col ${card.backgroundColor} border border-gray-200`}
               >
                 {/* Image Area */}
                 <div className="w-full h-48 sm:h-52 rounded-t-2xl overflow-hidden flex-shrink-0">
@@ -83,7 +82,7 @@ const ExploreMoreSection: React.FC = () => {
                   )}
                 </div>
 
-                {/* Content Area - Only Description */}
+                {/* Description + Button */}
                 <div className="p-6 flex flex-col flex-grow">
                   <p 
                     className="text-base leading-relaxed text-gray-600 mb-6 flex-grow"
@@ -92,29 +91,25 @@ const ExploreMoreSection: React.FC = () => {
                     {card.description}
                   </p>
 
-                  {/* Action Button/Badge */}
-                  {card.status === 'know-more' ? (
-                    <a
-                      href={card.link}
-                      className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-semibold transition-colors duration-300 group mt-auto"
-                      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
-                    >
-                      Know More
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-                    </a>
-                  ) : (
-                    <div className="inline-flex items-center gap-2 text-gray-500 font-semibold mt-auto">
-                      <span>Coming Soon</span>
-                    </div>
-                  )}
+                  {/* ALWAYS SHOW KNOW MORE */}
+                  <a
+                    href={card.link}
+                    className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-semibold transition-colors duration-300 group mt-auto"
+                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
+                  >
+                    Know More
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+                  </a>
+
                 </div>
               </div>
+
             </div>
           ))}
         </div>
       </div>
 
-      {/* Add SF Pro font styles */}
+      {/* Add SF Pro font */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
       `}</style>

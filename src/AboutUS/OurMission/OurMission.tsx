@@ -31,7 +31,7 @@ export default function AboutCapabiliq() {
   }, []);
 
   return (
-    <section ref={ref} className="min-h-[60vh] bg-white py-2 px-4 sm:py-2 sm:px-4 lg:py-2 lg:px-4 flex items-center justify-center">
+    <section ref={ref} className="min-h-[60vh] bg-white py-8 px-4 sm:py-4 sm:px-4 lg:py-4 lg:px-4 flex items-center justify-center">
       <div className="w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 xl:gap-12 items-center">
           

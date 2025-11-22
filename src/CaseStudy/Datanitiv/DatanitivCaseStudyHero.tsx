@@ -73,7 +73,7 @@ const DatanitivCaseStudyHero: React.FC = () => {
             {/* CTA Button */}
             <button 
               onClick={handleBookConsultingClick}
-              className="px-8 py-4 rounded-full text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="px-8 py-4 rounded-full justify-center lg:justify-start text-white  font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               style={{
                 background: 'linear-gradient(to right, #e85d9a, #a855f7)',
                 fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif'

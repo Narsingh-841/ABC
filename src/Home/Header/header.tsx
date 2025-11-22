@@ -59,7 +59,7 @@ const Header = () => {
     {
       label: "Resources",
       submenu: [
-        { label: "Blog", href: "/blog" },
+        { label: "Blog", href: "/coming-soon" },
         {
           label: "Services",
           href: "#",

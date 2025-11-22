@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import ladyonlaptop from "../../assets/ladycontact.png"
+import ladyonlaptop from "../assets/ladycontact.png"
 import { Star } from 'lucide-react';
 
 const ContactCTASection = () => {

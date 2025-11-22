@@ -49,29 +49,30 @@ const CaseStudies: React.FC = () => {
     },
     {
       id: '4',
-      image:"",
+      image: "",
       title: "",
-      description: 'RFgen: Building from Ground Zero',
-      link: '#',
+      description: 'New case study launching soon',
+      link: '/coming-soon',
       status: 'coming-soon',
-      backgroundColor: 'bg-lime-500',
+      backgroundColor: 'bg-gray-500',
       hasImage: true
     },
     {
       id: '5',
       image: "",
       title: '',
-      description: 'DataNitiv & Brightcone.AI Establishing GCCs',
-      link: '#',
+      description: 'New case study launching soon',
+      link: '/coming-soon',
       status: 'coming-soon',
-      backgroundColor: 'bg-orange-500',
+      backgroundColor: 'bg-gray-500',
       hasImage: true
     }
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="py-16 sm:py-12 lg:py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
+
         {/* Header */}
         <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
           <h2 
@@ -88,15 +89,13 @@ const CaseStudies: React.FC = () => {
           </p>
         </div>
 
-        {/* Case Studies Grid */}
+        {/* Case Studies Grid Top Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-12">
-          {/* Top Row - 3 items */}
           {caseStudies.slice(0, 3).map((study) => (
             <div key={study.id} className="flex flex-col">
-              <div
-                className={`rounded-2xl transition-all duration-300 hover:shadow-lg hover:scale-105 flex-grow ${study.backgroundColor}`}
-              >
-                {/* Image Area - Using object-contain to show complete images */}
+              
+              {/* Card */}
+              <div className={`rounded-2xl transition-all duration-300 hover:shadow-lg hover:scale-105 flex-grow ${study.backgroundColor}`}>
                 <img 
                   src={study.image} 
                   alt={study.title}
@@ -104,31 +103,26 @@ const CaseStudies: React.FC = () => {
                 />
               </div>
 
-              {/* Content - Below Card */}
+              {/* Content */}
               <div className="mt-4">
-                <h3 
-                  className="text-lg sm:text-xl font-semibold mb-2 text-gray-900"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
-                >
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900">
                   {study.title}
                 </h3>
-                <p 
-                  className="text-sm sm:text-base mb-4 leading-relaxed text-gray-600"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
-                >
+
+                <p className="text-sm sm:text-base mb-4 leading-relaxed text-gray-600">
                   {study.description}
                 </p>
 
-                {/* Link */}
+                {/* ALWAYS SHOW KNOW MORE */}
                 <a
                   href={study.link}
                   className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-semibold transition-colors duration-300 group"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
                 >
                   Know More
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
               </div>
+
             </div>
           ))}
         </div>
@@ -137,46 +131,38 @@ const CaseStudies: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
           {caseStudies.slice(3, 5).map((study) => (
             <div key={study.id} className="flex flex-col">
-              <div
-                className={`rounded-2xl transition-all duration-300 hover:shadow-lg hover:scale-105 flex-grow ${study.backgroundColor}`}
-              >
-                {/* Image Area - Using object-contain to show complete images */}
+              
+              <div className={`rounded-2xl transition-all duration-300 hover:shadow-lg hover:scale-105 flex-grow ${study.backgroundColor}`}>
                 <img 
                   src={study.image} 
-                  alt={study.title}
+           
                   className="w-full h-40 sm:h-44 object-contain rounded-2xl"
                 />
               </div>
 
-              {/* Content - Below Card */}
               <div className="mt-4">
-                <h3 
-                  className="text-lg sm:text-xl font-semibold mb-2 text-gray-900"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
-                >
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900">
                   {study.title}
                 </h3>
-                <p 
-                  className="text-sm sm:text-base mb-4 leading-relaxed text-gray-600"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
-                >
+
+                <p className="text-sm sm:text-base mb-4 leading-relaxed text-gray-600">
                   {study.description}
                 </p>
 
-                {/* Coming Soon Badge */}
-                <div className="inline-flex items-center gap-2 text-gray-500 font-semibold">
-                  <span>Coming Soon</span>
-                </div>
+                {/* Always Know More Button */}
+                <a
+                  href={study.link}
+                  className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-semibold transition-colors duration-300 group"
+                >
+                  Know More
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+                </a>
               </div>
+
             </div>
           ))}
         </div>
       </div>
-
-      {/* Add SF Pro font styles */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
-      `}</style>
     </section>
   );
 };

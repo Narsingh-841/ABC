@@ -12,7 +12,7 @@ const PwcCaseStudyHero: React.FC = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center px-4 py-16 font-sf min-h-[80vh]">
+    <div className="relative flex items-center justify-center px-4 py-12 font-sf min-h-[80vh]">
       {/* Background Images */}
       <div className="absolute inset-0 z-0">
         {/* Desktop Background */}

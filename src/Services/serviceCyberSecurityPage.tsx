@@ -5,7 +5,7 @@ import Footer from '../Home/Footer/Footer';
 import FAQAccordion from '../Home/FAQAccordion/FAQAccordion';
 import CyberSecuritySection from './CyberSecuritySection/CyberSecuritySection';
 import CyberSecurityServices from './CyberSecurityServices/CyberSecurityServices';
-import ContactCTASection from '../ContactUS/HiringFormSection/contactCTASection';
+import ContactCTASection from '../ContactUS/ContactCTASection';
 
 
  // or correct path to your Welcome component

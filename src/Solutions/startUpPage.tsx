@@ -8,7 +8,7 @@ import Footer from '../Home/Footer/Footer';
 import StartUpHire from './StartUps/StartUpHire';
 import WhyStartupsChoose from './StartUps/WhyStartupsChoose';
 import HowItWorks from './StartUps/HowItWorks';
-import ContactCTASection from '../ContactUS/HiringFormSection/contactCTASection';
+import ContactCTASection from '../ContactUS/ContactCTASection';
 
  // or correct path to your Welcome component
 

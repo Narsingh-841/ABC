@@ -38,7 +38,7 @@ const ExploreMoreSection: React.FC = () => {
       id: '3',
       image: "",
       description: 'Coming Soon',
-      link: '#',
+      link: '/coming-soon',
       status: 'coming-soon',
       backgroundColor: 'bg-gray-100',
       hasImage: false
@@ -46,10 +46,10 @@ const ExploreMoreSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="py-8 sm:py-20 lg:py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
+        <div className="mb-12 sm:mb-12 lg:mb-12 text-center">
           <h2 
             className="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-4 text-gray-900"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
@@ -92,21 +92,16 @@ const ExploreMoreSection: React.FC = () => {
                     {card.description}
                   </p>
 
-                  {/* Action Button/Badge */}
-                  {card.status === 'know-more' ? (
-                    <a
-                      href={card.link}
-                      className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-semibold transition-colors duration-300 group mt-auto"
-                      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
-                    >
-                      Know More
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-                    </a>
-                  ) : (
-                    <div className="inline-flex items-center gap-2 text-gray-500 font-semibold mt-auto">
-                      <span>Coming Soon</span>
-                    </div>
-                  )}
+                  {/* ALWAYS SHOW KNOW MORE */}
+                  <a
+                    href={card.link}
+                    className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-semibold transition-colors duration-300 group mt-auto"
+                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
+                  >
+                    Know More
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+                  </a>
+
                 </div>
               </div>
             </div>

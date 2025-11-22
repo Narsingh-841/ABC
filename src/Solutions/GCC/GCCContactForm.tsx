@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
-import GCCForm from '../../assets/GCCForm.png';
 
 // Initialize EmailJS
 const EMAILJS_SERVICE_ID = 'service_yjhifms';
@@ -168,36 +167,68 @@ const GCCContactForm: React.FC = () => {
       />
       
       <div className="max-w-7xl w-full bg-white rounded-3xl shadow-lg p-6 sm:p-8 lg:p-8">
+        {/* Main Grid Container */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
-          {/* Left Side - Imported Image */}
-          <div className="flex justify-center lg:justify-start">
-            <div className="relative">
-              <img 
-                src={GCCForm} 
-                alt="GCC Playbook" 
-                className="w-full max-w-md"
-              />
+          {/* Left Side - Text Content Grid */}
+          <div className="grid grid-rows-auto gap-6">
+            <div className="grid">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight" style={{ fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif' }}>
+                Unlock Your GCC Success in India
+              </h1>
+            </div>
+            
+            <div className="grid gap-4">
+              <p className="text-lg leading-relaxed text-gray-700">
+                Get our comprehensive GCC Playbook and discover how to establish high-performing Global Capability Centers in India with speed and efficiency.
+              </p>
+              
+              <div className="grid gap-3">
+                <div className="grid grid-cols-[auto_1fr] gap-3 items-start">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2"></div>
+                  <p className="text-base text-gray-700">Complete guide to setting up your Global Capability Center in India</p>
+                </div>
+                
+                <div className="grid grid-cols-[auto_1fr] gap-3 items-start">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2"></div>
+                  <p className="text-base text-gray-700">Best practices for talent acquisition and team building</p>
+                </div>
+                
+                <div className="grid grid-cols-[auto_1fr] gap-3 items-start">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2"></div>
+                  <p className="text-base text-gray-700">Cost optimization strategies and market insights</p>
+                </div>
+                
+                <div className="grid grid-cols-[auto_1fr] gap-3 items-start">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2"></div>
+                  <p className="text-base text-gray-700">Proven frameworks for scalable operations and growth</p>
+                </div>
+              </div>
+              
+              <p className="text-sm text-gray-600 mt-2">
+                Join hundreds of companies who have successfully established their GCC operations in India with our guidance.
+              </p>
             </div>
           </div>
 
-          {/* Right Side - Form */}
-          <div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-2 leading-tight" style={{ fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif' }}>
-              Ready to Build Your GCC in India?
-            </h1>
-            
-            <p className="text-gray-500 text-lg mb-8">Fast-Track Your Set-Up Now</p>
+          {/* Right Side - Form Grid */}
+          <div className="grid gap-8">
+            <div className="grid gap-2">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900">
+                Get Your Free GCC Playbook
+              </h2>
+              <p className="text-gray-500 text-lg">Fast-Track Your India Set-Up Now</p>
+            </div>
 
             <form onSubmit={handleSubmit}>
-              <div className="space-y-6">
-                {/* Name Fields */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="grid gap-6">
+                {/* Name Fields Grid */}
+                <div className="grid gap-2">
+                  <label className="block text-sm font-medium text-gray-700">
                     Name <span className="text-red-500 text-xs">(Required)</span>
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
+                    <div className="grid gap-1">
                       <input
                         type="text"
                         name="firstName"
@@ -207,9 +238,9 @@ const GCCContactForm: React.FC = () => {
                         required
                         disabled={isSubmitting}
                       />
-                      <label className="text-xs text-gray-500 mt-1 block">First</label>
+                      <label className="text-xs text-gray-500">First</label>
                     </div>
-                    <div>
+                    <div className="grid gap-1">
                       <input
                         type="text"
                         name="lastName"
@@ -219,15 +250,15 @@ const GCCContactForm: React.FC = () => {
                         required
                         disabled={isSubmitting}
                       />
-                      <label className="text-xs text-gray-500 mt-1 block">Last</label>
+                      <label className="text-xs text-gray-500">Last</label>
                     </div>
                   </div>
                 </div>
 
-                {/* Company and Email */}
+                {/* Company and Email Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="grid gap-2">
+                    <label className="block text-sm font-medium text-gray-700">
                       Company <span className="text-red-500 text-xs">(Required)</span>
                     </label>
                     <input
@@ -240,8 +271,8 @@ const GCCContactForm: React.FC = () => {
                       disabled={isSubmitting}
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="grid gap-2">
+                    <label className="block text-sm font-medium text-gray-700">
                       Company Email <span className="text-red-500 text-xs">(Required)</span>
                     </label>
                     <input
@@ -256,10 +287,10 @@ const GCCContactForm: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Job Title and Consent */}
+                {/* Job Title and Consent Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="grid gap-2">
+                    <label className="block text-sm font-medium text-gray-700">
                       Job Title <span className="text-red-500 text-xs">(Required)</span>
                     </label>
                     <input
@@ -272,11 +303,11 @@ const GCCContactForm: React.FC = () => {
                       disabled={isSubmitting}
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="grid gap-2">
+                    <label className="block text-sm font-medium text-gray-700">
                       Consent <span className="text-red-500 text-xs">(Required)</span>
                     </label>
-                    <div className="flex items-start gap-3 mt-3">
+                    <div className="grid grid-cols-[auto_1fr] gap-3 items-start mt-1">
                       <input
                         type="checkbox"
                         name="consent"
@@ -293,19 +324,19 @@ const GCCContactForm: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Submit Button */}
-                <div className="pt-4">
+                {/* Submit Button Grid */}
+                <div className="grid pt-2">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full sm:w-auto text-white font-medium py-4 px-12 rounded-full transition-colors duration-200 text-lg ${
+                    className={`w-full text-white font-medium py-4 px-8 rounded-full transition-colors duration-200 text-lg ${
                       isSubmitting 
                         ? 'bg-gray-400 cursor-not-allowed' 
                         : 'bg-gray-900 hover:bg-gray-800'
                     }`}
                   >
                     {isSubmitting ? (
-                      <div className="flex items-center justify-center gap-2">
+                      <div className="grid grid-cols-[auto_1fr] gap-2 items-center justify-center">
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                         <span>Sending...</span>
                       </div>
